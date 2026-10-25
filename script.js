@@ -1,1471 +1,761 @@
-const BYCHRONOS_BOOKING_URL = 'https://go.bychronos.com/l/kissimmee-34746-jade-head-spa-beauty-806983/a/services';
+/**
+ * JADE HEAD SPA & BEAUTY — INTERACTIVE SANCTUARY ENGINE
+ * Powers: Solo/Couples Pricing Toggle, Category Filters, 5-Stage Choreography,
+ * Bespoke Matchmaker, Ritual Detail Modal, Custom Ritual Bag Drawer,
+ * Live Gift Card Atelier, Lookbook Lightbox, and FAQ Accordion.
+ */
 
-const HERO_SCENES = [
-  {
-    serviceId: 'srv-128489',
-    title: '60 Mins Head Spa',
-    sub: '1 hour · Deep follicle cleanse, cloud-foam scalp massage & 360° Golden Ring Waterfall',
-    price: '$120',
-    photo: 'assets/images/gmaps/waterfall-therapist-suite.jpg',
-    photoAlt: 'Specialist performing the 60 Mins Head Spa with Golden Ring Waterfall arch at Jade Head Spa & Beauty',
-    cutout: 'assets/images/ai/cutout-golden-halo-arch.png',
-    cutoutTitle: 'Golden Ring Hydro-Arch',
-    cutoutNote: 'Warm 360° water halo over porcelain basin'
-  },
-  {
-    serviceId: 'srv-138178',
-    title: 'Japanese Head Spa with Shiseido Package',
-    sub: '1 hr 30 min · 45-Min Shiseido Head Spa + 45-Min Therapeutic Body Massage',
-    price: '$199',
-    photo: 'assets/images/gmaps/scalp-foam-massage.jpg',
-    photoAlt: 'Foaming Shiseido scalp acupressure ritual at Jade Head Spa & Beauty in Kissimmee',
-    cutout: 'assets/images/ai/cutout-shiseido-ritual.png',
-    cutoutTitle: 'Shiseido Sublimic Care',
-    cutoutNote: 'Japanese scalp serum, bamboo whisk & jade comb'
-  },
-  {
-    serviceId: 'srv-128491',
-    title: '60 Mins Korean Facial',
-    sub: '1 hour · Double cleanse, warm ozone steam, twin-brush hydro-mask & lymphatic lift',
-    price: '$120',
-    photo: 'assets/images/gmaps/korean-facial-treatment.jpg',
-    photoAlt: 'Esthetician performing a 60 Mins Korean Facial with warm ozone steam',
-    cutout: 'assets/images/ai/cutout-korean-facial.png',
-    cutoutTitle: 'Korean Glass-Skin Studio',
-    cutoutNote: 'Twin fan brushes, hyaluronic serum & jade roller'
-  },
-  {
-    serviceId: 'pkg-2222',
-    title: 'Couple 60 Minutes Head Spa',
-    sub: '1 hour • 2 services · Side-by-side Golden Ring Waterfall suite for two ($120 per guest)',
-    price: '$240',
-    photo: 'assets/images/gmaps/white-jade-towel-roses.jpg',
-    photoAlt: 'Private couples suite prepared with embroidered Jade towels and fresh pink roses',
-    cutout: 'assets/images/ai/cutout-couple-sanctuary.png',
-    cutoutTitle: 'Side-by-Side Duet Suite',
-    cutoutNote: 'Two waterfall beds, fresh roses & flower tea'
-  }
-];
+(function () {
+  'use strict';
 
-const STAGE_SIGNATURES = [
-  {
-    serviceId: 'srv-128489',
-    title: '60 Mins Head Spa',
-    sub: '1 hour · Solo Waterfall Ritual',
-    price: '$120',
-    duration: '1 hour',
-    photo: 'assets/images/gmaps/waterfall-therapist-suite.jpg',
-    photoAlt: 'Specialist performing the 60 Mins Head Spa with Golden Ring Waterfall arch',
-    cutout: 'assets/images/ai/cutout-golden-halo-arch.png',
-    cutoutLabel: 'Golden Ring Hydro-Arch'
-  },
-  {
-    serviceId: 'srv-138178',
-    title: 'Japanese Head Spa with Shiseido Package',
-    sub: '1 hour 30 min · 45m Head Spa + 45m Massage',
-    price: '$199',
-    duration: '1 hour 30 min',
-    photo: 'assets/images/gmaps/scalp-foam-massage.jpg',
-    photoAlt: 'Foaming Shiseido scalp acupressure ritual at Jade Head Spa & Beauty',
-    cutout: 'assets/images/ai/cutout-shiseido-ritual.png',
-    cutoutLabel: 'Shiseido Tokyo Formulary'
-  },
-  {
-    serviceId: 'srv-128497',
-    title: '60 Mins Head plus 30 Mins Massage',
-    sub: '1 hour 30 min · Head Spa + Body Massage',
-    price: '$160',
-    duration: '1 hour 30 min',
-    photo: 'assets/images/curated/female-therapist-oil-massage.jpg',
-    photoAlt: 'Warm botanical oil back massage paired with Golden Ring Head Spa',
-    cutout: 'assets/images/ai/cutout-head-massage-pkg.png',
-    cutoutLabel: 'Crown & Body Package'
-  },
-  {
-    serviceId: 'srv-128491',
-    title: '60 Mins Korean Facial',
-    sub: '1 hour · Ozone Steam & Twin-Brush Mask',
-    price: '$120',
-    duration: '1 hour',
-    photo: 'assets/images/gmaps/korean-facial-treatment.jpg',
-    photoAlt: 'Esthetician performing a 60 Mins Korean Facial with warm ozone steam',
-    cutout: 'assets/images/ai/cutout-korean-facial.png',
-    cutoutLabel: 'Korean Skincare Studio'
-  },
-  {
-    serviceId: 'pkg-2222',
-    title: 'Couple 60 Minutes Head Spa',
-    sub: '1 hour • 2 services · Private Suite ($120/guest)',
-    price: '$240',
-    duration: '1 hour • 2 services',
-    photo: 'assets/images/gmaps/white-jade-towel-roses.jpg',
-    photoAlt: 'Private couples suite prepared with embroidered Jade towels and fresh pink roses',
-    cutout: 'assets/images/ai/cutout-couple-sanctuary.png',
-    cutoutLabel: 'Side-by-Side Couples Suite'
-  },
-  {
-    serviceId: 'srv-128492',
-    title: '60 Mins Foot Massage',
-    sub: '1 hour · Leather Recliner Reflexology',
-    price: '$60',
-    duration: '1 hour',
-    photo: 'assets/images/gmaps/foot-reflexology-lounge.jpg',
-    photoAlt: 'Foot reflexology treatment in the plush leather recliner lounge',
-    cutout: 'assets/images/ai/cutout-foot-reflexology.png',
-    cutoutLabel: 'Reflexology Recliner Lounge'
-  }
-];
-
-const OFFICIAL_CATEGORIES = [
-  { id: 'all', label: 'All 30 Treatments' },
-  { id: 'Head Spa', label: 'Head Spa' },
-  { id: 'Head Spa Package', label: 'Head Spa Package' },
-  { id: 'Special Menu', label: 'Special Menu · Shiseido' },
-  { id: 'Couple Head Spa', label: 'Couple Head Spa' },
-  { id: 'Facial', label: 'Facial' },
-  { id: 'Massage', label: 'Massage' },
-  { id: 'Couple Massage', label: 'Couple Massage' },
-  { id: 'Foot Massage', label: 'Foot Massage' }
-];
-
-const OFFICIAL_SERVICES = [
-  /* 1. Head Spa (3) */
-  {
-    id: 'srv-128483',
-    name: '30 Mins Head Spa',
-    category: 'Head Spa',
-    duration: '30 min',
-    timeBucket: 'short',
-    focusBucket: 'head',
-    price: '$80',
-    isCouples: false,
-    photo: 'assets/images/gmaps/waterfall-basin-closeup.jpg',
-    cutout: 'assets/images/ai/cutout-golden-halo-arch.png',
-    useCutoutThumb: false,
-    description: 'Express Japanese-inspired head spa featuring aromatic scalp cleansing, acupressure head massage, and soothing Golden Ring Waterfall therapy.',
-    highlights: [
-      'Aromatic botanical scalp cleanse and gentle exfoliation',
-      'Cranial meridian and temple acupressure relief',
-      'Warm 360° Golden Ring Waterfall hydrotherapy rinse',
-      'Warm towel wrap and quick hair refresh'
-    ]
-  },
-  {
-    id: 'srv-128489',
-    name: '60 Mins Head Spa',
-    category: 'Head Spa',
-    duration: '1 hour',
-    timeBucket: 'medium',
-    focusBucket: 'head',
-    price: '$120',
-    isCouples: false,
-    photo: 'assets/images/gmaps/waterfall-halo-hero.jpg',
-    cutout: 'assets/images/ai/cutout-golden-halo-arch.png',
-    useCutoutThumb: true,
-    description: 'Our signature 60-minute Japanese Head Spa with deep follicle detox, rich foaming scalp massage, conditioning mist, Golden Ring Waterfall circulation, and neck and shoulder tension release.',
-    highlights: [
-      'Deep follicle purifying cleanse and rich botanical lather',
-      'Extended cranial, temple, and sub-occipital acupressure',
-      '360° warm Golden Ring Waterfall halo immersion and steam',
-      'Conditioning treatment plus neck and shoulder massage'
-    ]
-  },
-  {
-    id: 'srv-128499',
-    name: '90 Mins Head Spa',
-    category: 'Head Spa',
-    duration: '1 hour 30 min',
-    timeBucket: 'long',
-    focusBucket: 'head',
-    price: '$160',
-    isCouples: false,
-    photo: 'assets/images/gmaps/scalp-foam-massage.jpg',
-    cutout: 'assets/images/ai/cutout-golden-halo-arch.png',
-    useCutoutThumb: false,
-    description: 'Extended 90-minute restorative head spa with multi-step botanical scalp therapy, warm oil meridian massage, extended Golden Ring Waterfall hydrotherapy, and upper-body relaxation.',
-    highlights: [
-      'Multi-stage scalp detox, foaming massage, and herbal steam',
-      'Extended 360° Golden Ring Waterfall hydro-halo immersion',
-      'Nourishing hair mask and upper-back, neck, and arm massage',
-      'Unhurried 90-minute suite session with warm towel service'
-    ]
-  },
-
-  /* 2. Head Spa Package (5) */
-  {
-    id: 'srv-128484',
-    name: '30 Mins Head plus 30 Mins Massage',
-    category: 'Head Spa Package',
-    duration: '1 hour',
-    timeBucket: 'medium',
-    focusBucket: 'head',
-    price: '$120',
-    isCouples: false,
-    photo: 'assets/images/gmaps/aromatherapy-jade-suite.jpg',
-    cutout: 'assets/images/ai/cutout-head-massage-pkg.png',
-    useCutoutThumb: false,
-    description: 'Balanced 60-minute combination pairing a 30-minute Golden Ring Waterfall Head Spa with a 30-minute targeted body massage.',
-    highlights: [
-      '30-minute Japanese Head Spa with Golden Ring Waterfall rinse',
-      '30-minute therapeutic neck, shoulder, and back massage',
-      'Warm aromatic oils and steamed towel finish',
-      'Ideal one-hour crown and upper-body reset'
-    ]
-  },
-  {
-    id: 'srv-128495',
-    name: '30 Mins Head plus 30 Mins Facial',
-    category: 'Head Spa Package',
-    duration: '1 hour',
-    timeBucket: 'medium',
-    focusBucket: 'facial',
-    price: '$140',
-    isCouples: false,
-    photo: 'assets/images/gmaps/facial-mask-brushes.jpg',
-    cutout: 'assets/images/ai/cutout-korean-facial.png',
-    useCutoutThumb: false,
-    description: '60-minute beauty ritual combining a 30-minute Japanese Head Spa with a 30-minute hydrating facial cleanse and mask treatment.',
-    highlights: [
-      '30-minute Golden Ring Waterfall Head Spa and scalp massage',
-      '30-minute express facial cleanse, steam, and twin-brush mask',
-      'Facial and cranial acupressure for lifted circulation',
-      'Botanical hydration finish'
-    ]
-  },
-  {
-    id: 'srv-128497',
-    name: '60 Mins Head plus 30 Mins Massage',
-    category: 'Head Spa Package',
-    duration: '1 hour 30 min',
-    timeBucket: 'long',
-    focusBucket: 'head',
-    price: '$160',
-    isCouples: false,
-    photo: 'assets/images/curated/female-therapist-oil-massage.jpg',
-    cutout: 'assets/images/ai/cutout-head-massage-pkg.png',
-    useCutoutThumb: true,
-    description: '90-minute head-to-shoulder renewal featuring our full 60-minute signature Head Spa followed by a 30-minute therapeutic body massage.',
-    highlights: [
-      'Full 60-minute signature Golden Ring Waterfall Head Spa',
-      '30-minute customized body massage with warm aromatic oil',
-      'Deep cranial, neck, shoulder, and back tension release',
-      '90 minutes of continuous restorative care'
-    ]
-  },
-  {
-    id: 'srv-128501',
-    name: '60 Head plus 30 Facial',
-    category: 'Head Spa Package',
-    duration: '1 hour 30 min',
-    timeBucket: 'long',
-    focusBucket: 'facial',
-    price: '$180',
-    isCouples: false,
-    photo: 'assets/images/gmaps/korean-facial-treatment.jpg',
-    cutout: 'assets/images/ai/cutout-korean-facial.png',
-    useCutoutThumb: false,
-    description: '90-minute crown and complexion package combining a full 60-minute Golden Ring Waterfall Head Spa with a 30-minute radiant facial.',
-    highlights: [
-      'Full 60-minute Japanese Head Spa with Golden Ring Waterfall',
-      '30-minute Korean-style facial cleanse, ozone steam, and mask',
-      'Scalp-to-face meridian massage for natural glow',
-      'Complete 90-minute beauty and relaxation pairing'
-    ]
-  },
-  {
-    id: 'srv-128504',
-    name: '60 Head plus 60 Massage',
-    category: 'Head Spa Package',
-    duration: '2 hours',
-    timeBucket: 'long',
-    focusBucket: 'head',
-    price: '$200',
-    isCouples: false,
-    photo: 'assets/images/official/back-massage-official.jpg',
-    cutout: 'assets/images/ai/cutout-head-massage-pkg.png',
-    useCutoutThumb: false,
-    description: 'Two full hours of uninterrupted tranquility: a 60-minute Japanese Head Spa paired with a 60-minute full-body massage.',
-    highlights: [
-      'Full 60-minute Golden Ring Waterfall Head Spa ritual',
-      'Full 60-minute head-to-toe therapeutic body massage',
-      'Warm aromatic essential oils and steamed herbal towels',
-      'Our longest two-hour solo sanctuary immersion'
-    ]
-  },
-
-  /* 3. Special Menu (Shiseido) (4) */
-  {
-    id: 'srv-138178',
-    name: 'Japanese Head Spa with Shiseido Package (90 Mins)',
-    officialName: 'JAPANESE HEAD SPA WITH SHISEIDO PACKAGE',
-    category: 'Special Menu',
-    duration: '1 hour 30 min',
-    timeBucket: 'long',
-    focusBucket: 'shiseido',
-    price: '$199',
-    isCouples: false,
-    photo: 'assets/images/gmaps/scalp-foam-massage.jpg',
-    cutout: 'assets/images/ai/cutout-shiseido-ritual.png',
-    useCutoutThumb: true,
-    description: '45-Min Head Spa + 45-Min Massage powered by authentic Japanese Shiseido professional scalp and hair care formulations.',
-    highlights: [
-      'Authentic Japanese Shiseido professional scalp and hair care line',
-      '45-minute Shiseido follicle detox, cloud-foam massage, and Golden Ring Waterfall',
-      '45-minute therapeutic body massage for complete muscular relief',
-      'Leaves hair weightless, glossy, and deeply conditioned'
-    ]
-  },
-  {
-    id: 'srv-138177',
-    name: 'Japanese Head Spa with Shiseido Package (60 Mins)',
-    officialName: 'JAPANESE HEAD SPA WITH SHISEIDO PACKAGE',
-    category: 'Special Menu',
-    duration: '1 hour',
-    timeBucket: 'medium',
-    focusBucket: 'shiseido',
-    price: '$159',
-    isCouples: false,
-    photo: 'assets/images/gmaps/waterfall-therapist-suite.jpg',
-    cutout: 'assets/images/ai/cutout-shiseido-ritual.png',
-    useCutoutThumb: false,
-    description: '30-Min Head Spa + 30-Min Massage featuring prestige Japanese Shiseido scalp purifying cleanser, nourishing treatment, and waterfall therapy.',
-    highlights: [
-      '100% authentic Japanese Shiseido salon scalp and hair products',
-      '30-minute Shiseido Head Spa with Golden Ring Waterfall rinse',
-      '30-minute upper-body and back therapeutic massage',
-      '60-minute total duration'
-    ]
-  },
-  {
-    id: 'srv-138175',
-    name: 'Japanese Head Spa with Shiseido For Two',
-    officialName: 'JAPANESE HEAD SPA WITH SHISEIDO For Two',
-    category: 'Special Menu',
-    duration: '1 hour - 1 hour 30 min',
-    timeBucket: 'long',
-    focusBucket: 'shiseido',
-    price: 'from $318',
-    isCouples: true,
-    photo: 'assets/images/gmaps/white-jade-towel-roses.jpg',
-    cutout: 'assets/images/ai/cutout-shiseido-ritual.png',
-    useCutoutThumb: true,
-    description: 'Couples Japanese Head Spa for Two using luxury Shiseido scalp and hair care products in our private side-by-side suite. Available in 60 Mins ($318) or 90 Mins ($398).',
-    highlights: [
-      'Private side-by-side suite for two guests with two dedicated specialists',
-      'Authentic Japanese Shiseido scalp cleansing and conditioning',
-      'Available as 60 Mins ($318 total) or 90 Mins ($398 total)',
-      'Twin Golden Ring Waterfall hydrotherapy beds'
-    ]
-  },
-  {
-    id: 'srv-138174',
-    name: 'Japanese Head Spa with Shiseido For One',
-    officialName: 'JAPANESE HEAD SPA WITH SHISEIDO For One',
-    category: 'Special Menu',
-    duration: '1 hour - 1 hour 30 min',
-    timeBucket: 'medium',
-    focusBucket: 'shiseido',
-    price: 'from $159',
-    isCouples: false,
-    photo: 'assets/images/official/golden-halo-official.jpg',
-    cutout: 'assets/images/ai/cutout-shiseido-ritual.png',
-    useCutoutThumb: false,
-    description: 'Individual Japanese Head Spa elevated with Shiseido professional scalp care. Available in 60 Mins ($159) or 90 Mins ($199).',
-    highlights: [
-      'Solo sanctuary session powered by Japanese Shiseido formulas',
-      'Choose 60 Mins ($159) or extended 90 Mins ($199) on ByChronos',
-      'Deep sebum cleanse, meridian scalp massage, and waterfall halo',
-      'Restores scalp balance and mirror-like hair shine'
-    ]
-  },
-
-  /* 4. Couple Head Spa (7) */
-  {
-    id: 'pkg-2222',
-    name: 'Couple 60 Minutes Head Spa',
-    officialName: 'Couple 60 minutes head spa',
-    category: 'Couple Head Spa',
-    duration: '1 hour • 2 services',
-    timeBucket: 'medium',
-    focusBucket: 'head',
-    price: '$240',
-    isCouples: true,
-    photo: 'assets/images/gmaps/white-jade-towel-roses.jpg',
-    cutout: 'assets/images/ai/cutout-couple-sanctuary.png',
-    useCutoutThumb: true,
-    description: 'Includes Couple 60 minutes head spa 1st person ($120) + 2nd person ($120) side-by-side in our tranquil Golden Ring Waterfall suite.',
-    highlights: [
-      'Side-by-side 60-minute Japanese Head Spa for 2 guests ($120/person)',
-      'Twin 360° Golden Ring Waterfall arches and porcelain basins',
-      'Foaming scalp acupressure, conditioning steam, and neck relief',
-      'Candlelit private couples sanctuary'
-    ]
-  },
-  {
-    id: 'pkg-2223',
-    name: 'Couple 90 minutes head spa',
-    category: 'Couple Head Spa',
-    duration: '1 hour 30 min • 2 services',
-    timeBucket: 'long',
-    focusBucket: 'head',
-    price: '$320',
-    isCouples: true,
-    photo: 'assets/images/gmaps/jade-towel-lily-arch.jpg',
-    cutout: 'assets/images/ai/cutout-couple-sanctuary.png',
-    useCutoutThumb: false,
-    description: 'Extended 90-minute side-by-side Japanese Head Spa package for two guests ($160 per person) with Golden Ring Waterfall hydrotherapy.',
-    highlights: [
-      '90-minute side-by-side Head Spa for 2 guests ($160/person)',
-      'Extended cranial acupressure, herbal steam, and waterfall halo',
-      'Nourishing hair conditioning plus neck, shoulder, and arm massage',
-      'Private rose-and-lily suite for two'
-    ]
-  },
-  {
-    id: 'pkg-2224',
-    name: 'Couple 60 minutes package 30 Mins head spa plus 30 Mins massage',
-    category: 'Couple Head Spa',
-    duration: '1 hour • 2 services',
-    timeBucket: 'medium',
-    focusBucket: 'head',
-    price: '$240',
-    isCouples: true,
-    photo: 'assets/images/gmaps/lily-candles-towels.jpg',
-    cutout: 'assets/images/ai/cutout-couple-sanctuary.png',
-    useCutoutThumb: false,
-    description: '60-minute couples package for two guests: each person enjoys a 30-minute Head Spa plus a 30-minute body massage ($120 per guest).',
-    highlights: [
-      'For 2 guests ($120/person) in a private couples suite',
-      '30-minute Golden Ring Waterfall Head Spa per guest',
-      '30-minute therapeutic body massage per guest',
-      'Simultaneous care by two dedicated specialists'
-    ]
-  },
-  {
-    id: 'pkg-2225',
-    name: 'Couple 90 minutes package 30 Mins head spa plus 30 Mins massage',
-    category: 'Couple Head Spa',
-    duration: '50 min - 1 hr 30 min • 2 services',
-    timeBucket: 'long',
-    focusBucket: 'head',
-    price: '$320',
-    isCouples: true,
-    photo: 'assets/images/gmaps/aromatherapy-oils-candles.jpg',
-    cutout: 'assets/images/ai/cutout-couple-sanctuary.png',
-    useCutoutThumb: false,
-    description: 'Extended couples head spa and full-body massage retreat for two guests ($160 per person) in our private suite.',
-    highlights: [
-      'Extended 90-minute duet retreat for 2 guests ($160/person)',
-      'Combines Golden Ring Waterfall Head Spa and full-body massage',
-      'Warm aromatic essential oils and steamed towel service',
-      'Private side-by-side suite reservation'
-    ]
-  },
-  {
-    id: 'pkg-2226',
-    name: 'Couple 60 minutes package 30 mins head spa plus 30 mins facial',
-    category: 'Couple Head Spa',
-    duration: '2 hours • 2 services',
-    timeBucket: 'medium',
-    focusBucket: 'facial',
-    price: '$280',
-    isCouples: true,
-    photo: 'assets/images/gmaps/facial-mask-brushes.jpg',
-    cutout: 'assets/images/ai/cutout-couple-sanctuary.png',
-    useCutoutThumb: false,
-    description: 'Couples beauty package for two guests: each guest receives a 30-minute Japanese Head Spa plus a 30-minute custom facial ($140 per guest).',
-    highlights: [
-      'For 2 guests ($140/person) side-by-side',
-      '30-minute Golden Ring Waterfall Head Spa for each guest',
-      '30-minute hydrating Korean-style facial and brush mask for each guest',
-      'Ideal anniversary, birthday, or friends spa outing'
-    ]
-  },
-  {
-    id: 'pkg-2227',
-    name: 'Couple 90 minutes package 60 Mins head spa plus 30 massage',
-    category: 'Couple Head Spa',
-    duration: '3 hours • 2 services',
-    timeBucket: 'long',
-    focusBucket: 'head',
-    price: '$320',
-    isCouples: true,
-    photo: 'assets/images/gmaps/aromatherapy-jade-suite.jpg',
-    cutout: 'assets/images/ai/cutout-couple-sanctuary.png',
-    useCutoutThumb: false,
-    description: 'Each guest enjoys a full 60-minute Golden Ring Waterfall Head Spa plus a 30-minute relaxing massage ($160 per guest).',
-    highlights: [
-      '90 minutes of care per guest ($160/person · $320 total for 2)',
-      'Full 60-minute signature Golden Ring Waterfall Head Spa each',
-      '30-minute therapeutic body massage each',
-      'Private candlelit suite for two'
-    ]
-  },
-  {
-    id: 'pkg-2228',
-    name: 'Couple 90 minutes package 60 Mins head spa plus 30 facial',
-    category: 'Couple Head Spa',
-    duration: '3 hours • 2 services',
-    timeBucket: 'long',
-    focusBucket: 'facial',
-    price: '$360',
-    isCouples: true,
-    photo: 'assets/images/gmaps/korean-facial-treatment.jpg',
-    cutout: 'assets/images/ai/cutout-couple-sanctuary.png',
-    useCutoutThumb: false,
-    description: 'Our premier couples crown and glow package: each guest receives a 60-minute Japanese Head Spa plus a 30-minute Korean Facial ($180 per guest).',
-    highlights: [
-      'Our flagship 90-minute per guest duet ($180/person · $360 total)',
-      'Full 60-minute Golden Ring Waterfall Head Spa for both guests',
-      '30-minute radiant facial cleanse, steam, and mask for both guests',
-      'Complete crown-to-complexion transformation together'
-    ]
-  },
-
-  /* 5. Facial (4) */
-  {
-    id: 'srv-128485',
-    name: '30 Mins Korean Facial',
-    category: 'Facial',
-    duration: '30 min',
-    timeBucket: 'short',
-    focusBucket: 'facial',
-    price: '$80',
-    isCouples: false,
-    photo: 'assets/images/gmaps/facial-mask-brushes.jpg',
-    cutout: 'assets/images/ai/cutout-korean-facial.png',
-    useCutoutThumb: false,
-    description: '30-minute Korean skincare facial with botanical steam, gentle pore cleansing, twin-brush soothing mask application, and dewy hydration.',
-    highlights: [
-      'Botanical double cleanse under warm ozone mist',
-      'Gentle pore refinement and exfoliation',
-      'Twin fan-brush soothing hydro-mask application',
-      'Dewy Korean skincare serum and moisturizer finish'
-    ]
-  },
-  {
-    id: 'srv-128491',
-    name: '60 Mins Korean Facial',
-    category: 'Facial',
-    duration: '1 hour',
-    timeBucket: 'medium',
-    focusBucket: 'facial',
-    price: '$120',
-    isCouples: false,
-    photo: 'assets/images/gmaps/korean-facial-treatment.jpg',
-    cutout: 'assets/images/ai/cutout-korean-facial.png',
-    useCutoutThumb: true,
-    description: 'Full 60-minute Korean facial ritual featuring double cleansing under warm ozone steam, deep pore care, custom hydro-mask, and facial acupressure.',
-    highlights: [
-      '60-minute comprehensive Korean glass-skin facial protocol',
-      'Warm ozone steam, magnifying lamp skin analysis, and pore care',
-      'Twin-brush custom mask and hydrating ampoule infusion',
-      'Lifting facial, jawline, neck, and décolleté acupressure'
-    ]
-  },
-  {
-    id: 'srv-128498',
-    name: '30 Mins Gentlemans Facial',
-    category: 'Facial',
-    duration: '30 min',
-    timeBucket: 'short',
-    focusBucket: 'facial',
-    price: '$80',
-    isCouples: false,
-    photo: 'assets/images/official/facial-brush-official.jpg',
-    cutout: 'assets/images/ai/cutout-korean-facial.png',
-    useCutoutThumb: false,
-    description: 'Targeted 30-minute Gentleman’s Facial with warm towel steam, deep pore detox, razor-irritation relief, and lightweight hydration.',
-    highlights: [
-      'Tailored specifically for men’s skin and beard-line comfort',
-      'Warm steamed towel compress and deep pore cleanser',
-      'Soothing mask to calm razor sensitivity and congestion',
-      'Clean, non-greasy hydrating finish in 30 minutes'
-    ]
-  },
-  {
-    id: 'srv-128502',
-    name: '60 Mins Gentlemans Facial',
-    category: 'Facial',
-    duration: '1 hour',
-    timeBucket: 'medium',
-    focusBucket: 'facial',
-    price: '$120',
-    isCouples: false,
-    photo: 'assets/images/official/scalp-treatment-official.jpg',
-    cutout: 'assets/images/ai/cutout-korean-facial.png',
-    useCutoutThumb: false,
-    description: 'Complete 60-minute Gentleman’s Facial tailored for men’s skin with deep exfoliation, steam extraction, purifying mask, and face and neck massage.',
-    highlights: [
-      'Full 60-minute deep-cleansing executive facial for men',
-      'Enzyme exfoliation, ozone steam, and pore purification',
-      'Custom purifying mask and cooling hydration therapy',
-      'Includes relaxing face, temple, neck, and shoulder massage'
-    ]
-  },
-
-  /* 6. Massage (3) */
-  {
-    id: 'srv-128486',
-    name: '30 Mins Massage',
-    category: 'Massage',
-    duration: '30 min',
-    timeBucket: 'short',
-    focusBucket: 'body',
-    price: '$60',
-    isCouples: false,
-    photo: 'assets/images/official/head-massage-official.jpg',
-    cutout: 'assets/images/ai/cutout-head-massage-pkg.png',
-    useCutoutThumb: false,
-    description: 'Focused 30-minute therapeutic massage targeting muscle knots in the neck, shoulders, and upper or lower back.',
-    highlights: [
-      'Targeted 30-minute relief for neck, shoulders, and back',
-      'Custom pressure from gentle Swedish to firm trigger-point work',
-      'Warm botanical massage oil and steamed towel wipe',
-      'Easy to pair with any Head Spa or Facial session'
-    ]
-  },
-  {
-    id: 'srv-128494',
-    name: '60 Mins Massage',
-    category: 'Massage',
-    duration: '1 hour',
-    timeBucket: 'medium',
-    focusBucket: 'body',
-    price: '$80',
-    isCouples: false,
-    photo: 'assets/images/curated/female-therapist-oil-massage.jpg',
-    cutout: 'assets/images/ai/cutout-head-massage-pkg.png',
-    useCutoutThumb: false,
-    description: '60-minute full-body therapeutic massage blending warm aromatic oils and customized pressure to melt away stress and restore circulation.',
-    highlights: [
-      '60-minute full-body massage in a private candlelit room',
-      'Tailored pressure across back, shoulders, legs, arms, and neck',
-      'Warm aromatic essential oils and heated treatment table',
-      'Hot towel finish for deep muscular relaxation'
-    ]
-  },
-  {
-    id: 'srv-128496',
-    name: '90 Mins Massage',
-    category: 'Massage',
-    duration: '1 hour 30 min',
-    timeBucket: 'long',
-    focusBucket: 'body',
-    price: '$130',
-    isCouples: false,
-    photo: 'assets/images/curated/hot-stone-orchid-massage.jpg',
-    cutout: 'assets/images/ai/cutout-head-massage-pkg.png',
-    useCutoutThumb: false,
-    description: '90-minute head-to-toe restorative massage with extra time dedicated to chronic tension zones, back, shoulders, hands, and feet.',
-    highlights: [
-      'Extended 90-minute full-body therapeutic bodywork',
-      'Dedicated time for stubborn knots in the back, hips, and neck',
-      'Warm botanical oils and soothing hot towel compresses',
-      'Unhurried recovery for travelers and active locals'
-    ]
-  },
-
-  /* 7. Couple Massage (2) */
-  {
-    id: 'pkg-2229',
-    name: '60 Mins Couple Massage',
-    category: 'Couple Massage',
-    duration: '1 hour • 2 services',
-    timeBucket: 'medium',
-    focusBucket: 'body',
-    price: '$160',
-    isCouples: true,
-    photo: 'assets/images/gmaps/lily-candles-towels.jpg',
-    cutout: 'assets/images/ai/cutout-couple-sanctuary.png',
-    useCutoutThumb: false,
-    description: 'Includes 60 Mins Couple Massage 1st Person ($80) + 2nd Person ($80) in a candlelit private suite.',
-    highlights: [
-      '60-minute side-by-side full-body massage for 2 guests ($80/person)',
-      'Two therapists working simultaneously in a private suite',
-      'Customized pressure and warm aromatic oils for each guest',
-      'Fresh florals, candlelight, and embroidered Jade linens'
-    ]
-  },
-  {
-    id: 'pkg-2230',
-    name: '90 Mins Couple Massage',
-    category: 'Couple Massage',
-    duration: '1 hour 30 min • 2 services',
-    timeBucket: 'long',
-    focusBucket: 'body',
-    price: '$260',
-    isCouples: true,
-    photo: 'assets/images/gmaps/aromatherapy-jade-suite.jpg',
-    cutout: 'assets/images/ai/cutout-couple-sanctuary.png',
-    useCutoutThumb: true,
-    description: 'Includes 90 Mins Couple Massage 1st Person ($130) + 2nd Person ($130) for deep, unhurried full-body relaxation together.',
-    highlights: [
-      '90-minute side-by-side full-body massage for 2 guests ($130/person)',
-      'Extended attention to back, shoulders, neck, legs, and feet',
-      'Private candlelit suite with warm oils and hot towels',
-      'Our longest couples bodywork experience'
-    ]
-  },
-
-  /* 8. Foot Massage (2) */
-  {
-    id: 'srv-128487',
-    name: '30 Mins Foot Massage',
-    category: 'Foot Massage',
-    duration: '30 min',
-    timeBucket: 'short',
-    focusBucket: 'body',
-    price: '$40',
-    isCouples: false,
-    photo: 'assets/images/gmaps/foot-reflexology-lounge.jpg',
-    cutout: 'assets/images/ai/cutout-foot-reflexology.png',
-    useCutoutThumb: false,
-    description: '30-minute foot reflexology session in our plush leather recliner lounge—ideal after theme-park walking or long travel days.',
-    highlights: [
-      'Plush leather recliner lounge at 3273 Oxford Dr',
-      'Warm herbal foot soak and invigorating arch point work',
-      'Relieves plantar fatigue and lower-leg heaviness in 30 minutes',
-      'Our most accessible express treatment ($40)'
-    ]
-  },
-  {
-    id: 'srv-128492',
-    name: '60 Mins Foot Massage',
-    category: 'Foot Massage',
-    duration: '1 hour',
-    timeBucket: 'medium',
-    focusBucket: 'body',
-    price: '$60',
-    isCouples: false,
-    photo: 'assets/images/gmaps/foot-reflexology-lounge.jpg',
-    cutout: 'assets/images/ai/cutout-foot-reflexology.png',
-    useCutoutThumb: true,
-    description: '60-minute traditional foot and lower-leg reflexology massage targeting meridian pressure points to revive tired feet and legs.',
-    highlights: [
-      'Full 60-minute foot and lower-leg reflexology in leather recliners',
-      'Warm mineral foot bath followed by Eastern meridian point work',
-      'Heel, arch, ankle, and calf lymphatic massage with hot towel wrap',
-      'Perfect post-flight or post-park recovery in Kissimmee'
-    ]
-  }
-];
-
-const ATELIER_PLATES = [
-  {
-    src: 'assets/images/gmaps/waterfall-therapist-suite.jpg',
-    category: 'head-spa',
-    caption: 'Golden Ring Waterfall Hydrotherapy Suite',
-    meta: '60 Mins Head Spa · $120'
-  },
-  {
-    src: 'assets/images/gmaps/waterfall-halo-hero.jpg',
-    category: 'head-spa',
-    caption: '360° Golden Ring Water Arch Immersion',
-    meta: '30 / 60 / 90 Mins · $80–$160'
-  },
-  {
-    src: 'assets/images/gmaps/scalp-foam-massage.jpg',
-    category: 'head-spa',
-    caption: 'Foaming Japanese Scalp Acupressure',
-    meta: 'Shiseido Package · $159–$199'
-  },
-  {
-    src: 'assets/images/gmaps/korean-facial-treatment.jpg',
-    category: 'facial',
-    caption: 'Korean Facial with Ozone Steam & Lamp Analysis',
-    meta: '30 / 60 Mins Facial · $80–$120'
-  },
-  {
-    src: 'assets/images/gmaps/facial-mask-brushes.jpg',
-    category: 'facial',
-    caption: 'Twin Fan-Brush Custom Hydro-Mask Ritual',
-    meta: 'Head + Facial Pkg · $140–$180'
-  },
-  {
-    src: 'assets/images/gmaps/foot-reflexology-lounge.jpg',
-    category: 'massage',
-    caption: 'Plush Leather Foot Reflexology Lounge',
-    meta: '30 / 60 Mins Foot · $40–$60'
-  },
-  {
-    src: 'assets/images/curated/female-therapist-oil-massage.jpg',
-    category: 'massage',
-    caption: 'Warm Botanical Oil Full-Body Massage',
-    meta: '30 / 60 / 90 Mins · $60–$130'
-  },
-  {
-    src: 'assets/images/curated/hot-stone-orchid-massage.jpg',
-    category: 'massage',
-    caption: 'Restorative Back & Shoulder Bodywork',
-    meta: 'Couple Massage · $160–$260'
-  },
-  {
-    src: 'assets/images/gmaps/waterfall-basin-closeup.jpg',
-    category: 'head-spa',
-    caption: 'Porcelain Head Spa Basin & Golden Arch',
-    meta: '3273 Oxford Dr #2'
-  },
-  {
-    src: 'assets/images/gmaps/white-jade-towel-roses.jpg',
-    category: 'sanctuary',
-    caption: 'Embroidered Jade Towels & Fresh Pink Roses',
-    meta: 'Couples Suites · $240–$398'
-  },
-  {
-    src: 'assets/images/gmaps/aromatherapy-jade-suite.jpg',
-    category: 'sanctuary',
-    caption: 'Stargazer Lilies & Essential Oil Diffuser',
-    meta: 'Private Sanctuary'
-  },
-  {
-    src: 'assets/images/gmaps/guest-tablet-consultation.jpg',
-    category: 'sanctuary',
-    caption: 'Reception Consultation at 3273 Oxford Dr',
-    meta: 'Open Daily 10 AM – 10 PM'
-  }
-];
-
-/* State */
-let activeCategory = 'all';
-let activeGuestScope = 'all';
-let searchQuery = '';
-let activePhotoFilter = 'all';
-let visiblePlates = [...ATELIER_PLATES];
-let currentLightboxIndex = 0;
-
-/* Matcher State */
-let matchGuests = 'all';
-let matchFocus = 'all';
-let matchTime = 'all';
-
-/* 1. Live Kissimmee Eastern Time Hours */
-function updateKissimmeeHours() {
-  const statusEl = document.getElementById('liveHoursStatus');
-  const visitEl = document.getElementById('visitLiveHoursDetail');
-  try {
-    const now = new Date();
-    const etParts = new Intl.DateTimeFormat('en-US', {
-      timeZone: 'America/New_York',
-      hour: 'numeric',
-      minute: 'numeric',
-      hour12: false
-    }).formatToParts(now);
-    const hourPart = etParts.find((p) => p.type === 'hour');
-    const hour = hourPart ? parseInt(hourPart.value, 10) : 12;
-    const isOpen = hour >= 10 && hour < 22;
-
-    if (statusEl) {
-      statusEl.textContent = isOpen
-        ? 'Kissimmee Sanctuary · 3273 Oxford Dr #2 · Open now until 10:00 pm'
-        : 'Kissimmee Sanctuary · 3273 Oxford Dr #2 · Open daily 10:00 am – 10:00 pm';
+  /* =========================================================================
+     1. CATALOG DATA FOR MODALS, MATCHMAKER & RITUAL BAG
+     ========================================================================= */
+  const RITUAL_CATALOG = {
+    'luxury-hair-scalp': {
+      id: 'luxury-hair-scalp',
+      title: 'Luxury Hair Scalp & 24K Gold Facial Ritual',
+      kicker: 'CROWN JEWEL · 90 MINUTES OF PURE BLISS',
+      duration: 90,
+      soloPrice: 168,
+      couplesPrice: 320,
+      priceLabel: 'Solo $168 · Couples Suite $320',
+      photo: 'assets/images/gmaps/waterfall-therapist-suite.jpg',
+      cutout: 'assets/images/ai/cutout-golden-halo-arch.png',
+      desc: 'Our signature 90-minute crown-to-toe sanctuary ritual. Combines high-definition microscopic scalp diagnostics, 24K Golden Waterfall Halo hydro-therapy, organic botanical steam, a complete Korean Glass-Skin facial with 24K gold contour mask, and hot basalt stone massage.',
+      steps: [
+        '200x HD Microscopic Scalp & Follicle Analysis (Before & After comparison)',
+        'Aromatic Essential Oil Inhalation & Dry Cranial Meridian Acupressure',
+        'Deep Botanical Scalp Exfoliation & Cloud-Foam Detox Massage',
+        '24K Golden Waterfall Halo Warm Hydro-Therapy & Herbal Mist Steam',
+        'Full Korean Glass-Skin Facial Cleanse + Twin-Brush 24K Gold Hydro-Jelly Mask',
+        'Hot Volcanic Basalt Stone Neck, Shoulder, Arm, Hand & Foot Massage',
+        'Conditioning Hair Mask, Post-Scan Verification & Complimentary Silk Blow-Dry + Organic Tea'
+      ]
+    },
+    'shiseido-head-spa': {
+      id: 'shiseido-head-spa',
+      title: 'Shiseido Sublimic Couture Head Spa',
+      kicker: 'AUTHENTIC TOKYO SALON FORMULATIONS · 75 MINS',
+      duration: 75,
+      soloPrice: 138,
+      couplesPrice: 260,
+      priceLabel: 'Solo $138 · Couples Suite $260',
+      photo: 'assets/images/gmaps/scalp-foam-massage.jpg',
+      cutout: 'assets/images/ai/cutout-shiseido-ritual.png',
+      desc: 'Powered 100% by authentic Shiseido Sublimic salon care imported from Japan. Purifies congested follicles, restores bounce and mirror-shine to dull strands, and melts upper-body tension.',
+      steps: [
+        ' Personalized Scalp Consultation & Shiseido Sublimic Elixir Selection',
+        'Shiseido Purifying Sebum & Buildup Follicle Exfoliation',
+        'Rich Cloud-Foam Cranial Acupressure & Temple Tension Release',
+        'Warm 24K Golden Waterfall Halo Circulation Rinse & Herbal Steam',
+        'Express Hydrating Facial Cleanse & Soothing Botanical Mist',
+        'Neck, Shoulder & Décolleté Aroma Oil Massage',
+        'Shiseido Sublimic Hair Mask Seal & Complimentary Blow-Dry Refresh'
+      ]
+    },
+    'korean-facial-care': {
+      id: 'korean-facial-care',
+      title: 'Bespoke Korean Glass-Skin Facial',
+      kicker: 'SEOUL ESTHETIC SCIENCE · 60 MINS',
+      duration: 60,
+      soloPrice: 110,
+      couplesPrice: 210,
+      priceLabel: 'Solo $110 · Couples Suite $210',
+      photo: 'assets/images/gmaps/korean-facial-treatment.jpg',
+      cutout: 'assets/images/ai/cutout-korean-facial.png',
+      desc: 'Achieve luminous, poreless glass skin with our multi-step Korean facial. Performed by our gentle licensed estheticians using enzymatic botanicals, ultrasonic pore cleansing, twin-brush masks, and cryo-jade sculpting.',
+      steps: [
+        'Camellia Oil & Micro-Enzyme Double Cleanse Under Warm Ozone Steam',
+        'Gentle Ultrasonic Spatula Pore Extraction & Blackhead Purification',
+        'High-Potency Hyaluronic & Niacinamide Glass-Skin Ampoule Infusion',
+        'Sculpting Facial, Jawline & Buccal Meridian Lift Massage',
+        'Twin-Brush Custom Hydro-Jelly or 24K Gold Illuminating Contour Mask',
+        'Chilled Jade Gua Sha Lymphatic Drainage + Neck, Shoulder & Scalp Massage'
+      ]
+    },
+    'head-spa-body-combo': {
+      id: 'head-spa-body-combo',
+      title: 'The Crown & Body Harmony Duet',
+      kicker: '45M WATERFALL HEAD SPA + 45M BODY MASSAGE · 90 MINS',
+      duration: 90,
+      soloPrice: 150,
+      couplesPrice: 290,
+      priceLabel: 'Solo $150 · Couples Suite $290',
+      photo: 'assets/images/gmaps/facial-mask-brushes.jpg',
+      cutout: 'assets/images/ai/cutout-couple-sanctuary.png',
+      desc: 'The ultimate dual-therapy escape combining 45 minutes of full-body hot stone and aroma oil massage with 45 minutes of our signature 24K Golden Waterfall Head Spa.',
+      steps: [
+        '45-Minute Full-Body Massage (Choice of Swedish, Deep Tissue, or Shiatsu)',
+        'Warm Volcanic Basalt Stones Along Back, Shoulders & Neck',
+        'Transition to Ergonomic Waterfall Head Spa Basin',
+        'Botanical Foam Scalp Cleanse & Cranial Meridian Acupressure',
+        '24K Golden Waterfall Halo Warm Water Immersion',
+        'Twin-Brush Express Hydrating Facial Mask & Light Blow-Dry Finish'
+      ]
+    },
+    'relaxing-head-spa': {
+      id: 'relaxing-head-spa',
+      title: 'Relaxing Waterfall Head Spa',
+      kicker: 'ESSENTIAL HYDRO-THERAPY ESCAPE · 60 MINS',
+      duration: 60,
+      soloPrice: 95,
+      couplesPrice: 180,
+      priceLabel: 'Solo $95 · Couples Suite $180',
+      photo: 'assets/images/gmaps/waterfall-halo-hero.jpg',
+      cutout: 'assets/images/ai/cutout-golden-halo-arch.png',
+      desc: 'Our classic 60-minute Korean & Japanese head spa ritual. Ideal for first-time guests seeking deep cranial relaxation, clean and glossy hair, and a peaceful nervous-system reset.',
+      steps: [
+        'Aromatic Welcome & Cranial Tension Point Release',
+        'Organic Botanical Shampoo Lather & 20-Point Scalp Massage',
+        '24K Golden Waterfall Halo Warm Water Cascade',
+        'Nourishing Hair Conditioning Steam & Express Facial Cleanse',
+        'Neck & Shoulder Unwinding Massage + Complimentary Light Blow-Dry'
+      ]
+    },
+    'full-body-massage': {
+      id: 'full-body-massage',
+      title: 'Bespoke Full-Body & Hot Stone Massage',
+      kicker: 'SWEDISH · DEEP TISSUE · SHIATSU · 60 / 90 MINS',
+      duration: 60,
+      soloPrice: 80,
+      couplesPrice: 150,
+      priceLabel: '60m $80 ($120 for 90m) · Couples 60m $150',
+      photo: 'assets/images/curated/female-therapist-oil-massage.jpg',
+      cutout: 'assets/images/ai/cutout-couple-sanctuary.png',
+      desc: 'Customized full-body massage performed on heated tables with warm aromatic oils and complimentary basalt hot stones to dissolve deep muscular knots.',
+      steps: [
+        'Pressure & Focus-Area Consultation with Your Female Massage Specialist',
+        'Full-Body Swedish Fluidity, Deep Tissue Trigger Point, or Shiatsu Work',
+        'Complimentary Warm Basalt Hot Stone Placement & Gliding Along the Spine',
+        'Neck, Cranial Base & Foot Reflex Integration',
+        'Steamed Herbal Towel Wipe-Down & Organic Floral Tea'
+      ]
+    },
+    'head-massage-pkg': {
+      id: 'head-massage-pkg',
+      title: 'Cranial Acupressure & Neck Reset',
+      kicker: 'EXPRESS SCREEN & MIGRAINE RELIEF · 45 MINS',
+      duration: 45,
+      soloPrice: 68,
+      couplesPrice: 130,
+      priceLabel: 'Solo $68 · Couples $130 (45 Mins)',
+      photo: 'assets/images/official/scalp-treatment-official.jpg',
+      cutout: 'assets/images/ai/cutout-head-massage-pkg.png',
+      desc: 'A targeted 45-minute cranial, temple, jaw, neck, and shoulder acupressure treatment—performed dry or with light botanical oil so you can return straight to your day refreshed.',
+      steps: [
+        'Warm Lavender Eye Pillow & Deep Breathing Grounding',
+        'Crown, Temple & Occipital Ridge Acupressure for Headache Relief',
+        'Jaw, Masseter & Sinus Meridian Tension Release',
+        'Deep Neck, Trapezius & Shoulder Blade Unwinding',
+        'Steamed Herbal Neck Compress & Refreshing Tea'
+      ]
+    },
+    'foot-reflexology': {
+      id: 'foot-reflexology',
+      title: 'Royal Botanical Foot & Leg Reflexology',
+      kicker: 'HERBAL SOAK & MERIDIAN LOUNGE · 60 MINS',
+      duration: 60,
+      soloPrice: 60,
+      couplesPrice: 115,
+      priceLabel: 'Solo $60 ($75 Foot + Back Combo)',
+      photo: 'assets/images/gmaps/foot-reflexology-lounge.jpg',
+      cutout: 'assets/images/ai/cutout-foot-reflexology.png',
+      desc: 'Recline in plush velvet comfort while your feet soak in a warm sea-salt and rose-herbal bath, followed by precision reflexology across the soles, ankles, and calves.',
+      steps: [
+        'Warm Mineral Sea-Salt, Ginger & Rose-Petal Detox Foot Soak',
+        'Neck & Shoulder Warm Compress While Feet Soak',
+        'Precision Eastern Organ-Zone Foot & Arch Reflexology',
+        'Lower-Leg & Calf Lymphatic Drainage Oil Massage',
+        'Steamed Towel Foot Wrap (Optional Upgrade: $75 Foot + Back Combo)'
+      ]
     }
-    if (visitEl) {
-      visitEl.textContent = isOpen
-        ? 'Open now · Monday through Sunday, 10:00 am – 10:00 pm ET'
-        : 'Open Monday through Sunday, 10:00 am – 10:00 pm Eastern Time';
+  };
+
+  /* =========================================================================
+     2. 5-STAGE CHOREOGRAPHY DATA
+     ========================================================================= */
+  const CHOREO_STAGES = [
+    {
+      roman: 'ACT I OF V',
+      time: 'Minutes 00 – 12',
+      tag: 'Act I · Bespoke Consultation',
+      title: 'HD Microscopic Scalp Analysis & Aromatic Grounding',
+      desc: 'Your specialist welcomes you with warm herbal tea and uses a 200x high-definition microscopic camera to examine your follicle health, hydration levels, and sensitivity. Together, you select the exact botanical ampoules and essential oils for your session.',
+      img: 'assets/images/gmaps/guest-tablet-consultation.jpg',
+      pills: ['🔬 200x Follicle Camera', '🌸 Camellia & Lavender Oil', '🍵 Warm Welcome Tea']
+    },
+    {
+      roman: 'ACT II OF V',
+      time: 'Minutes 12 – 35',
+      tag: 'Act II · Shiseido Cloud-Foam Detox',
+      title: 'Shiseido Botanical Foam & 20-Point Cranial Acupressure',
+      desc: 'Warm botanical micro-foam envelops your hair and scalp while your therapist’s rhythmic fingertips stimulate 20 cranial meridian points—releasing jaw clenching, temple tightness, and stagnant follicle buildup.',
+      img: 'assets/images/gmaps/scalp-foam-massage.jpg',
+      pills: ['☁️ Shiseido Sublimic Foam', '💆‍♀️ 20-Point Meridian Release', '🌿 Follicle Oxygenation']
+    },
+    {
+      roman: 'ACT III OF V',
+      time: 'Minutes 35 – 55',
+      tag: 'Act III · 24K Waterfall Halo',
+      title: '24K Golden Waterfall Halo & Organic Herbal Steam',
+      desc: 'Our signature 24K gold halo arch glides over your crown, bathing your hairline and scalp in a whisper-quiet curtain of warm, mineral-rich water while herbal ozone mist opens the hair cuticles to drink in deep keratin nourishment.',
+      img: 'assets/images/gmaps/waterfall-therapist-suite.jpg',
+      pills: ['✨ 24K Golden Waterfall Arch', '♨️ Herbal Ozone Steam', '🌊 Theta-Wave Calm']
+    },
+    {
+      roman: 'ACT IV OF V',
+      time: 'Minutes 55 – 75',
+      tag: 'Act IV · K-Beauty Glass Skin',
+      title: 'Twin-Brush 24K Gold Mask & Cryo-Jade Sculpting',
+      desc: 'While your hair drinks in a silk conditioning mask, your esthetician performs an enzymatic facial cleanse, applies a cooling 24K gold or rose hydro-jelly mask with twin fan brushes, and sculpts your cheekbones with chilled jade tools.',
+      img: 'assets/images/gmaps/facial-mask-brushes.jpg',
+      pills: ['🖌️ Twin-Brush Hydro-Mask', '💎 Cryo-Jade Lymphatic Lift', '🌟 Glass-Skin Glow']
+    },
+    {
+      roman: 'ACT V OF V',
+      time: 'Minutes 75 – 90',
+      tag: 'Act V · Hot Stones & Tea Ceremony',
+      title: 'Volcanic Hot Basalt Stones, Silk Blowout & Flower Tea',
+      desc: 'Smooth volcanic basalt stones melt lingering tension across your neck, shoulders, arms, hands, and feet. After a "After" microscopic follicle scan and a gentle blow-dry refresh, you emerge glowing to sip warm organic flower tea.',
+      img: 'assets/images/gmaps/aromatherapy-oils-candles.jpg',
+      pills: ['🪨 Warm Basalt Hot Stones', '💨 Complimentary Blow-Dry', '🌺 Organic Rose & Chrysanthemum Tea']
     }
-  } catch (_) {
-    /* Fallback to static copy */
+  ];
+
+  /* =========================================================================
+     3. BESPOKE MATCHMAKER RECOMMENDATIONS
+     ========================================================================= */
+  const MATCHMAKER_GOALS = {
+    'all-in-glow': {
+      id: 'luxury-hair-scalp',
+      badge: '99% Match · Guest #1 Crown Jewel',
+      title: '90-Min Luxury Hair Scalp & 24K Gold Facial ($168 Solo / $320 Couples)',
+      desc: 'Experience our complete signature journey: microscopic scalp check, 24K golden waterfall halo, full Korean facial with 24K gold mask, and hot stone neck, shoulder, hand & foot massage.',
+      img: 'assets/images/gmaps/waterfall-therapist-suite.jpg'
+    },
+    'silk-hair': {
+      id: 'shiseido-head-spa',
+      badge: '98% Match · Tokyo Salon Couture',
+      title: '75-Min Shiseido Sublimic Couture Head Spa ($138 Solo / $260 Couples)',
+      desc: 'Powered by authentic Japanese Shiseido Sublimic botanicals for deep follicle detoxification, airy root volume, waterfall halo hydro-therapy, and mirror-like hair shine.',
+      img: 'assets/images/gmaps/scalp-foam-massage.jpg'
+    },
+    'facial-lift': {
+      id: 'korean-facial-care',
+      badge: '99% Match · K-Beauty Glass Skin',
+      title: '60-Min Bespoke Korean Glass-Skin Facial ($110 Solo / $210 Couples)',
+      desc: 'Enzymatic double cleanse, ultrasonic pore extraction, twin-brush 24K gold or hydro-jelly contour mask, and chilled jade lymphatic sculpting for an instant dewy lift.',
+      img: 'assets/images/gmaps/korean-facial-treatment.jpg'
+    },
+    'deep-melt': {
+      id: 'head-spa-body-combo',
+      badge: '98% Match · Best Full-Body + Crown Duet',
+      title: '90-Min Crown & Body Harmony Duet ($150 Solo / $290 Couples)',
+      desc: 'Enjoy 45 minutes of full-body hot stone and aroma oil massage seamlessly paired with 45 minutes of our signature 24K Golden Waterfall Head Spa.',
+      img: 'assets/images/gmaps/facial-mask-brushes.jpg'
+    }
+  };
+
+  /* =========================================================================
+     4. LIVE SANCTUARY STATUS, STICKY HEADER & MOBILE NAV
+     ========================================================================= */
+  const siteHeader = document.getElementById('siteHeader');
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  const primaryNav = document.getElementById('primaryNav');
+  const liveStatusEl = document.getElementById('liveSanctuaryStatus');
+
+  function updateSanctuaryStatus() {
+    if (!liveStatusEl) return;
+    try {
+      const now = new Date();
+      const sdTime = new Date(now.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
+      const mins = sdTime.getHours() * 60 + sdTime.getMinutes();
+      const openMins = 9 * 60 + 30;  // 9:30 AM
+      const closeMins = 20 * 60 + 30; // 8:30 PM
+      if (mins >= openMins && mins < closeMins) {
+        liveStatusEl.textContent = 'Sanctuary Open Now in San Diego · Today until 8:30 PM';
+      } else {
+        liveStatusEl.textContent = 'Sanctuary Open Daily 9:30 AM – 8:30 PM · 24/7 Online Booking Open';
+      }
+    } catch (_) {
+      // Keep default text
+    }
   }
-}
+  updateSanctuaryStatus();
 
-/* 2. Hero Arch Vessel Scene Switcher */
-function initHeroStage() {
-  const mainPhoto = document.getElementById('heroMainPhoto');
-  const captionTitle = document.getElementById('heroCaptionTitle');
-  const captionSub = document.getElementById('heroCaptionSub');
-  const captionPrice = document.getElementById('heroCaptionPrice');
-  const inspectBtn = document.getElementById('heroInspectBtn');
-  const cutoutImg = document.getElementById('heroCutoutImg');
-  const cutoutTitle = document.getElementById('heroCutoutTitle');
-  const cutoutNote = document.getElementById('heroCutoutNote');
-  const sceneButtons = document.querySelectorAll('[data-hero-scene]');
+  window.addEventListener('scroll', function () {
+    if (!siteHeader) return;
+    if (window.scrollY > 24) {
+      siteHeader.classList.add('scrolled');
+    } else {
+      siteHeader.classList.remove('scrolled');
+    }
+  }, { passive: true });
 
-  if (!sceneButtons.length) return;
-
-  sceneButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const idx = parseInt(btn.getAttribute('data-hero-scene'), 10);
-      const scene = HERO_SCENES[idx];
-      if (!scene) return;
-
-      sceneButtons.forEach((b) => {
-        const isCurrent = b === btn;
-        b.classList.toggle('active', isCurrent);
-        b.setAttribute('aria-selected', isCurrent ? 'true' : 'false');
+  if (mobileMenuBtn && primaryNav) {
+    mobileMenuBtn.addEventListener('click', function () {
+      const isOpen = primaryNav.classList.toggle('nav-open');
+      mobileMenuBtn.setAttribute('aria-expanded', String(isOpen));
+    });
+    primaryNav.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        primaryNav.classList.remove('nav-open');
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
       });
+    });
+  }
 
-      const vessel = mainPhoto ? mainPhoto.closest('.hero-arch-vessel') : null;
-      if (vessel) vessel.classList.add('is-switching');
+  /* =========================================================================
+     5. TREATMENT MENU CATEGORY FILTERS & SOLO/COUPLES PRICING TOGGLE
+     ========================================================================= */
+  let currentGuestMode = 'solo'; // 'solo' | 'couples'
+  const catPills = document.querySelectorAll('.cat-pill');
+  const ritualCards = document.querySelectorAll('.ritual-card');
+  const modeSoloBtn = document.getElementById('modeSoloBtn');
+  const modeCouplesBtn = document.getElementById('modeCouplesBtn');
 
-      setTimeout(() => {
-        if (mainPhoto) {
-          mainPhoto.src = scene.photo;
-          mainPhoto.alt = scene.photoAlt;
+  catPills.forEach(function (pill) {
+    pill.addEventListener('click', function () {
+      const filter = pill.getAttribute('data-filter');
+      catPills.forEach(function (p) {
+        p.classList.remove('active');
+        p.setAttribute('aria-selected', 'false');
+      });
+      pill.classList.add('active');
+      pill.setAttribute('aria-selected', 'true');
+
+      ritualCards.forEach(function (card) {
+        const cats = card.getAttribute('data-category') || '';
+        if (filter === 'all' || cats.includes(filter)) {
+          card.classList.remove('hidden-card');
+        } else {
+          card.classList.add('hidden-card');
         }
-        if (captionTitle) captionTitle.textContent = scene.title;
-        if (captionSub) captionSub.textContent = scene.sub;
-        if (captionPrice) captionPrice.textContent = scene.price;
-        if (inspectBtn) inspectBtn.setAttribute('data-open-service', scene.serviceId);
-        if (cutoutImg) {
-          cutoutImg.src = scene.cutout;
-          cutoutImg.alt = scene.cutoutTitle;
-        }
-        if (cutoutTitle) cutoutTitle.textContent = scene.cutoutTitle;
-        if (cutoutNote) cutoutNote.textContent = scene.cutoutNote;
-
-        if (vessel) vessel.classList.remove('is-switching');
-      }, 140);
+      });
     });
   });
-}
 
-/* 3. Interactive 3-Tap Ritual Matcher */
-function initRitualMatcher() {
-  const grid = document.getElementById('matcherResultsGrid');
-  const countText = document.getElementById('matcherCountText');
-  const resetBtn = document.getElementById('matcherResetBtn');
-  const jumpLink = document.getElementById('matcherJumpToMenu');
-
-  if (!grid) return;
-
-  function renderMatches() {
-    const matches = OFFICIAL_SERVICES.filter((srv) => {
-      const okGuests =
-        matchGuests === 'all' ||
-        (matchGuests === 'couples' && srv.isCouples) ||
-        (matchGuests === 'solo' && !srv.isCouples);
-      const okFocus = matchFocus === 'all' || srv.focusBucket === matchFocus;
-      const okTime = matchTime === 'all' || srv.timeBucket === matchTime;
-      return okGuests && okFocus && okTime;
-    });
-
-    const isDefault = matchGuests === 'all' && matchFocus === 'all' && matchTime === 'all';
-    const displayList = isDefault
-      ? [
-          OFFICIAL_SERVICES.find((s) => s.id === 'srv-128489'),
-          OFFICIAL_SERVICES.find((s) => s.id === 'srv-138178'),
-          OFFICIAL_SERVICES.find((s) => s.id === 'srv-128491'),
-          OFFICIAL_SERVICES.find((s) => s.id === 'pkg-2222')
-        ].filter(Boolean)
-      : matches.slice(0, 4);
-
-    if (countText) {
-      if (isDefault) {
-        countText.textContent = 'Showing 4 popular starting points from our 30 official treatments';
-      } else if (matches.length === 0) {
-        countText.textContent = 'No exact match for that combination — try broadening time or modality';
-      } else {
-        countText.textContent = `Found ${matches.length} matching ${matches.length === 1 ? 'treatment' : 'treatments'} (showing top ${displayList.length})`;
-      }
+  function setGuestPricingMode(mode) {
+    currentGuestMode = mode;
+    if (modeSoloBtn && modeCouplesBtn) {
+      modeSoloBtn.classList.toggle('active', mode === 'solo');
+      modeCouplesBtn.classList.toggle('active', mode === 'couples');
     }
 
-    if (displayList.length === 0) {
-      grid.innerHTML = `
-        <div class="match-card" style="grid-column: 1 / -1;">
-          <p>No treatment matched all three filters simultaneously. Tap "Reset filters" to explore all 30 treatments.</p>
-        </div>
-      `;
+    document.querySelectorAll('.ritual-price-overlay').forEach(function (overlay) {
+      const amtEl = overlay.querySelector('.price-amount');
+      const unitEl = overlay.querySelector('.price-unit');
+      if (amtEl) {
+        amtEl.textContent = mode === 'couples'
+          ? amtEl.getAttribute('data-couples')
+          : amtEl.getAttribute('data-solo');
+      }
+      if (unitEl) {
+        unitEl.textContent = mode === 'couples'
+          ? unitEl.getAttribute('data-couples-label')
+          : unitEl.getAttribute('data-solo-label');
+      }
+    });
+
+    renderRitualBag();
+  }
+
+  if (modeSoloBtn && modeCouplesBtn) {
+    modeSoloBtn.addEventListener('click', function () { setGuestPricingMode('solo'); });
+    modeCouplesBtn.addEventListener('click', function () { setGuestPricingMode('couples'); });
+  }
+
+  /* =========================================================================
+     6. BESPOKE CONCIERGE MATCHMAKER (QUIZ RECOMMENDER)
+     ========================================================================= */
+  const finderChips = document.querySelectorAll('.finder-chip');
+  const finderImg = document.getElementById('finderResultImg');
+  const finderBadge = document.getElementById('finderResultBadge');
+  const finderTitle = document.getElementById('finderResultTitle');
+  const finderDesc = document.getElementById('finderResultDesc');
+  const finderAddBagBtn = document.getElementById('finderAddBagBtn');
+
+  finderChips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      const goal = chip.getAttribute('data-goal');
+      const data = MATCHMAKER_GOALS[goal];
+      if (!data) return;
+
+      finderChips.forEach(function (c) { c.classList.remove('active'); });
+      chip.classList.add('active');
+
+      if (finderImg) finderImg.src = data.img;
+      if (finderBadge) finderBadge.textContent = data.badge;
+      if (finderTitle) finderTitle.textContent = data.title;
+      if (finderDesc) finderDesc.textContent = data.desc;
+      if (finderAddBagBtn) finderAddBagBtn.setAttribute('data-add-bag', data.id);
+    });
+  });
+
+  /* =========================================================================
+     7. 5-STAGE CHOREOGRAPHY INTERACTIVE SWITCHER
+     ========================================================================= */
+  const choreoBtns = document.querySelectorAll('.choreo-step-btn');
+  const choreoImg = document.getElementById('choreoStageImg');
+  const choreoTag = document.getElementById('choreoStageTag');
+  const choreoRoman = document.getElementById('choreoStageRoman');
+  const choreoTime = document.getElementById('choreoStageTime');
+  const choreoTitle = document.getElementById('choreoStageTitle');
+  const choreoDesc = document.getElementById('choreoStageDesc');
+  const choreoPills = document.getElementById('choreoStagePills');
+
+  choreoBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      const idx = parseInt(btn.getAttribute('data-step'), 10);
+      const stage = CHOREO_STAGES[idx];
+      if (!stage) return;
+
+      choreoBtns.forEach(function (b) {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+
+      if (choreoImg) choreoImg.src = stage.img;
+      if (choreoTag) choreoTag.textContent = stage.tag;
+      if (choreoRoman) choreoRoman.textContent = stage.roman;
+      if (choreoTime) choreoTime.textContent = stage.time;
+      if (choreoTitle) choreoTitle.textContent = stage.title;
+      if (choreoDesc) choreoDesc.textContent = stage.desc;
+      if (choreoPills) {
+        choreoPills.innerHTML = stage.pills
+          .map(function (p) { return '<span>' + p + '</span>'; })
+          .join('');
+      }
+    });
+  });
+
+  /* =========================================================================
+     8. RITUAL DETAIL MODAL (7-STEP BREAKDOWN)
+     ========================================================================= */
+  const ritualModal = document.getElementById('ritualDetailModal');
+  const closeModalBtn = document.getElementById('closeRitualModalBtn');
+  const modalImg = document.getElementById('modalRitualImg');
+  const modalCutout = document.getElementById('modalRitualCutout');
+  const modalKicker = document.getElementById('modalRitualKicker');
+  const modalTitle = document.getElementById('modalRitualTitle');
+  const modalDuration = document.getElementById('modalRitualDuration');
+  const modalPrice = document.getElementById('modalRitualPrice');
+  const modalDesc = document.getElementById('modalRitualDesc');
+  const modalStepsList = document.getElementById('modalRitualStepsList');
+  const modalAddBagBtn = document.getElementById('modalAddBagBtn');
+
+  function openRitualModal(ritualId) {
+    const item = RITUAL_CATALOG[ritualId];
+    if (!item || !ritualModal) return;
+
+    if (modalImg) modalImg.src = item.photo;
+    if (modalCutout) modalCutout.src = item.cutout;
+    if (modalKicker) modalKicker.textContent = item.kicker;
+    if (modalTitle) modalTitle.textContent = item.title;
+    if (modalDuration) modalDuration.textContent = item.duration + ' Minutes';
+    if (modalPrice) modalPrice.textContent = item.priceLabel;
+    if (modalDesc) modalDesc.textContent = item.desc;
+    if (modalStepsList) {
+      modalStepsList.innerHTML = item.steps
+        .map(function (s) { return '<li>' + s + '</li>'; })
+        .join('');
+    }
+    if (modalAddBagBtn) {
+      modalAddBagBtn.setAttribute('data-add-bag', item.id);
+    }
+
+    ritualModal.classList.add('open');
+    ritualModal.setAttribute('aria-hidden', 'false');
+  }
+
+  function closeRitualModal() {
+    if (!ritualModal) return;
+    ritualModal.classList.remove('open');
+    ritualModal.setAttribute('aria-hidden', 'true');
+  }
+
+  document.querySelectorAll('[data-open-modal]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      openRitualModal(btn.getAttribute('data-open-modal'));
+    });
+  });
+
+  if (closeModalBtn) closeModalBtn.addEventListener('click', closeRitualModal);
+  if (ritualModal) {
+    ritualModal.addEventListener('click', function (e) {
+      if (e.target === ritualModal) closeRitualModal();
+    });
+  }
+
+  /* =========================================================================
+     9. MY CUSTOM SANCTUARY RITUAL BAG / CONCIERGE DRAWER
+     ========================================================================= */
+  const bagState = [];
+  const bagTriggerBtn = document.getElementById('bagTriggerBtn');
+  const bagCountBadge = document.getElementById('bagCountBadge');
+  const drawerBackdrop = document.getElementById('ritualDrawerBackdrop');
+  const closeDrawerBtn = document.getElementById('closeDrawerBtn');
+  const drawerItemsContainer = document.getElementById('drawerItemsContainer');
+  const drawerTotalDuration = document.getElementById('drawerTotalDuration');
+  const drawerTotalPrice = document.getElementById('drawerTotalPrice');
+  const drawerSmsBtn = document.getElementById('drawerSmsConciergeBtn');
+
+  function openDrawer() {
+    if (!drawerBackdrop) return;
+    drawerBackdrop.classList.add('open');
+    drawerBackdrop.setAttribute('aria-hidden', 'false');
+  }
+
+  function closeDrawer() {
+    if (!drawerBackdrop) return;
+    drawerBackdrop.classList.remove('open');
+    drawerBackdrop.setAttribute('aria-hidden', 'true');
+  }
+
+  function addToRitualBag(ritualId) {
+    const item = RITUAL_CATALOG[ritualId];
+    if (!item) return;
+    if (!bagState.includes(ritualId)) {
+      bagState.push(ritualId);
+    }
+    renderRitualBag();
+    openDrawer();
+  }
+
+  function removeFromRitualBag(ritualId) {
+    const idx = bagState.indexOf(ritualId);
+    if (idx !== -1) {
+      bagState.splice(idx, 1);
+      renderRitualBag();
+    }
+  }
+
+  function renderRitualBag() {
+    if (bagCountBadge) {
+      bagCountBadge.textContent = String(bagState.length);
+    }
+
+    document.querySelectorAll('.btn-bag-add').forEach(function (btn) {
+      const id = btn.getAttribute('data-add-bag');
+      if (bagState.includes(id)) {
+        btn.classList.add('added');
+        btn.innerHTML = '<span>✓ In Ritual</span>';
+      } else {
+        btn.classList.remove('added');
+        btn.innerHTML = '<span>+ Add to Ritual</span>';
+      }
+    });
+
+    if (!drawerItemsContainer) return;
+
+    if (bagState.length === 0) {
+      drawerItemsContainer.innerHTML =
+        '<div class="drawer-empty">' +
+        '<p>Your custom sanctuary ritual is currently empty.</p>' +
+        '<p style="font-size:0.84rem;margin-top:0.5rem;">Click <strong>“+ Add to Ritual”</strong> on any Head Spa, Facial, or Massage service to curate your dream day.</p>' +
+        '</div>';
+      if (drawerTotalDuration) drawerTotalDuration.textContent = '0 Mins';
+      if (drawerTotalPrice) drawerTotalPrice.textContent = '$0';
       return;
     }
 
-    grid.innerHTML = displayList
-      .map(
-        (srv) => `
-        <article class="match-card">
-          <div class="match-card-top">
-            <img src="${srv.photo}" alt="${srv.name}" class="match-card-thumb" />
-            <div class="match-card-meta">
-              <span>${srv.category} · ${srv.duration}</span>
-              <h3>${srv.name}</h3>
-            </div>
-          </div>
-          <div class="match-card-bottom">
-            <span class="match-card-price">${srv.price}</span>
-            <div class="match-card-actions">
-              <button type="button" class="match-btn-info" data-open-service="${srv.id}">Details</button>
-              <a href="${BYCHRONOS_BOOKING_URL}" target="_blank" rel="noopener noreferrer" class="match-btn-book">Book</a>
-            </div>
-          </div>
-        </article>
-      `
-      )
-      .join('');
-  }
+    let totalMins = 0;
+    let totalCost = 0;
+    const names = [];
 
-  document.querySelectorAll('[data-match-guests]').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('[data-match-guests]').forEach((b) => b.classList.remove('active'));
-      btn.classList.add('active');
-      matchGuests = btn.getAttribute('data-match-guests') || 'all';
-      renderMatches();
-    });
-  });
+    drawerItemsContainer.innerHTML = bagState.map(function (id) {
+      const item = RITUAL_CATALOG[id];
+      const price = currentGuestMode === 'couples' ? item.couplesPrice : item.soloPrice;
+      const modeText = currentGuestMode === 'couples' ? 'Couples Suite (2)' : 'Solo Sanctuary';
+      totalMins += item.duration;
+      totalCost += price;
+      names.push(item.title + ' ($' + price + ')');
 
-  document.querySelectorAll('[data-match-focus]').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('[data-match-focus]').forEach((b) => b.classList.remove('active'));
-      btn.classList.add('active');
-      matchFocus = btn.getAttribute('data-match-focus') || 'all';
-      renderMatches();
-    });
-  });
+      return (
+        '<div class="drawer-item">' +
+          '<img src="' + item.photo + '" alt="' + item.title + '" />' +
+          '<div class="drawer-item-info">' +
+            '<strong>' + item.title + '</strong>' +
+            '<span>' + item.duration + ' Mins · ' + modeText + ' · $' + price + '</span>' +
+          '</div>' +
+          '<button type="button" class="drawer-remove-btn" data-remove-bag="' + item.id + '">Remove</button>' +
+        '</div>'
+      );
+    }).join('');
 
-  document.querySelectorAll('[data-match-time]').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('[data-match-time]').forEach((b) => b.classList.remove('active'));
-      btn.classList.add('active');
-      matchTime = btn.getAttribute('data-match-time') || 'all';
-      renderMatches();
-    });
-  });
-
-  if (resetBtn) {
-    resetBtn.addEventListener('click', () => {
-      matchGuests = 'all';
-      matchFocus = 'all';
-      matchTime = 'all';
-      document.querySelectorAll('[data-match-guests], [data-match-focus], [data-match-time]').forEach((b) => {
-        const isAll =
-          b.getAttribute('data-match-guests') === 'all' ||
-          b.getAttribute('data-match-focus') === 'all' ||
-          b.getAttribute('data-match-time') === 'all';
-        b.classList.toggle('active', isAll);
+    drawerItemsContainer.querySelectorAll('[data-remove-bag]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        removeFromRitualBag(btn.getAttribute('data-remove-bag'));
       });
-      renderMatches();
     });
+
+    if (drawerTotalDuration) drawerTotalDuration.textContent = totalMins + ' Mins';
+    if (drawerTotalPrice) drawerTotalPrice.textContent = '$' + totalCost + (currentGuestMode === 'couples' ? ' (2 Guests)' : '');
+
+    if (drawerSmsBtn) {
+      const msg = 'Hi Jade Head Spa & Beauty! I would like to reserve the following custom ritual (' +
+        (currentGuestMode === 'couples' ? 'Couples Suite for 2' : 'Solo Guest') + '): ' +
+        names.join(' + ') + ' (Total: $' + totalCost + ', ' + totalMins + ' mins).';
+      drawerSmsBtn.href = 'sms:+18583860068?&body=' + encodeURIComponent(msg);
+    }
   }
 
-  if (jumpLink) {
-    jumpLink.addEventListener('click', () => {
-      if (matchGuests !== 'all') {
-        activeGuestScope = matchGuests;
-        document.querySelectorAll('.scope-btn').forEach((b) => {
-          b.classList.toggle('active', b.getAttribute('data-guest-scope') === activeGuestScope);
-        });
-      }
-      if (matchFocus === 'shiseido') activeCategory = 'Special Menu';
-      else if (matchFocus === 'facial') activeCategory = 'Facial';
-      else activeCategory = 'all';
-      renderTariffRail();
-      renderTariffLedger();
-    });
-  }
-
-  renderMatches();
-}
-
-/* 4. Render Six Apothecary Ritual Vignettes */
-function renderSignaturesPatchwork() {
-  const container = document.getElementById('signaturesPatchwork');
-  if (!container) return;
-
-  container.innerHTML = STAGE_SIGNATURES.map((sig) => {
-    const fullService = OFFICIAL_SERVICES.find((s) => s.id === sig.serviceId);
-    const desc = fullService ? fullService.description : sig.sub;
-    return `
-      <article class="apothecary-item">
-        <div>
-          <div class="apothecary-stage">
-            <img src="${sig.cutout}" alt="${sig.title} apothecary still life" class="apothecary-cutout" />
-            <div class="apothecary-room-cameo" title="Real room view at 3273 Oxford Dr">
-              <img src="${sig.photo}" alt="${sig.photoAlt}" />
-            </div>
-          </div>
-          <div class="apothecary-body">
-            <div class="apothecary-meta-line">
-              <span>${sig.cutoutLabel}</span>
-              <span>${sig.duration}</span>
-            </div>
-            <div class="apothecary-title-row">
-              <h3 class="apothecary-title">${sig.title}</h3>
-              <span class="apothecary-price">${sig.price}</span>
-            </div>
-            <p class="apothecary-desc">${desc}</p>
-          </div>
-        </div>
-        <div class="apothecary-actions">
-          <button type="button" class="btn-secondary btn-sm" data-open-service="${sig.serviceId}">
-            Read ritual details
-          </button>
-          <a href="${BYCHRONOS_BOOKING_URL}" target="_blank" rel="noopener noreferrer" class="btn-primary btn-sm">
-            Book (${sig.price})
-          </a>
-        </div>
-      </article>
-    `;
-  }).join('');
-}
-
-/* 5. Render Open Ryokan Menu Book (All 30 Official Services) */
-function getFilteredServices() {
-  return OFFICIAL_SERVICES.filter((srv) => {
-    const matchesCat = activeCategory === 'all' || srv.category === activeCategory;
-    const matchesGuest =
-      activeGuestScope === 'all' ||
-      (activeGuestScope === 'couples' && srv.isCouples) ||
-      (activeGuestScope === 'solo' && !srv.isCouples);
-    const q = searchQuery.trim().toLowerCase();
-    const matchesQuery =
-      !q ||
-      srv.name.toLowerCase().includes(q) ||
-      srv.category.toLowerCase().includes(q) ||
-      srv.description.toLowerCase().includes(q) ||
-      srv.price.toLowerCase().includes(q) ||
-      srv.duration.toLowerCase().includes(q);
-    return matchesCat && matchesGuest && matchesQuery;
-  });
-}
-
-function renderTariffRail() {
-  const rail = document.getElementById('tariffCategoryRail');
-  if (!rail) return;
-
-  rail.innerHTML = OFFICIAL_CATEGORIES.map((cat) => {
-    const count =
-      cat.id === 'all'
-        ? OFFICIAL_SERVICES.length
-        : OFFICIAL_SERVICES.filter((s) => s.category === cat.id).length;
-    const isActive = activeCategory === cat.id;
-    return `
-      <button
-        type="button"
-        class="bookmark-tab ${isActive ? 'active' : ''}"
-        role="tab"
-        aria-selected="${isActive ? 'true' : 'false'}"
-        data-cat-id="${cat.id}"
-      >
-        <span>${cat.label}</span>
-        <span class="bookmark-count">(${count})</span>
-      </button>
-    `;
-  }).join('');
-}
-
-function renderTariffLedger() {
-  const ledgerBody = document.getElementById('tariffLedgerBody');
-  if (!ledgerBody) return;
-
-  const filtered = getFilteredServices();
-  if (filtered.length === 0) {
-    ledgerBody.innerHTML = `
-      <div class="menu-chapter" style="grid-column: 1 / -1;">
-        <p>No treatments matched your search. Clear the search box or switch back to "All 30 Treatments" to browse the full menu.</p>
-      </div>
-    `;
-    return;
-  }
-
-  const categoriesToRender =
-    activeCategory === 'all'
-      ? OFFICIAL_CATEGORIES.filter((c) => c.id !== 'all').map((c) => c.id)
-      : [activeCategory];
-
-  const blocksHtml = categoriesToRender
-    .map((catId) => {
-      const items = filtered.filter((s) => s.category === catId);
-      if (items.length === 0) return '';
-
-      const rowsHtml = items
-        .map((srv) => {
-          const thumbSrc = srv.useCutoutThumb ? srv.cutout : srv.photo;
-          const thumbClass = srv.useCutoutThumb ? 'menu-entry-thumb is-cutout' : 'menu-entry-thumb';
-          return `
-            <article class="menu-entry">
-              <div class="${thumbClass}">
-                <img src="${thumbSrc}" alt="${srv.name}" loading="lazy" width="52" height="52" />
-              </div>
-              <div class="menu-entry-content">
-                <div class="menu-entry-topline">
-                  <h4 class="menu-entry-name">${srv.name}</h4>
-                  <span class="menu-entry-dots" aria-hidden="true"></span>
-                  <span class="menu-entry-price">${srv.price}</span>
-                </div>
-                <p class="menu-entry-desc">${srv.description}</p>
-                <div class="menu-entry-foot">
-                  <span class="menu-entry-duration">${srv.duration}</span>
-                  <div class="menu-entry-actions">
-                    <button type="button" class="menu-link-details" data-open-service="${srv.id}">
-                      Room protocol &amp; photo
-                    </button>
-                    <a href="${BYCHRONOS_BOOKING_URL}" target="_blank" rel="noopener noreferrer" class="menu-link-book">
-                      Book
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </article>
-          `;
-        })
-        .join('');
-
-      return `
-        <section class="menu-chapter" aria-label="${catId}">
-          <header class="menu-chapter-header">
-            <h3>${catId}</h3>
-            <span>${items.length} ${items.length === 1 ? 'treatment' : 'treatments'}</span>
-          </header>
-          <div class="menu-chapter-list">
-            ${rowsHtml}
-          </div>
-        </section>
-      `;
-    })
-    .join('');
-
-  ledgerBody.innerHTML = blocksHtml;
-}
-
-function initTariffControls() {
-  const rail = document.getElementById('tariffCategoryRail');
-  const searchInput = document.getElementById('tariffSearchInput');
-  const guestBtns = document.querySelectorAll('.scope-btn');
-
-  renderTariffRail();
-  renderTariffLedger();
-
-  if (rail) {
-    rail.addEventListener('click', (e) => {
-      const btn = e.target.closest('.bookmark-tab');
-      if (!btn) return;
-      activeCategory = btn.getAttribute('data-cat-id') || 'all';
-      renderTariffRail();
-      renderTariffLedger();
-    });
-  }
-
-  if (searchInput) {
-    searchInput.addEventListener('input', (e) => {
-      searchQuery = e.target.value || '';
-      renderTariffLedger();
-    });
-  }
-
-  guestBtns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      guestBtns.forEach((b) => b.classList.remove('active'));
-      btn.classList.add('active');
-      activeGuestScope = btn.getAttribute('data-guest-scope') || 'all';
-      renderTariffLedger();
-    });
+  document.addEventListener('click', function (e) {
+    const addBtn = e.target.closest('[data-add-bag]');
+    if (addBtn) {
+      const id = addBtn.getAttribute('data-add-bag');
+      closeRitualModal();
+      addToRitualBag(id);
+    }
   });
 
-  document.querySelectorAll('[data-jump-cat]').forEach((link) => {
-    link.addEventListener('click', () => {
-      const targetCat = link.getAttribute('data-jump-cat');
-      if (targetCat) {
-        activeCategory = targetCat;
-        activeGuestScope = 'all';
-        guestBtns.forEach((b) => b.classList.toggle('active', b.getAttribute('data-guest-scope') === 'all'));
-        renderTariffRail();
-        renderTariffLedger();
-      }
-    });
-  });
-}
-
-/* 6. Lookbook Gallery & Native <dialog> Lightbox */
-function renderAtelierPlates() {
-  const grid = document.getElementById('atelierPlatesGrid');
-  if (!grid) return;
-
-  visiblePlates =
-    activePhotoFilter === 'all'
-      ? [...ATELIER_PLATES]
-      : ATELIER_PLATES.filter((p) => p.category === activePhotoFilter);
-
-  grid.innerHTML = visiblePlates
-    .map(
-      (plate, idx) => `
-      <figure class="lookbook-item" data-plate-index="${idx}" tabindex="0" role="button" aria-label="View larger: ${plate.caption}">
-        <img src="${plate.src}" alt="${plate.caption}" loading="lazy" />
-        <figcaption class="lookbook-caption">
-          <span>${plate.caption}</span>
-          <strong>${plate.meta}</strong>
-        </figcaption>
-      </figure>
-    `
-    )
-    .join('');
-}
-
-function attachDialogLightDismissFallback(dialog) {
-  if (!dialog) return;
-  if (!('closedBy' in HTMLDialogElement.prototype)) {
-    dialog.addEventListener('click', (event) => {
-      if (event.target !== dialog) return;
-      const rect = dialog.getBoundingClientRect();
-      const isDialogContent =
-        rect.top <= event.clientY &&
-        event.clientY <= rect.top + rect.height &&
-        rect.left <= event.clientX &&
-        event.clientX <= rect.left + rect.width;
-      if (isDialogContent) return;
-      dialog.close();
+  if (bagTriggerBtn) bagTriggerBtn.addEventListener('click', openDrawer);
+  if (closeDrawerBtn) closeDrawerBtn.addEventListener('click', closeDrawer);
+  if (drawerBackdrop) {
+    drawerBackdrop.addEventListener('click', function (e) {
+      if (e.target === drawerBackdrop) closeDrawer();
     });
   }
-}
 
-function initAtelierGallery() {
-  const tabs = document.querySelectorAll('.lookbook-tab');
-  const grid = document.getElementById('atelierPlatesGrid');
-  const lightbox = document.getElementById('plateLightbox');
+  renderRitualBag();
+
+  /* =========================================================================
+     10. LOOKBOOK GALLERY FILTER & FULLSCREEN LIGHTBOX
+     ========================================================================= */
+  const lookFilters = document.querySelectorAll('.look-filter');
+  const lookItems = Array.from(document.querySelectorAll('.look-item'));
+  const lightbox = document.getElementById('lookbookLightbox');
   const lightboxImg = document.getElementById('lightboxImg');
   const lightboxCaption = document.getElementById('lightboxCaption');
-  const closeBtn = document.getElementById('lightboxCloseBtn');
-  const prevBtn = document.getElementById('lightboxPrevBtn');
-  const nextBtn = document.getElementById('lightboxNextBtn');
+  const lightboxCloseBtn = document.getElementById('lightboxCloseBtn');
+  const lightboxPrevBtn = document.getElementById('lightboxPrevBtn');
+  const lightboxNextBtn = document.getElementById('lightboxNextBtn');
+  let currentLightboxIdx = 0;
 
-  renderAtelierPlates();
-  attachDialogLightDismissFallback(lightbox);
+  lookFilters.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      const filter = btn.getAttribute('data-gallery-filter');
+      lookFilters.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
 
-  tabs.forEach((tab) => {
-    tab.addEventListener('click', () => {
-      tabs.forEach((t) => {
-        t.classList.remove('active');
-        t.setAttribute('aria-selected', 'false');
+      lookItems.forEach(function (item) {
+        const cats = item.getAttribute('data-gallery-cat') || '';
+        if (filter === 'all' || cats.includes(filter)) {
+          item.classList.remove('hidden-look');
+        } else {
+          item.classList.add('hidden-look');
+        }
       });
-      tab.classList.add('active');
-      tab.setAttribute('aria-selected', 'true');
-      activePhotoFilter = tab.getAttribute('data-photo-filter') || 'all';
-      renderAtelierPlates();
     });
   });
 
-  function showLightboxPlate(index) {
-    if (!visiblePlates.length || !lightbox || !lightboxImg || !lightboxCaption) return;
-    currentLightboxIndex = (index + visiblePlates.length) % visiblePlates.length;
-    const item = visiblePlates[currentLightboxIndex];
-    lightboxImg.src = item.src;
-    lightboxImg.alt = item.caption;
-    lightboxCaption.textContent = `${item.caption} — ${item.meta}`;
-    if (!lightbox.open) {
-      lightbox.showModal();
+  function showLightboxAt(index) {
+    const visibleItems = lookItems.filter(function (el) { return !el.classList.contains('hidden-look'); });
+    if (visibleItems.length === 0) return;
+    currentLightboxIdx = (index + visibleItems.length) % visibleItems.length;
+    const item = visibleItems[currentLightboxIdx];
+    if (lightboxImg) {
+      lightboxImg.src = item.getAttribute('data-src') || '';
+      lightboxImg.alt = item.getAttribute('data-caption') || 'Jade Head Spa Gallery Image';
+    }
+    if (lightboxCaption) {
+      lightboxCaption.textContent = item.getAttribute('data-caption') || '';
+    }
+    if (lightbox) {
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
     }
   }
 
-  if (grid) {
-    grid.addEventListener('click', (e) => {
-      const fig = e.target.closest('.lookbook-item');
-      if (!fig) return;
-      const idx = parseInt(fig.getAttribute('data-plate-index'), 10);
-      if (!Number.isNaN(idx)) showLightboxPlate(idx);
-    });
-
-    grid.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        const fig = e.target.closest('.lookbook-item');
-        if (!fig) return;
-        e.preventDefault();
-        const idx = parseInt(fig.getAttribute('data-plate-index'), 10);
-        if (!Number.isNaN(idx)) showLightboxPlate(idx);
-      }
-    });
+  function closeLightbox() {
+    if (!lightbox) return;
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
   }
 
-  if (closeBtn) closeBtn.addEventListener('click', () => lightbox && lightbox.close());
-  if (prevBtn) prevBtn.addEventListener('click', () => showLightboxPlate(currentLightboxIndex - 1));
-  if (nextBtn) nextBtn.addEventListener('click', () => showLightboxPlate(currentLightboxIndex + 1));
-
-  document.addEventListener('keydown', (e) => {
-    if (lightbox && lightbox.open) {
-      if (e.key === 'ArrowLeft') showLightboxPlate(currentLightboxIndex - 1);
-      if (e.key === 'ArrowRight') showLightboxPlate(currentLightboxIndex + 1);
-    }
-  });
-}
-
-/* 7. Native <dialog> Treatment Detail Modal */
-function openServiceDrawer(serviceId) {
-  const srv = OFFICIAL_SERVICES.find((s) => s.id === serviceId);
-  const dialog = document.getElementById('serviceDetailDialog');
-  if (!srv || !dialog) return;
-
-  const catEl = document.getElementById('drawerServiceCategory');
-  const photoEl = document.getElementById('drawerServicePhoto');
-  const cutoutEl = document.getElementById('drawerServiceCutout');
-  const titleEl = document.getElementById('drawerServiceTitle');
-  const priceEl = document.getElementById('drawerServicePrice');
-  const durEl = document.getElementById('drawerServiceDuration');
-  const descEl = document.getElementById('drawerServiceDesc');
-  const listEl = document.getElementById('drawerServiceHighlights');
-
-  if (catEl) catEl.textContent = srv.category;
-  if (photoEl) {
-    photoEl.src = srv.photo;
-    photoEl.alt = srv.name;
-  }
-  if (cutoutEl) {
-    cutoutEl.src = srv.cutout;
-    cutoutEl.alt = `${srv.name} apothecary object`;
-  }
-  if (titleEl) titleEl.textContent = srv.name;
-  if (priceEl) priceEl.textContent = srv.price;
-  if (durEl) durEl.textContent = `Duration: ${srv.duration} · 3273 Oxford Dr #2, Kissimmee, FL`;
-  if (descEl) descEl.textContent = srv.description;
-  if (listEl) {
-    listEl.innerHTML = (srv.highlights || []).map((h) => `<li>${h}</li>`).join('');
-  }
-
-  if (!dialog.open) {
-    dialog.showModal();
-  }
-}
-
-function initServiceDrawerEvents() {
-  const dialog = document.getElementById('serviceDetailDialog');
-  const closeBtn = document.getElementById('drawerCloseBtn');
-
-  attachDialogLightDismissFallback(dialog);
-
-  if (closeBtn && dialog) {
-    closeBtn.addEventListener('click', () => dialog.close());
-  }
-
-  document.addEventListener('click', (e) => {
-    const trigger = e.target.closest('[data-open-service]');
-    if (!trigger) return;
-    const id = trigger.getAttribute('data-open-service');
-    if (id) {
-      e.preventDefault();
-      openServiceDrawer(id);
-    }
-  });
-}
-
-/* 8. Mobile Navigation Drawer */
-function initMobileNav() {
-  const navToggle = document.getElementById('mobileNavToggle');
-  const navDrawer = document.getElementById('mobileNavDrawer');
-  if (!navToggle || !navDrawer) return;
-
-  navToggle.addEventListener('click', () => {
-    const isHidden = navDrawer.hasAttribute('hidden');
-    if (isHidden) {
-      navDrawer.removeAttribute('hidden');
-      navToggle.setAttribute('aria-expanded', 'true');
-    } else {
-      navDrawer.setAttribute('hidden', '');
-      navToggle.setAttribute('aria-expanded', 'false');
-    }
-  });
-
-  navDrawer.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => {
-      navDrawer.setAttribute('hidden', '');
-      navToggle.setAttribute('aria-expanded', 'false');
+  lookItems.forEach(function (item) {
+    item.addEventListener('click', function () {
+      const visibleItems = lookItems.filter(function (el) { return !el.classList.contains('hidden-look'); });
+      const idx = visibleItems.indexOf(item);
+      showLightboxAt(idx >= 0 ? idx : 0);
     });
   });
-}
 
-document.addEventListener('DOMContentLoaded', () => {
-  updateKissimmeeHours();
-  initHeroStage();
-  initRitualMatcher();
-  renderSignaturesPatchwork();
-  initTariffControls();
-  initAtelierGallery();
-  initServiceDrawerEvents();
-  initMobileNav();
-});
+  if (lightboxCloseBtn) lightboxCloseBtn.addEventListener('click', closeLightbox);
+  if (lightboxPrevBtn) lightboxPrevBtn.addEventListener('click', function () { showLightboxAt(currentLightboxIdx - 1); });
+  if (lightboxNextBtn) lightboxNextBtn.addEventListener('click', function () { showLightboxAt(currentLightboxIdx + 1); });
+  if (lightbox) {
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox) closeLightbox();
+    });
+  }
+
+  /* =========================================================================
+     11. INTERACTIVE COUTURE GIFT CARD ATELIER
+     ========================================================================= */
+  const giftAmtBtns = document.querySelectorAll('.gift-amt-btn');
+  const giftRecipientInput = document.getElementById('giftRecipientInput');
+  const giftOccasionSelect = document.getElementById('giftOccasionSelect');
+  const previewGiftAmount = document.getElementById('previewGiftAmount');
+  const previewGiftOccasion = document.getElementById('previewGiftOccasion');
+  const previewGiftRecipient = document.getElementById('previewGiftRecipient');
+  const previewGiftRitual = document.getElementById('previewGiftRitual');
+  const giftSmsLink = document.getElementById('giftSmsLink');
+
+  let selectedGiftAmt = '$168';
+  let selectedGiftRitual = '90-Min Luxury Hair Scalp & 24K Gold Facial';
+
+  function updateGiftCardPreview() {
+    const recipient = (giftRecipientInput && giftRecipientInput.value.trim()) || 'Someone Special';
+    const occasion = (giftOccasionSelect && giftOccasionSelect.value) || 'A Gift of Pure Radiance & Serenity';
+
+    if (previewGiftAmount) previewGiftAmount.textContent = selectedGiftAmt;
+    if (previewGiftRitual) previewGiftRitual.textContent = selectedGiftRitual;
+    if (previewGiftRecipient) previewGiftRecipient.textContent = recipient;
+    if (previewGiftOccasion) previewGiftOccasion.textContent = occasion;
+
+    if (giftSmsLink) {
+      const smsBody = 'Hi Jade Head Spa! I would like to order a ' + selectedGiftAmt +
+        ' Gift Card (' + selectedGiftRitual + ') for ' + recipient + '.';
+      giftSmsLink.href = 'sms:+18583860068?&body=' + encodeURIComponent(smsBody);
+    }
+  }
+
+  giftAmtBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      giftAmtBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      selectedGiftAmt = btn.getAttribute('data-amt') || '$168';
+      selectedGiftRitual = btn.getAttribute('data-ritual') || '';
+      updateGiftCardPreview();
+    });
+  });
+
+  if (giftRecipientInput) giftRecipientInput.addEventListener('input', updateGiftCardPreview);
+  if (giftOccasionSelect) giftOccasionSelect.addEventListener('change', updateGiftCardPreview);
+
+  /* =========================================================================
+     12. FAQ ACCORDION & KEYBOARD ESCAPE HANDLER
+     ========================================================================= */
+  document.querySelectorAll('.faq-question').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      const item = btn.closest('.faq-item');
+      if (!item) return;
+      const isOpen = item.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(isOpen));
+      const icon = btn.querySelector('.faq-icon');
+      if (icon) icon.textContent = isOpen ? '−' : '+';
+    });
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      closeRitualModal();
+      closeDrawer();
+      closeLightbox();
+    }
+  });
+})();

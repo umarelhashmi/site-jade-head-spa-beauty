@@ -2,13 +2,3 @@
 ._*
 node_modules/
 *.log
-
-# impeccable-ignore-start
-**/.impeccable/config.local.json
-**/.impeccable/hook.cache.json
-**/.impeccable/hook.pending.json
-**/.impeccable/*.png
-**/.impeccable/mocks/
-**/.impeccable/review/
-**/.impeccable/build/
-# impeccable-ignore-end
