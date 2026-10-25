@@ -1,0 +1,2800 @@
+/* =========================================================================
+   JADE HEAD SPA & BEAUTY — HAUTE K-BEAUTY & BOTANICAL JADE ATELIER
+   Palette: Silk Pearl · Camellia Blush Rose · 24K Waterfall Gold · Imperial Jade
+   Typography: Cormorant Garamond (Display) · Tenor Sans (Couture) · Plus Jakarta Sans (UI)
+   ========================================================================= */
+
+:root {
+  /* Surfaces */
+  --bg-silk: #FCF8F5;
+  --bg-pearl: #FFFDFB;
+  --bg-blush: #F7ECE8;
+  --bg-blush-deep: #EFE0DA;
+  --bg-celadon-soft: #EDF3EF;
+  --bg-velvet-jade: #11241E;
+  --bg-velvet-card: #183129;
+
+  /* Ink & Typography */
+  --ink-obsidian: #1B1618;
+  --ink-charcoal: #352D30;
+  --ink-muted: #65595D;
+  --ink-subtle: #8C7D82;
+  --ink-ivory: #FAF5F0;
+  --ink-ivory-muted: rgba(250, 245, 240, 0.76);
+
+  /* Signature Brand Accents */
+  --jade-imperial: #1D4B3B;
+  --jade-emerald: #29634F;
+  --jade-celadon: #7FA693;
+  --gold-24k: #C59B5F;
+  --gold-champagne: #DFC294;
+  --gold-deep: #9F783E;
+  --rose-camellia: #C97A85;
+  --rose-petal: #E8BDC3;
+
+  /* Borders & Shadows */
+  --border-delicate: rgba(27, 22, 24, 0.08);
+  --border-gold: rgba(197, 155, 95, 0.34);
+  --shadow-soft: 0 18px 45px -15px rgba(27, 22, 24, 0.08);
+  --shadow-elevated: 0 28px 68px -18px rgba(27, 22, 24, 0.15);
+  --shadow-gold: 0 20px 50px -12px rgba(197, 155, 95, 0.25);
+
+  /* Fonts */
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-couture: 'Tenor Sans', sans-serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Radii & Transitions */
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 28px;
+  --radius-pill: 999px;
+  --ease-luxury: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Reset & Base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+section[id] {
+  scroll-margin-top: 96px;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-silk);
+  color: var(--ink-obsidian);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.25s var(--ease-luxury), opacity 0.25s var(--ease-luxury);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+.container {
+  width: min(1320px, 92vw);
+  margin-inline: auto;
+}
+
+/* =========================================================================
+   TYPOGRAPHY & SHARED ELEMENTS
+   ========================================================================= */
+.section-eyebrow {
+  display: inline-block;
+  font-family: var(--font-couture);
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--jade-imperial);
+  margin-bottom: 0.85rem;
+  position: relative;
+}
+
+.eyebrow-light {
+  color: var(--gold-champagne);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2.25rem, 4vw, 3.6rem);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  color: var(--ink-obsidian);
+  margin-bottom: 1.15rem;
+}
+
+.section-title em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--jade-imperial);
+}
+
+.title-light {
+  color: var(--ink-ivory);
+}
+
+.title-light em {
+  color: var(--gold-champagne);
+}
+
+.section-subtitle,
+.section-description {
+  font-size: 1.05rem;
+  color: var(--ink-muted);
+  max-width: 65ch;
+  line-height: 1.75;
+}
+
+.section-header-centered {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 3rem;
+}
+
+.section-header-centered .section-subtitle {
+  margin-inline: auto;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.92rem;
+  letter-spacing: 0.03em;
+  padding: 0.85rem 1.65rem;
+  border-radius: var(--radius-pill);
+  transition: transform 0.3s var(--ease-luxury), box-shadow 0.3s var(--ease-luxury), background-color 0.3s var(--ease-luxury), border-color 0.3s var(--ease-luxury);
+  white-space: nowrap;
+}
+
+.btn-sm {
+  padding: 0.65rem 1.25rem;
+  font-size: 0.84rem;
+}
+
+.btn-lg {
+  padding: 1rem 2rem;
+  font-size: 0.96rem;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--jade-imperial) 0%, #14382B 100%);
+  color: var(--ink-ivory);
+  box-shadow: 0 12px 28px -8px rgba(29, 75, 59, 0.45);
+  border: 1px solid rgba(223, 194, 148, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #245C48 0%, var(--jade-imperial) 100%);
+  box-shadow: 0 18px 34px -8px rgba(29, 75, 59, 0.6);
+}
+
+.btn-outline {
+  background: rgba(255, 255, 255, 0.75);
+  color: var(--ink-obsidian);
+  border: 1px solid rgba(27, 22, 24, 0.18);
+  backdrop-filter: blur(8px);
+}
+
+.btn-outline:hover {
+  border-color: var(--gold-24k);
+  background: var(--bg-pearl);
+  transform: translateY(-2px);
+}
+
+.btn-arrow {
+  transition: transform 0.25s var(--ease-luxury);
+}
+
+.btn:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+/* =========================================================================
+   TOP COUTURE ANNOUNCEMENT BAR
+   ========================================================================= */
+.couture-topbar {
+  background: var(--bg-velvet-jade);
+  color: var(--ink-ivory);
+  font-size: 0.78rem;
+  letter-spacing: 0.03em;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid rgba(223, 194, 148, 0.2);
+}
+
+.topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.topbar-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--gold-champagne);
+  font-weight: 500;
+}
+
+.status-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #5EEAD4;
+  box-shadow: 0 0 0 4px rgba(94, 234, 212, 0.2);
+  animation: pulseGlow 2.4s infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.65; transform: scale(1.18); }
+}
+
+.topbar-center {
+  color: rgba(250, 245, 240, 0.9);
+  text-align: center;
+}
+
+.topbar-links {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.topbar-link:hover {
+  color: var(--gold-champagne);
+}
+
+/* =========================================================================
+   STICKY FROSTED GLASS HEADER
+   ========================================================================= */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(252, 248, 245, 0.86);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border-delicate);
+  transition: box-shadow 0.3s var(--ease-luxury), background-color 0.3s var(--ease-luxury);
+}
+
+.site-header.scrolled {
+  background: rgba(252, 248, 245, 0.95);
+  box-shadow: 0 12px 35px -15px rgba(27, 22, 24, 0.08);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 80px;
+  gap: 1.5rem;
+}
+
+.brand-identity {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.brand-logo {
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+.brand-wordmark {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.brand-title {
+  font-family: var(--font-display);
+  font-size: 1.65rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: var(--jade-imperial);
+}
+
+.brand-subtitle {
+  font-family: var(--font-couture);
+  font-size: 0.6rem;
+  letter-spacing: 0.24em;
+  color: var(--ink-muted);
+  margin-top: 0.2rem;
+}
+
+.primary-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.85rem;
+}
+
+.nav-link {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--ink-charcoal);
+  position: relative;
+  padding: 0.25rem 0;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1.5px;
+  background: var(--gold-24k);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s var(--ease-luxury);
+}
+
+.nav-link:hover {
+  color: var(--jade-imperial);
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.bag-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.58rem 1rem;
+  border-radius: var(--radius-pill);
+  background: var(--bg-blush);
+  border: 1px solid rgba(201, 122, 133, 0.28);
+  color: var(--ink-obsidian);
+  font-size: 0.84rem;
+  font-weight: 600;
+  transition: all 0.25s var(--ease-luxury);
+}
+
+.bag-trigger:hover {
+  background: var(--bg-blush-deep);
+  border-color: var(--gold-24k);
+}
+
+.bag-icon {
+  color: var(--gold-deep);
+}
+
+.bag-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: var(--radius-pill);
+  background: var(--jade-imperial);
+  color: var(--ink-ivory);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.mobile-menu-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--border-delicate);
+  align-items: center;
+}
+
+.mobile-menu-btn span {
+  width: 18px;
+  height: 1.5px;
+  background: var(--ink-obsidian);
+  transition: 0.25s;
+}
+
+/* =========================================================================
+   HERO SECTION — HAUTE BEAUTY EDITORIAL SHOWCASE
+   ========================================================================= */
+.hero-atelier {
+  position: relative;
+  padding: 3.5rem 0 5.5rem;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 82% 24%, rgba(232, 189, 195, 0.35) 0%, transparent 46%),
+    radial-gradient(circle at 12% 78%, rgba(127, 166, 147, 0.18) 0%, transparent 45%),
+    linear-gradient(180deg, var(--bg-silk) 0%, var(--bg-blush) 100%);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.08fr 0.92fr;
+  align-items: center;
+  gap: 3.5rem;
+}
+
+.eyebrow-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.45rem 1rem;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid var(--border-gold);
+  font-family: var(--font-couture);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  color: var(--jade-imperial);
+  margin-bottom: 1.4rem;
+  box-shadow: 0 8px 20px -10px rgba(197, 155, 95, 0.25);
+}
+
+.eyebrow-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--rose-camellia);
+}
+
+.hero-headline {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2.85rem, 5.1vw, 4.75rem);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  color: var(--ink-obsidian);
+  margin-bottom: 1.35rem;
+}
+
+.hero-headline em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--jade-imperial);
+  background: linear-gradient(120deg, var(--jade-imperial) 0%, var(--rose-camellia) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-lead {
+  font-size: 1.1rem;
+  line-height: 1.78;
+  color: var(--ink-charcoal);
+  max-width: 58ch;
+  margin-bottom: 2.1rem;
+}
+
+.hero-lead strong {
+  color: var(--jade-imperial);
+  font-weight: 600;
+}
+
+.hero-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2.75rem;
+}
+
+.hero-trust-strip {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid rgba(27, 22, 24, 0.1);
+}
+
+.trust-stat-top {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+
+.trust-number {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--ink-obsidian);
+  line-height: 1;
+}
+
+.trust-stars {
+  color: var(--gold-24k);
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+}
+
+.trust-caption {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  margin-top: 0.25rem;
+}
+
+.trust-divider {
+  width: 1px;
+  height: 38px;
+  background: rgba(27, 22, 24, 0.12);
+}
+
+/* Right Column: Triple-Frame Beauty Collage */
+.hero-visual-col {
+  position: relative;
+}
+
+.hero-collage {
+  position: relative;
+  padding: 1rem 1.5rem 2rem 2rem;
+}
+
+.hero-arch-main {
+  position: relative;
+  border-radius: 260px 260px 28px 28px;
+  overflow: hidden;
+  border: 6px solid var(--bg-pearl);
+  box-shadow: var(--shadow-elevated), 0 0 0 1px var(--border-gold);
+  aspect-ratio: 4 / 4.8;
+  background: var(--bg-blush);
+}
+
+.hero-main-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  transition: transform 0.8s var(--ease-luxury);
+}
+
+.hero-arch-main:hover .hero-main-img {
+  transform: scale(1.04);
+}
+
+.hero-arch-caption {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 3rem 195px 2.6rem 1.75rem;
+  background: linear-gradient(180deg, transparent 0%, rgba(17, 36, 30, 0.9) 100%);
+  color: var(--ink-ivory);
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.caption-tag {
+  font-family: var(--font-couture);
+  font-size: 0.66rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-champagne);
+}
+
+.hero-arch-caption strong {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+/* Floating Secondary Beauty Portraits */
+.hero-float-card {
+  position: absolute;
+  width: 185px;
+  background: rgba(255, 253, 251, 0.94);
+  backdrop-filter: blur(12px);
+  padding: 0.55rem;
+  border-radius: 18px;
+  box-shadow: var(--shadow-elevated);
+  border: 1px solid var(--border-gold);
+  z-index: 3;
+  transition: transform 0.35s var(--ease-luxury);
+}
+
+.hero-float-card:hover {
+  transform: translateY(-5px);
+}
+
+.hero-float-card img {
+  width: 100%;
+  height: 125px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.float-card-meta {
+  padding: 0.5rem 0.35rem 0.2rem;
+}
+
+.float-badge {
+  display: inline-block;
+  font-family: var(--font-couture);
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--rose-camellia);
+}
+
+.float-card-meta p {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink-obsidian);
+  line-height: 1.15;
+}
+
+.hero-float-top {
+  top: 24px;
+  left: -18px;
+}
+
+.hero-float-bottom {
+  bottom: 72px;
+  right: -14px;
+}
+
+/* Floating Concierge Pill */
+.hero-concierge-pill {
+  position: absolute;
+  bottom: -14px;
+  left: 24px;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.9rem 0.6rem 0.6rem;
+  border-radius: var(--radius-pill);
+  background: rgba(17, 36, 30, 0.96);
+  color: var(--ink-ivory);
+  border: 1px solid rgba(223, 194, 148, 0.55);
+  box-shadow: var(--shadow-elevated);
+}
+
+.concierge-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--gold-24k);
+}
+
+.concierge-pill-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.concierge-kicker {
+  font-size: 0.68rem;
+  color: var(--gold-champagne);
+}
+
+.concierge-pill-text strong {
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.concierge-call-btn {
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--radius-pill);
+  background: var(--gold-24k);
+  color: var(--ink-obsidian);
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+/* =========================================================================
+   SENSORY MARQUEE RIBBON
+   ========================================================================= */
+.sensory-marquee {
+  background: var(--bg-velvet-jade);
+  color: var(--gold-champagne);
+  padding: 0.95rem 0;
+  overflow: hidden;
+  border-top: 1px solid rgba(223, 194, 148, 0.25);
+  border-bottom: 1px solid rgba(223, 194, 148, 0.25);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 38s linear infinite;
+}
+
+.marquee-group {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding-right: 2rem;
+  font-family: var(--font-couture);
+  font-size: 0.76rem;
+  letter-spacing: 0.22em;
+}
+
+.marquee-group i {
+  font-style: normal;
+  color: var(--rose-camellia);
+}
+
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* =========================================================================
+   THE BEAUTY ATELIER & HUMAN TOUCH (PHILOSOPHY SECTION)
+   ========================================================================= */
+.section-atelier {
+  padding: 6.5rem 0;
+  background: var(--bg-silk);
+}
+
+.atelier-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.atelier-gallery-mosaic {
+  display: grid;
+  grid-template-columns: 1.08fr 0.92fr;
+  gap: 1.25rem;
+}
+
+.mosaic-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.mosaic-col-right {
+  margin-top: 2.25rem;
+}
+
+.mosaic-frame {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--border-delicate);
+  background: var(--bg-blush);
+}
+
+.mosaic-tall img {
+  height: 360px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.mosaic-medium img {
+  height: 240px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.mosaic-frame figcaption {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 1.5rem 1rem 0.75rem;
+  background: linear-gradient(180deg, transparent, rgba(17, 36, 30, 0.86));
+  color: var(--ink-ivory);
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+.mosaic-quote-box {
+  background: var(--bg-blush);
+  border: 1px solid rgba(201, 122, 133, 0.28);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  position: relative;
+}
+
+.quote-ornament {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  line-height: 0.7;
+  color: var(--rose-camellia);
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.mosaic-quote-box p {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.2rem;
+  line-height: 1.45;
+  color: var(--ink-obsidian);
+  margin-bottom: 0.5rem;
+}
+
+.quote-author {
+  font-family: var(--font-couture);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--jade-imperial);
+}
+
+/* Pillar Cards */
+.pillar-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  margin: 2rem 0;
+}
+
+.pillar-card {
+  display: flex;
+  gap: 1.15rem;
+  padding: 1.25rem 1.4rem;
+  border-radius: var(--radius-md);
+  background: var(--bg-pearl);
+  border: 1px solid var(--border-delicate);
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.25s var(--ease-luxury), border-color 0.25s var(--ease-luxury);
+}
+
+.pillar-card:hover {
+  transform: translateX(4px);
+  border-color: var(--border-gold);
+}
+
+.pillar-num {
+  font-family: var(--font-couture);
+  font-size: 0.85rem;
+  color: var(--gold-deep);
+  background: var(--bg-blush);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.pillar-body h3 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--ink-obsidian);
+  margin-bottom: 0.25rem;
+}
+
+.pillar-body p {
+  font-size: 0.92rem;
+  color: var(--ink-muted);
+  line-height: 1.65;
+}
+
+.atelier-signature-bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-md);
+  background: var(--bg-celadon-soft);
+  border: 1px solid rgba(29, 75, 59, 0.14);
+}
+
+.sig-photo {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--gold-24k);
+  flex-shrink: 0;
+}
+
+.sig-text {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.86rem;
+}
+
+.sig-text strong {
+  color: var(--jade-imperial);
+  font-size: 0.94rem;
+}
+
+.sig-text span {
+  color: var(--ink-muted);
+}
+
+/* =========================================================================
+   TREATMENT MENU & RITUAL ATELIER (8 SIGNATURE SERVICES)
+   ========================================================================= */
+.section-rituals {
+  padding: 6.5rem 0;
+  background: linear-gradient(180deg, var(--bg-blush) 0%, var(--bg-silk) 40%, var(--bg-blush) 100%);
+}
+
+.menu-controls-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  margin-bottom: 2.75rem;
+  padding: 0.85rem 1.15rem;
+  background: rgba(255, 253, 251, 0.88);
+  backdrop-filter: blur(12px);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-gold);
+  box-shadow: var(--shadow-soft);
+}
+
+.category-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.cat-pill {
+  padding: 0.58rem 1.15rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--ink-charcoal);
+  background: transparent;
+  transition: all 0.25s var(--ease-luxury);
+}
+
+.cat-pill:hover {
+  background: var(--bg-blush);
+}
+
+.cat-pill.active {
+  background: var(--jade-imperial);
+  color: var(--ink-ivory);
+  box-shadow: 0 8px 20px -6px rgba(29, 75, 59, 0.45);
+}
+
+.guest-mode-toggle {
+  display: inline-flex;
+  background: var(--bg-blush);
+  padding: 0.3rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(201, 122, 133, 0.25);
+}
+
+.mode-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 1.05rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ink-charcoal);
+  transition: all 0.25s var(--ease-luxury);
+}
+
+.mode-btn.active {
+  background: var(--bg-pearl);
+  color: var(--jade-imperial);
+  box-shadow: 0 4px 12px rgba(27, 22, 24, 0.08);
+}
+
+.mode-save-tag {
+  font-size: 0.68rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-pill);
+  background: var(--gold-24k);
+  color: var(--ink-obsidian);
+  font-weight: 700;
+}
+
+/* Rituals Cards Grid */
+.rituals-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.ritual-card {
+  background: var(--bg-pearl);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border-delicate);
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.35s var(--ease-luxury), box-shadow 0.35s var(--ease-luxury), border-color 0.35s var(--ease-luxury);
+}
+
+.ritual-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-elevated);
+  border-color: var(--border-gold);
+}
+
+.ritual-card.featured-ritual {
+  border: 1.5px solid var(--gold-24k);
+  box-shadow: var(--shadow-gold);
+}
+
+.ritual-card.hidden-card {
+  display: none;
+}
+
+.ritual-media {
+  position: relative;
+  height: 320px;
+  overflow: hidden;
+  background: var(--bg-blush);
+}
+
+.ritual-img-primary,
+.ritual-img-hover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 22%;
+  transition: opacity 0.65s var(--ease-luxury), transform 0.85s var(--ease-luxury);
+}
+
+.ritual-img-hover {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.ritual-card:hover .ritual-img-primary {
+  transform: scale(1.05);
+}
+
+.ritual-card:hover .ritual-img-hover {
+  opacity: 1;
+  transform: scale(1.04);
+}
+
+.ritual-badges {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  right: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.badge {
+  padding: 0.38rem 0.85rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
+}
+
+.badge-gold {
+  background: rgba(197, 155, 95, 0.95);
+  color: var(--ink-obsidian);
+}
+
+.badge-jade {
+  background: rgba(17, 36, 30, 0.88);
+  color: var(--ink-ivory);
+}
+
+.badge-rose {
+  background: rgba(201, 122, 133, 0.92);
+  color: var(--ink-ivory);
+}
+
+.badge-duration {
+  background: rgba(255, 253, 251, 0.92);
+  color: var(--ink-obsidian);
+}
+
+.ritual-price-overlay {
+  position: absolute;
+  bottom: 0.9rem;
+  right: 1rem;
+  z-index: 2;
+  background: rgba(17, 36, 30, 0.92);
+  backdrop-filter: blur(10px);
+  color: var(--ink-ivory);
+  padding: 0.5rem 1rem;
+  border-radius: 16px;
+  border: 1px solid rgba(223, 194, 148, 0.45);
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.price-amount {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--gold-champagne);
+}
+
+.price-unit {
+  font-size: 0.68rem;
+  color: rgba(250, 245, 240, 0.82);
+}
+
+.ritual-content {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.ritual-kicker {
+  font-family: var(--font-couture);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  color: var(--rose-camellia);
+  margin-bottom: 0.4rem;
+}
+
+.ritual-title {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1.18;
+  color: var(--ink-obsidian);
+  margin-bottom: 0.75rem;
+}
+
+.ritual-desc {
+  font-size: 0.94rem;
+  color: var(--ink-muted);
+  margin-bottom: 1.15rem;
+}
+
+.ritual-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.15rem;
+  background: var(--bg-silk);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-delicate);
+}
+
+.ritual-highlights li {
+  font-size: 0.84rem;
+  color: var(--ink-charcoal);
+  position: relative;
+  padding-left: 1.25rem;
+}
+
+.ritual-highlights li::before {
+  content: '✦';
+  position: absolute;
+  left: 0;
+  color: var(--gold-deep);
+  font-size: 0.75rem;
+}
+
+.ritual-actions {
+  margin-top: auto;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--border-delicate);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.btn-text-detail {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--jade-imperial);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.btn-text-detail:hover {
+  color: var(--gold-deep);
+}
+
+.ritual-cta-group {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.btn-bag-add {
+  padding: 0.62rem 1rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.82rem;
+  font-weight: 600;
+  background: var(--bg-blush);
+  color: var(--ink-obsidian);
+  border: 1px solid rgba(201, 122, 133, 0.35);
+  transition: all 0.25s var(--ease-luxury);
+}
+
+.btn-bag-add:hover,
+.btn-bag-add.added {
+  background: var(--gold-24k);
+  color: var(--ink-obsidian);
+  border-color: var(--gold-24k);
+}
+
+/* =========================================================================
+   BESPOKE CONCIERGE MATCHMAKER (QUIZ RECOMMENDER)
+   ========================================================================= */
+.ritual-finder-box {
+  margin-top: 3.5rem;
+  padding: 2.5rem;
+  border-radius: var(--radius-lg);
+  background: var(--bg-pearl);
+  border: 1px solid var(--border-gold);
+  box-shadow: var(--shadow-soft);
+}
+
+.finder-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1.5rem;
+  margin-bottom: 1.75rem;
+  flex-wrap: wrap;
+}
+
+.finder-header h3 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--ink-obsidian);
+}
+
+.finder-header p {
+  font-size: 0.95rem;
+  color: var(--ink-muted);
+}
+
+.finder-options {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+.finder-chip {
+  text-align: left;
+  padding: 1.15rem;
+  border-radius: var(--radius-md);
+  background: var(--bg-silk);
+  border: 1.5px solid var(--border-delicate);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  transition: all 0.25s var(--ease-luxury);
+}
+
+.finder-chip:hover {
+  border-color: var(--gold-24k);
+  transform: translateY(-2px);
+}
+
+.finder-chip.active {
+  background: var(--bg-blush);
+  border-color: var(--jade-imperial);
+  box-shadow: 0 10px 24px -10px rgba(29, 75, 59, 0.25);
+}
+
+.chip-icon {
+  font-size: 1.35rem;
+  margin-bottom: 0.2rem;
+}
+
+.chip-title {
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--ink-obsidian);
+}
+
+.chip-sub {
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+}
+
+.finder-result {
+  display: grid;
+  grid-template-columns: 140px 1fr auto;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.25rem;
+  border-radius: var(--radius-md);
+  background: var(--bg-celadon-soft);
+  border: 1px solid rgba(29, 75, 59, 0.2);
+}
+
+.finder-result-img {
+  width: 140px;
+  height: 105px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+}
+
+.finder-match-tag {
+  display: inline-block;
+  font-family: var(--font-couture);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--jade-imperial);
+  margin-bottom: 0.25rem;
+}
+
+.finder-result-body h4 {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 600;
+  color: var(--ink-obsidian);
+  margin-bottom: 0.25rem;
+}
+
+.finder-result-body p {
+  font-size: 0.9rem;
+  color: var(--ink-charcoal);
+}
+
+.finder-result-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* =========================================================================
+   5-STAGE KOREAN HEAD SPA CHOREOGRAPHY (DARK VELVET JADE SECTION)
+   ========================================================================= */
+.section-choreography {
+  padding: 6.5rem 0;
+  background:
+    radial-gradient(circle at 85% 20%, rgba(197, 155, 95, 0.16) 0%, transparent 45%),
+    linear-gradient(180deg, var(--bg-velvet-jade) 0%, #0D1C17 100%);
+  color: var(--ink-ivory);
+}
+
+.choreo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.choreo-intro {
+  max-width: 52ch;
+  color: var(--ink-ivory-muted);
+  font-size: 1rem;
+}
+
+.choreo-interactive-grid {
+  display: grid;
+  grid-template-columns: 0.92fr 1.08fr;
+  gap: 2.5rem;
+  align-items: stretch;
+}
+
+.choreo-steps-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.choreo-step-btn {
+  display: flex;
+  align-items: center;
+  gap: 1.15rem;
+  padding: 1.25rem 1.4rem;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  color: var(--ink-ivory);
+  text-align: left;
+  transition: all 0.3s var(--ease-luxury);
+}
+
+.choreo-step-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(223, 194, 148, 0.35);
+}
+
+.choreo-step-btn.active {
+  background: linear-gradient(135deg, rgba(197, 155, 95, 0.22) 0%, rgba(29, 75, 59, 0.55) 100%);
+  border-color: var(--gold-24k);
+  box-shadow: 0 14px 30px -10px rgba(0, 0, 0, 0.4);
+}
+
+.step-num {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-style: italic;
+  color: var(--gold-champagne);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(223, 194, 148, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.step-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.step-info strong {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.step-info span {
+  font-size: 0.78rem;
+  color: var(--ink-ivory-muted);
+}
+
+.step-arrow {
+  color: var(--gold-champagne);
+  opacity: 0.5;
+  transition: transform 0.25s;
+}
+
+.choreo-step-btn.active .step-arrow {
+  opacity: 1;
+  transform: translateX(4px);
+}
+
+.choreo-stage-display {
+  background: var(--bg-velvet-card);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(223, 194, 148, 0.3);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-elevated);
+}
+
+.stage-visual-wrap {
+  position: relative;
+  height: 340px;
+  overflow: hidden;
+}
+
+.stage-main-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  transition: opacity 0.35s ease, transform 0.6s var(--ease-luxury);
+}
+
+.stage-floating-tag {
+  position: absolute;
+  top: 1.15rem;
+  left: 1.15rem;
+  padding: 0.4rem 0.95rem;
+  border-radius: var(--radius-pill);
+  background: rgba(17, 36, 30, 0.88);
+  border: 1px solid var(--gold-24k);
+  color: var(--gold-champagne);
+  font-family: var(--font-couture);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.stage-narrative-card {
+  padding: 2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.stage-meta-row {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-couture);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  color: var(--gold-champagne);
+  margin-bottom: 0.5rem;
+}
+
+.stage-narrative-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  font-weight: 500;
+  color: var(--ink-ivory);
+  margin-bottom: 0.75rem;
+}
+
+.stage-narrative-card p {
+  color: var(--ink-ivory-muted);
+  font-size: 0.96rem;
+  margin-bottom: 1.35rem;
+}
+
+.stage-sensory-pills {
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.stage-sensory-pills span {
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(223, 194, 148, 0.25);
+  font-size: 0.8rem;
+  color: var(--ink-ivory);
+}
+
+/* =========================================================================
+   PRIVATE COUPLES SANCTUARY SUITE
+   ========================================================================= */
+.section-couples {
+  padding: 6.5rem 0;
+  background: var(--bg-silk);
+}
+
+.couples-showcase-card {
+  display: grid;
+  grid-template-columns: 1.08fr 0.92fr;
+  gap: 3.5rem;
+  align-items: center;
+  padding: 3.25rem;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, var(--bg-blush) 0%, var(--bg-pearl) 100%);
+  border: 1px solid rgba(201, 122, 133, 0.3);
+  box-shadow: var(--shadow-soft);
+}
+
+.couples-menu-mini {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 1.85rem 0 2rem;
+}
+
+.couples-tier {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.95rem 1.2rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-pearl);
+  border: 1px solid var(--border-delicate);
+}
+
+.couples-tier strong {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--ink-obsidian);
+}
+
+.couples-tier span {
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+}
+
+.couples-tier-price {
+  font-family: var(--font-display);
+  font-size: 1.5rem !important;
+  font-weight: 700;
+  color: var(--jade-imperial) !important;
+  white-space: nowrap;
+}
+
+.couples-tier-price small {
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  font-weight: 500;
+  color: var(--ink-muted);
+}
+
+.couples-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.couples-visuals {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.couples-photo-primary {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  height: 300px;
+  box-shadow: var(--shadow-soft);
+}
+
+.couples-photo-primary img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.couples-photo-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.couples-photo-pair figure {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  height: 190px;
+  box-shadow: var(--shadow-soft);
+}
+
+.couples-photo-pair img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* =========================================================================
+   CURATED LOOKBOOK & SANCTUARY GALLERY
+   ========================================================================= */
+.section-lookbook {
+  padding: 6.5rem 0;
+  background: var(--bg-pearl);
+}
+
+.lookbook-filters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 2.5rem;
+}
+
+.look-filter {
+  padding: 0.58rem 1.25rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--ink-charcoal);
+  background: var(--bg-silk);
+  border: 1px solid var(--border-delicate);
+  transition: all 0.25s var(--ease-luxury);
+}
+
+.look-filter:hover {
+  border-color: var(--gold-24k);
+}
+
+.look-filter.active {
+  background: var(--jade-imperial);
+  color: var(--ink-ivory);
+  border-color: var(--jade-imperial);
+}
+
+.lookbook-masonry {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 250px;
+  gap: 1.15rem;
+}
+
+.look-item {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--bg-blush);
+  box-shadow: var(--shadow-soft);
+}
+
+.look-item.look-tall {
+  grid-row: span 2;
+}
+
+.look-item.look-wide {
+  grid-column: span 2;
+}
+
+.look-item.hidden-look {
+  display: none;
+}
+
+.look-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.65s var(--ease-luxury);
+}
+
+.look-item:hover img {
+  transform: scale(1.06);
+}
+
+.look-item figcaption {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 2rem 1.15rem 1rem;
+  background: linear-gradient(180deg, transparent 0%, rgba(17, 36, 30, 0.88) 100%);
+  color: var(--ink-ivory);
+  display: flex;
+  flex-direction: column;
+  transition: opacity 0.3s;
+}
+
+.look-item figcaption span {
+  font-family: var(--font-couture);
+  font-size: 0.64rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-champagne);
+}
+
+.look-item figcaption strong {
+  font-family: var(--font-display);
+  font-size: 1.18rem;
+  font-weight: 500;
+}
+
+/* =========================================================================
+   VERIFIED GUEST LOVE (REVIEWS)
+   ========================================================================= */
+.section-reviews {
+  padding: 6rem 0;
+  background: var(--bg-blush);
+}
+
+.reviews-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+  margin-bottom: 2.75rem;
+  flex-wrap: wrap;
+}
+
+.rating-summary-pill {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.9rem 1.4rem;
+  border-radius: var(--radius-md);
+  background: var(--bg-pearl);
+  border: 1px solid var(--border-gold);
+  box-shadow: var(--shadow-soft);
+}
+
+.rating-big {
+  font-family: var(--font-display);
+  font-size: 2.6rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--jade-imperial);
+}
+
+.stars-gold {
+  color: var(--gold-24k);
+  letter-spacing: 0.1em;
+  font-size: 0.95rem;
+}
+
+.rating-summary-pill span {
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+
+.review-card {
+  background: var(--bg-pearl);
+  padding: 2rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-delicate);
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.review-stars {
+  color: var(--gold-24k);
+  letter-spacing: 0.12em;
+}
+
+.review-quote {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  line-height: 1.55;
+  color: var(--ink-obsidian);
+}
+
+.review-author {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-delicate);
+}
+
+.author-Initials {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--jade-imperial);
+  color: var(--gold-champagne);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-couture);
+  font-size: 0.82rem;
+  flex-shrink: 0;
+}
+
+.review-author strong {
+  display: block;
+  font-size: 0.92rem;
+}
+
+.review-author span {
+  font-size: 0.76rem;
+  color: var(--ink-muted);
+}
+
+/* =========================================================================
+   INTERACTIVE GIFT CARD ATELIER
+   ========================================================================= */
+.section-gift-atelier {
+  padding: 6.5rem 0;
+  background: var(--bg-silk);
+}
+
+.gift-atelier-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.gift-form {
+  margin-top: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.gift-label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-charcoal);
+  margin-bottom: 0.55rem;
+}
+
+.gift-amount-pills {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.65rem;
+}
+
+.gift-amt-btn {
+  padding: 0.8rem 1rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-pearl);
+  border: 1.5px solid var(--border-delicate);
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--ink-obsidian);
+  transition: all 0.25s;
+}
+
+.gift-amt-btn.active,
+.gift-amt-btn:hover {
+  border-color: var(--jade-imperial);
+  background: var(--bg-celadon-soft);
+  color: var(--jade-imperial);
+}
+
+.gift-field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.gift-input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(27, 22, 24, 0.16);
+  background: var(--bg-pearl);
+  font-family: inherit;
+  font-size: 0.92rem;
+  color: var(--ink-obsidian);
+}
+
+.gift-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+/* Luxury Gift Card Live Preview */
+.luxury-gift-card {
+  position: relative;
+  padding: 2.5rem;
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 88% 18%, rgba(197, 155, 95, 0.28) 0%, transparent 48%),
+    linear-gradient(135deg, #132A22 0%, #1E4437 55%, #0F211B 100%);
+  color: var(--ink-ivory);
+  border: 1.5px solid rgba(223, 194, 148, 0.5);
+  box-shadow: var(--shadow-elevated), 0 25px 60px -15px rgba(17, 36, 30, 0.55);
+  min-height: 340px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.gift-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.gift-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.gift-brand img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--bg-pearl);
+  padding: 4px;
+  border: 1px solid var(--gold-24k);
+  object-fit: contain;
+}
+
+.gift-brand strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  letter-spacing: 0.16em;
+  line-height: 1;
+}
+
+.gift-brand span {
+  font-family: var(--font-couture);
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  color: var(--gold-champagne);
+}
+
+.gift-card-amount {
+  font-family: var(--font-display);
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: var(--gold-champagne);
+  line-height: 1;
+}
+
+.gift-card-middle {
+  margin: 2rem 0;
+}
+
+.gift-occasion-line {
+  font-family: var(--font-couture);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--rose-petal);
+}
+
+.gift-recipient-line {
+  font-family: var(--font-display);
+  font-size: 2.15rem;
+  font-weight: 400;
+  margin: 0.25rem 0 0.4rem;
+}
+
+.gift-recipient-line em {
+  color: var(--gold-champagne);
+}
+
+.gift-ritual-line {
+  font-size: 0.92rem;
+  color: var(--ink-ivory-muted);
+}
+
+.gift-card-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(223, 194, 148, 0.22);
+  font-size: 0.75rem;
+  color: var(--ink-ivory-muted);
+}
+
+.gift-seal {
+  font-family: var(--font-couture);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  color: var(--gold-champagne);
+}
+
+/* =========================================================================
+   FAQ & SANCTUARY CONCIERGE / LOCATION
+   ========================================================================= */
+.section-concierge {
+  padding: 6.5rem 0;
+  background: var(--bg-blush);
+}
+
+.concierge-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 3.5rem;
+  align-items: start;
+}
+
+.faq-accordion {
+  margin-top: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.faq-item {
+  background: var(--bg-pearl);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-delicate);
+  overflow: hidden;
+}
+
+.faq-question {
+  width: 100%;
+  padding: 1.25rem 1.4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--ink-obsidian);
+}
+
+.faq-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--bg-blush);
+  color: var(--jade-imperial);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-weight: 700;
+}
+
+.faq-answer {
+  display: none;
+  padding: 0 1.4rem 1.35rem;
+  font-size: 0.93rem;
+  color: var(--ink-muted);
+}
+
+.faq-item.open .faq-answer {
+  display: block;
+}
+
+.location-card {
+  background: var(--bg-pearl);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border-gold);
+  box-shadow: var(--shadow-elevated);
+}
+
+.location-photo-header {
+  position: relative;
+  height: 240px;
+}
+
+.location-photo-header img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 22%;
+}
+
+.location-photo-badge {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: var(--radius-pill);
+  background: rgba(17, 36, 30, 0.9);
+  color: var(--gold-champagne);
+  font-size: 0.76rem;
+  font-weight: 600;
+}
+
+.location-card-body {
+  padding: 2rem;
+}
+
+.location-card-body h3 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  margin-bottom: 1.25rem;
+}
+
+.contact-detail-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  margin-bottom: 1.75rem;
+}
+
+.contact-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.contact-label {
+  font-family: var(--font-couture);
+  font-size: 0.66rem;
+  letter-spacing: 0.18em;
+  color: var(--rose-camellia);
+}
+
+.contact-val {
+  font-size: 0.96rem;
+  font-weight: 600;
+  color: var(--ink-obsidian);
+}
+
+.contact-val small {
+  font-weight: 400;
+  color: var(--ink-muted);
+}
+
+.contact-links-inline {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.location-cta-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.location-cta-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+/* =========================================================================
+   FOOTER
+   ========================================================================= */
+.site-footer {
+  background: var(--bg-velvet-jade);
+  color: var(--ink-ivory);
+  padding: 4.5rem 0 2.5rem;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 2.5rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-brand img {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--bg-pearl);
+  padding: 4px;
+  border: 1px solid var(--gold-24k);
+  object-fit: contain;
+}
+
+.footer-brand .brand-title {
+  color: var(--ink-ivory);
+}
+
+.footer-brand .brand-subtitle {
+  color: var(--gold-champagne);
+}
+
+.footer-tagline {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--ink-ivory-muted);
+  max-width: 36ch;
+}
+
+.footer-nav-col h4 {
+  font-family: var(--font-couture);
+  font-size: 0.76rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-champagne);
+  margin-bottom: 1rem;
+}
+
+.footer-nav-col ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.footer-nav-col a,
+.footer-nav-col p {
+  font-size: 0.88rem;
+  color: var(--ink-ivory-muted);
+  margin-bottom: 0.4rem;
+}
+
+.footer-nav-col a:hover {
+  color: var(--gold-champagne);
+}
+
+.footer-bottom {
+  padding-top: 1.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.82rem;
+  color: var(--ink-ivory-muted);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-bottom-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+/* =========================================================================
+   MODALS, DRAWER & LIGHTBOX
+   ========================================================================= */
+.modal-backdrop,
+.ritual-drawer-backdrop,
+.lightbox-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(17, 24, 21, 0.72);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s var(--ease-luxury);
+  padding: 1.25rem;
+}
+
+.modal-backdrop.open,
+.ritual-drawer-backdrop.open,
+.lightbox-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-container {
+  position: relative;
+  background: var(--bg-pearl);
+  border-radius: var(--radius-lg);
+  max-width: 880px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  border: 1px solid var(--border-gold);
+  box-shadow: var(--shadow-elevated);
+}
+
+.modal-close-btn,
+.drawer-close-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--bg-blush);
+  color: var(--ink-obsidian);
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 5;
+}
+
+.modal-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+}
+
+.modal-visual {
+  position: relative;
+  background: var(--bg-blush);
+  min-height: 360px;
+}
+
+.modal-main-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal-cutout-emblem {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+  background: rgba(255, 253, 251, 0.9);
+  border-radius: 50%;
+  padding: 0.4rem;
+  border: 1px solid var(--border-gold);
+}
+
+.modal-body {
+  padding: 2.25rem;
+}
+
+.modal-body h3 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  margin-bottom: 0.4rem;
+}
+
+.modal-price-bar {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.92rem;
+  color: var(--jade-imperial);
+  margin-bottom: 1rem;
+}
+
+.modal-steps-box {
+  margin: 1.25rem 0 1.5rem;
+  padding: 1.15rem;
+  background: var(--bg-silk);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-delicate);
+}
+
+.modal-steps-box h4 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--jade-imperial);
+  margin-bottom: 0.65rem;
+}
+
+.modal-steps-box ol {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding-left: 1.1rem;
+  list-style: decimal;
+}
+
+.modal-steps-box li {
+  font-size: 0.86rem;
+  color: var(--ink-charcoal);
+}
+
+.modal-footer-ctas {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+/* Slide-Over Ritual Drawer */
+.ritual-drawer-backdrop {
+  justify-content: flex-end;
+  padding: 0;
+}
+
+.ritual-drawer {
+  width: min(440px, 100vw);
+  height: 100vh;
+  background: var(--bg-pearl);
+  display: flex;
+  flex-direction: column;
+  box-shadow: -20px 0 50px rgba(0, 0, 0, 0.25);
+}
+
+.drawer-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-delicate);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.drawer-header h3 {
+  font-family: var(--font-display);
+  font-size: 1.65rem;
+}
+
+.drawer-body {
+  padding: 1.5rem;
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.drawer-empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--ink-muted);
+}
+
+.drawer-item {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.85rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-silk);
+  border: 1px solid var(--border-delicate);
+}
+
+.drawer-item img {
+  width: 64px;
+  height: 64px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.drawer-item-info {
+  flex: 1;
+}
+
+.drawer-item-info strong {
+  display: block;
+  font-size: 0.92rem;
+}
+
+.drawer-item-info span {
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+}
+
+.drawer-remove-btn {
+  font-size: 0.78rem;
+  color: var(--rose-camellia);
+  font-weight: 600;
+}
+
+.drawer-footer {
+  padding: 1.5rem;
+  border-top: 1px solid var(--border-delicate);
+  background: var(--bg-blush);
+}
+
+.drawer-totals {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
+
+.total-price-row strong {
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  color: var(--jade-imperial);
+}
+
+.drawer-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+/* Lightbox */
+.lightbox-figure {
+  max-width: 960px;
+  max-height: 85vh;
+  text-align: center;
+}
+
+.lightbox-figure img {
+  max-height: 76vh;
+  width: auto;
+  margin: 0 auto;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--gold-24k);
+}
+
+.lightbox-figure figcaption {
+  margin-top: 0.85rem;
+  color: var(--ink-ivory);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+}
+
+.lightbox-close,
+.lightbox-nav {
+  position: absolute;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  color: var(--ink-ivory);
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-close {
+  top: 1.5rem;
+  right: 1.5rem;
+}
+
+.lightbox-prev {
+  left: 1.5rem;
+}
+
+.lightbox-next {
+  right: 1.5rem;
+}
+
+/* Mobile Sticky Bar */
+.mobile-sticky-bar {
+  display: none;
+}
+
+/* =========================================================================
+   RESPONSIVE BREAKPOINTS
+   ========================================================================= */
+@media (max-width: 1080px) {
+  .primary-nav {
+    display: none;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    right: 0;
+    background: var(--bg-pearl);
+    flex-direction: column;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-delicate);
+    box-shadow: var(--shadow-elevated);
+  }
+
+  .primary-nav.nav-open {
+    display: flex;
+  }
+
+  .mobile-menu-btn {
+    display: inline-flex;
+  }
+
+  .hero-grid,
+  .atelier-split,
+  .choreo-interactive-grid,
+  .couples-showcase-card,
+  .gift-atelier-grid,
+  .concierge-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rituals-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .finder-options {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .lookbook-masonry {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .reviews-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-top {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  body {
+    padding-bottom: 68px;
+  }
+
+  .topbar-center,
+  .topbar-links,
+  .header-actions .btn-primary {
+    display: none;
+  }
+
+  .hero-arch-caption {
+    padding: 2.5rem 1.25rem 2.2rem;
+  }
+
+  .hero-atelier {
+    padding: 2rem 0 3.5rem;
+  }
+
+  .hero-float-card {
+    width: 140px;
+  }
+
+  .hero-float-card img {
+    height: 90px;
+  }
+
+  .hero-trust-strip {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .trust-divider {
+    display: none;
+  }
+
+  .atelier-gallery-mosaic,
+  .finder-options,
+  .finder-result,
+  .gift-field-row,
+  .modal-grid,
+  .footer-top {
+    grid-template-columns: 1fr;
+  }
+
+  .lookbook-masonry {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 240px;
+  }
+
+  .look-item.look-wide,
+  .look-item.look-tall {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  .couples-showcase-card {
+    padding: 1.75rem;
+  }
+
+  .mobile-sticky-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 150;
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 0.6rem;
+    padding: 0.65rem 1rem;
+    background: rgba(252, 248, 245, 0.96);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid var(--border-gold);
+  }
+
+  .mobile-bar-call,
+  .mobile-bar-book {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.86rem;
+    font-weight: 700;
+  }
+
+  .mobile-bar-call {
+    background: var(--bg-blush);
+    color: var(--ink-obsidian);
+  }
+
+  .mobile-bar-book {
+    background: var(--jade-imperial);
+    color: var(--ink-ivory);
+  }
+}
