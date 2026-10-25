@@ -1,88 +1,123 @@
 const BYCHRONOS_BOOKING_URL = 'https://go.bychronos.com/l/kissimmee-34746-jade-head-spa-beauty-806983/a/services';
 
-const STAGE_SIGNATURES = [
+const HERO_SCENES = [
   {
     serviceId: 'srv-128489',
-    plateCode: 'PLATE I',
     title: '60 Mins Head Spa',
-    sub: '1 hour · Deep Follicle Cleanse, Foaming Scalp Acupressure & 360° Golden Ring Waterfall',
+    sub: '1 hour · Deep follicle cleanse, cloud-foam scalp massage & 360° Golden Ring Waterfall',
     price: '$120',
-    duration: '1 hour',
     photo: 'assets/images/gmaps/waterfall-therapist-suite.jpg',
     photoAlt: 'Specialist performing the 60 Mins Head Spa with Golden Ring Waterfall arch at Jade Head Spa & Beauty',
     cutout: 'assets/images/ai/cutout-golden-halo-arch.png',
-    cutoutLabel: 'Golden Ring Hydro-Arch',
-    patchTone: 'patch-silk'
+    cutoutTitle: 'Golden Ring Hydro-Arch',
+    cutoutNote: 'Warm 360° water halo over porcelain basin'
   },
   {
     serviceId: 'srv-138178',
-    plateCode: 'PLATE II',
     title: 'Japanese Head Spa with Shiseido Package',
-    sub: '1 hour 30 min · 45-Min Head Spa + 45-Min Massage with Authentic Shiseido Scalp Care',
+    sub: '1 hr 30 min · 45-Min Shiseido Head Spa + 45-Min Therapeutic Body Massage',
     price: '$199',
-    duration: '1 hour 30 min',
     photo: 'assets/images/gmaps/scalp-foam-massage.jpg',
     photoAlt: 'Foaming Shiseido scalp acupressure ritual at Jade Head Spa & Beauty in Kissimmee',
     cutout: 'assets/images/ai/cutout-shiseido-ritual.png',
-    cutoutLabel: 'Shiseido Tokyo Formulary',
-    patchTone: 'patch-blush'
+    cutoutTitle: 'Shiseido Sublimic Care',
+    cutoutNote: 'Japanese scalp serum, bamboo whisk & jade comb'
+  },
+  {
+    serviceId: 'srv-128491',
+    title: '60 Mins Korean Facial',
+    sub: '1 hour · Double cleanse, warm ozone steam, twin-brush hydro-mask & lymphatic lift',
+    price: '$120',
+    photo: 'assets/images/gmaps/korean-facial-treatment.jpg',
+    photoAlt: 'Esthetician performing a 60 Mins Korean Facial with warm ozone steam',
+    cutout: 'assets/images/ai/cutout-korean-facial.png',
+    cutoutTitle: 'Korean Glass-Skin Studio',
+    cutoutNote: 'Twin fan brushes, hyaluronic serum & jade roller'
+  },
+  {
+    serviceId: 'pkg-2222',
+    title: 'Couple 60 Minutes Head Spa',
+    sub: '1 hour • 2 services · Side-by-side Golden Ring Waterfall suite for two ($120 per guest)',
+    price: '$240',
+    photo: 'assets/images/gmaps/white-jade-towel-roses.jpg',
+    photoAlt: 'Private couples suite prepared with embroidered Jade towels and fresh pink roses',
+    cutout: 'assets/images/ai/cutout-couple-sanctuary.png',
+    cutoutTitle: 'Side-by-Side Duet Suite',
+    cutoutNote: 'Two waterfall beds, fresh roses & flower tea'
+  }
+];
+
+const STAGE_SIGNATURES = [
+  {
+    serviceId: 'srv-128489',
+    title: '60 Mins Head Spa',
+    sub: '1 hour · Solo Waterfall Ritual',
+    price: '$120',
+    duration: '1 hour',
+    photo: 'assets/images/gmaps/waterfall-therapist-suite.jpg',
+    photoAlt: 'Specialist performing the 60 Mins Head Spa with Golden Ring Waterfall arch',
+    cutout: 'assets/images/ai/cutout-golden-halo-arch.png',
+    cutoutLabel: 'Golden Ring Hydro-Arch'
+  },
+  {
+    serviceId: 'srv-138178',
+    title: 'Japanese Head Spa with Shiseido Package',
+    sub: '1 hour 30 min · 45m Head Spa + 45m Massage',
+    price: '$199',
+    duration: '1 hour 30 min',
+    photo: 'assets/images/gmaps/scalp-foam-massage.jpg',
+    photoAlt: 'Foaming Shiseido scalp acupressure ritual at Jade Head Spa & Beauty',
+    cutout: 'assets/images/ai/cutout-shiseido-ritual.png',
+    cutoutLabel: 'Shiseido Tokyo Formulary'
   },
   {
     serviceId: 'srv-128497',
-    plateCode: 'PLATE III',
     title: '60 Mins Head plus 30 Mins Massage',
-    sub: '1 hour 30 min · Full 60-Minute Golden Ring Head Spa Paired with 30-Minute Body Massage',
+    sub: '1 hour 30 min · Head Spa + Body Massage',
     price: '$160',
     duration: '1 hour 30 min',
     photo: 'assets/images/curated/female-therapist-oil-massage.jpg',
     photoAlt: 'Warm botanical oil back massage paired with Golden Ring Head Spa',
     cutout: 'assets/images/ai/cutout-head-massage-pkg.png',
-    cutoutLabel: 'Crown & Body Package',
-    patchTone: 'patch-celadon'
+    cutoutLabel: 'Crown & Body Package'
   },
   {
     serviceId: 'srv-128491',
-    plateCode: 'PLATE IV',
     title: '60 Mins Korean Facial',
-    sub: '1 hour · Double Cleanse, Warm Ozone Steam, Twin-Brush Mask & Lymphatic Acupressure',
+    sub: '1 hour · Ozone Steam & Twin-Brush Mask',
     price: '$120',
     duration: '1 hour',
     photo: 'assets/images/gmaps/korean-facial-treatment.jpg',
     photoAlt: 'Esthetician performing a 60 Mins Korean Facial with warm ozone steam',
     cutout: 'assets/images/ai/cutout-korean-facial.png',
-    cutoutLabel: 'Korean Skincare Studio',
-    patchTone: 'patch-blush'
+    cutoutLabel: 'Korean Skincare Studio'
   },
   {
     serviceId: 'pkg-2222',
-    plateCode: 'PLATE V',
     title: 'Couple 60 Minutes Head Spa',
-    sub: '1 hour • 2 services · Side-by-Side Golden Ring Waterfall Suite for Two Guests ($120/person)',
+    sub: '1 hour • 2 services · Private Suite ($120/guest)',
     price: '$240',
     duration: '1 hour • 2 services',
     photo: 'assets/images/gmaps/white-jade-towel-roses.jpg',
     photoAlt: 'Private couples suite prepared with embroidered Jade towels and fresh pink roses',
     cutout: 'assets/images/ai/cutout-couple-sanctuary.png',
-    cutoutLabel: 'Side-by-Side Couples Suite',
-    patchTone: 'patch-silk'
+    cutoutLabel: 'Side-by-Side Couples Suite'
   },
   {
     serviceId: 'srv-128492',
-    plateCode: 'PLATE VI',
     title: '60 Mins Foot Massage',
-    sub: '1 hour · Warm Herbal Soak & Meridian Foot and Lower-Leg Reflexology in Leather Recliners',
+    sub: '1 hour · Leather Recliner Reflexology',
     price: '$60',
     duration: '1 hour',
     photo: 'assets/images/gmaps/foot-reflexology-lounge.jpg',
     photoAlt: 'Foot reflexology treatment in the plush leather recliner lounge',
     cutout: 'assets/images/ai/cutout-foot-reflexology.png',
-    cutoutLabel: 'Reflexology Recliner Lounge',
-    patchTone: 'patch-celadon'
+    cutoutLabel: 'Reflexology Recliner Lounge'
   }
 ];
 
 const OFFICIAL_CATEGORIES = [
-  { id: 'all', label: 'All Official Services' },
+  { id: 'all', label: 'All 30 Treatments' },
   { id: 'Head Spa', label: 'Head Spa' },
   { id: 'Head Spa Package', label: 'Head Spa Package' },
   { id: 'Special Menu', label: 'Special Menu · Shiseido' },
@@ -100,6 +135,8 @@ const OFFICIAL_SERVICES = [
     name: '30 Mins Head Spa',
     category: 'Head Spa',
     duration: '30 min',
+    timeBucket: 'short',
+    focusBucket: 'head',
     price: '$80',
     isCouples: false,
     photo: 'assets/images/gmaps/waterfall-basin-closeup.jpg',
@@ -118,6 +155,8 @@ const OFFICIAL_SERVICES = [
     name: '60 Mins Head Spa',
     category: 'Head Spa',
     duration: '1 hour',
+    timeBucket: 'medium',
+    focusBucket: 'head',
     price: '$120',
     isCouples: false,
     photo: 'assets/images/gmaps/waterfall-halo-hero.jpg',
@@ -136,6 +175,8 @@ const OFFICIAL_SERVICES = [
     name: '90 Mins Head Spa',
     category: 'Head Spa',
     duration: '1 hour 30 min',
+    timeBucket: 'long',
+    focusBucket: 'head',
     price: '$160',
     isCouples: false,
     photo: 'assets/images/gmaps/scalp-foam-massage.jpg',
@@ -156,6 +197,8 @@ const OFFICIAL_SERVICES = [
     name: '30 Mins Head plus 30 Mins Massage',
     category: 'Head Spa Package',
     duration: '1 hour',
+    timeBucket: 'medium',
+    focusBucket: 'head',
     price: '$120',
     isCouples: false,
     photo: 'assets/images/gmaps/aromatherapy-jade-suite.jpg',
@@ -174,6 +217,8 @@ const OFFICIAL_SERVICES = [
     name: '30 Mins Head plus 30 Mins Facial',
     category: 'Head Spa Package',
     duration: '1 hour',
+    timeBucket: 'medium',
+    focusBucket: 'facial',
     price: '$140',
     isCouples: false,
     photo: 'assets/images/gmaps/facial-mask-brushes.jpg',
@@ -192,6 +237,8 @@ const OFFICIAL_SERVICES = [
     name: '60 Mins Head plus 30 Mins Massage',
     category: 'Head Spa Package',
     duration: '1 hour 30 min',
+    timeBucket: 'long',
+    focusBucket: 'head',
     price: '$160',
     isCouples: false,
     photo: 'assets/images/curated/female-therapist-oil-massage.jpg',
@@ -210,6 +257,8 @@ const OFFICIAL_SERVICES = [
     name: '60 Head plus 30 Facial',
     category: 'Head Spa Package',
     duration: '1 hour 30 min',
+    timeBucket: 'long',
+    focusBucket: 'facial',
     price: '$180',
     isCouples: false,
     photo: 'assets/images/gmaps/korean-facial-treatment.jpg',
@@ -228,6 +277,8 @@ const OFFICIAL_SERVICES = [
     name: '60 Head plus 60 Massage',
     category: 'Head Spa Package',
     duration: '2 hours',
+    timeBucket: 'long',
+    focusBucket: 'head',
     price: '$200',
     isCouples: false,
     photo: 'assets/images/official/back-massage-official.jpg',
@@ -249,6 +300,8 @@ const OFFICIAL_SERVICES = [
     officialName: 'JAPANESE HEAD SPA WITH SHISEIDO PACKAGE',
     category: 'Special Menu',
     duration: '1 hour 30 min',
+    timeBucket: 'long',
+    focusBucket: 'shiseido',
     price: '$199',
     isCouples: false,
     photo: 'assets/images/gmaps/scalp-foam-massage.jpg',
@@ -268,6 +321,8 @@ const OFFICIAL_SERVICES = [
     officialName: 'JAPANESE HEAD SPA WITH SHISEIDO PACKAGE',
     category: 'Special Menu',
     duration: '1 hour',
+    timeBucket: 'medium',
+    focusBucket: 'shiseido',
     price: '$159',
     isCouples: false,
     photo: 'assets/images/gmaps/waterfall-therapist-suite.jpg',
@@ -287,6 +342,8 @@ const OFFICIAL_SERVICES = [
     officialName: 'JAPANESE HEAD SPA WITH SHISEIDO For Two',
     category: 'Special Menu',
     duration: '1 hour - 1 hour 30 min',
+    timeBucket: 'long',
+    focusBucket: 'shiseido',
     price: 'from $318',
     isCouples: true,
     photo: 'assets/images/gmaps/white-jade-towel-roses.jpg',
@@ -306,6 +363,8 @@ const OFFICIAL_SERVICES = [
     officialName: 'JAPANESE HEAD SPA WITH SHISEIDO For One',
     category: 'Special Menu',
     duration: '1 hour - 1 hour 30 min',
+    timeBucket: 'medium',
+    focusBucket: 'shiseido',
     price: 'from $159',
     isCouples: false,
     photo: 'assets/images/official/golden-halo-official.jpg',
@@ -327,6 +386,8 @@ const OFFICIAL_SERVICES = [
     officialName: 'Couple 60 minutes head spa',
     category: 'Couple Head Spa',
     duration: '1 hour • 2 services',
+    timeBucket: 'medium',
+    focusBucket: 'head',
     price: '$240',
     isCouples: true,
     photo: 'assets/images/gmaps/white-jade-towel-roses.jpg',
@@ -345,6 +406,8 @@ const OFFICIAL_SERVICES = [
     name: 'Couple 90 minutes head spa',
     category: 'Couple Head Spa',
     duration: '1 hour 30 min • 2 services',
+    timeBucket: 'long',
+    focusBucket: 'head',
     price: '$320',
     isCouples: true,
     photo: 'assets/images/gmaps/jade-towel-lily-arch.jpg',
@@ -363,6 +426,8 @@ const OFFICIAL_SERVICES = [
     name: 'Couple 60 minutes package 30 Mins head spa plus 30 Mins massage',
     category: 'Couple Head Spa',
     duration: '1 hour • 2 services',
+    timeBucket: 'medium',
+    focusBucket: 'head',
     price: '$240',
     isCouples: true,
     photo: 'assets/images/gmaps/lily-candles-towels.jpg',
@@ -381,6 +446,8 @@ const OFFICIAL_SERVICES = [
     name: 'Couple 90 minutes package 30 Mins head spa plus 30 Mins massage',
     category: 'Couple Head Spa',
     duration: '50 min - 1 hr 30 min • 2 services',
+    timeBucket: 'long',
+    focusBucket: 'head',
     price: '$320',
     isCouples: true,
     photo: 'assets/images/gmaps/aromatherapy-oils-candles.jpg',
@@ -399,6 +466,8 @@ const OFFICIAL_SERVICES = [
     name: 'Couple 60 minutes package 30 mins head spa plus 30 mins facial',
     category: 'Couple Head Spa',
     duration: '2 hours • 2 services',
+    timeBucket: 'medium',
+    focusBucket: 'facial',
     price: '$280',
     isCouples: true,
     photo: 'assets/images/gmaps/facial-mask-brushes.jpg',
@@ -417,6 +486,8 @@ const OFFICIAL_SERVICES = [
     name: 'Couple 90 minutes package 60 Mins head spa plus 30 massage',
     category: 'Couple Head Spa',
     duration: '3 hours • 2 services',
+    timeBucket: 'long',
+    focusBucket: 'head',
     price: '$320',
     isCouples: true,
     photo: 'assets/images/gmaps/aromatherapy-jade-suite.jpg',
@@ -435,6 +506,8 @@ const OFFICIAL_SERVICES = [
     name: 'Couple 90 minutes package 60 Mins head spa plus 30 facial',
     category: 'Couple Head Spa',
     duration: '3 hours • 2 services',
+    timeBucket: 'long',
+    focusBucket: 'facial',
     price: '$360',
     isCouples: true,
     photo: 'assets/images/gmaps/korean-facial-treatment.jpg',
@@ -455,6 +528,8 @@ const OFFICIAL_SERVICES = [
     name: '30 Mins Korean Facial',
     category: 'Facial',
     duration: '30 min',
+    timeBucket: 'short',
+    focusBucket: 'facial',
     price: '$80',
     isCouples: false,
     photo: 'assets/images/gmaps/facial-mask-brushes.jpg',
@@ -473,6 +548,8 @@ const OFFICIAL_SERVICES = [
     name: '60 Mins Korean Facial',
     category: 'Facial',
     duration: '1 hour',
+    timeBucket: 'medium',
+    focusBucket: 'facial',
     price: '$120',
     isCouples: false,
     photo: 'assets/images/gmaps/korean-facial-treatment.jpg',
@@ -491,6 +568,8 @@ const OFFICIAL_SERVICES = [
     name: '30 Mins Gentlemans Facial',
     category: 'Facial',
     duration: '30 min',
+    timeBucket: 'short',
+    focusBucket: 'facial',
     price: '$80',
     isCouples: false,
     photo: 'assets/images/official/facial-brush-official.jpg',
@@ -509,6 +588,8 @@ const OFFICIAL_SERVICES = [
     name: '60 Mins Gentlemans Facial',
     category: 'Facial',
     duration: '1 hour',
+    timeBucket: 'medium',
+    focusBucket: 'facial',
     price: '$120',
     isCouples: false,
     photo: 'assets/images/official/scalp-treatment-official.jpg',
@@ -529,6 +610,8 @@ const OFFICIAL_SERVICES = [
     name: '30 Mins Massage',
     category: 'Massage',
     duration: '30 min',
+    timeBucket: 'short',
+    focusBucket: 'body',
     price: '$60',
     isCouples: false,
     photo: 'assets/images/official/head-massage-official.jpg',
@@ -547,6 +630,8 @@ const OFFICIAL_SERVICES = [
     name: '60 Mins Massage',
     category: 'Massage',
     duration: '1 hour',
+    timeBucket: 'medium',
+    focusBucket: 'body',
     price: '$80',
     isCouples: false,
     photo: 'assets/images/curated/female-therapist-oil-massage.jpg',
@@ -565,6 +650,8 @@ const OFFICIAL_SERVICES = [
     name: '90 Mins Massage',
     category: 'Massage',
     duration: '1 hour 30 min',
+    timeBucket: 'long',
+    focusBucket: 'body',
     price: '$130',
     isCouples: false,
     photo: 'assets/images/curated/hot-stone-orchid-massage.jpg',
@@ -585,6 +672,8 @@ const OFFICIAL_SERVICES = [
     name: '60 Mins Couple Massage',
     category: 'Couple Massage',
     duration: '1 hour • 2 services',
+    timeBucket: 'medium',
+    focusBucket: 'body',
     price: '$160',
     isCouples: true,
     photo: 'assets/images/gmaps/lily-candles-towels.jpg',
@@ -603,6 +692,8 @@ const OFFICIAL_SERVICES = [
     name: '90 Mins Couple Massage',
     category: 'Couple Massage',
     duration: '1 hour 30 min • 2 services',
+    timeBucket: 'long',
+    focusBucket: 'body',
     price: '$260',
     isCouples: true,
     photo: 'assets/images/gmaps/aromatherapy-jade-suite.jpg',
@@ -623,6 +714,8 @@ const OFFICIAL_SERVICES = [
     name: '30 Mins Foot Massage',
     category: 'Foot Massage',
     duration: '30 min',
+    timeBucket: 'short',
+    focusBucket: 'body',
     price: '$40',
     isCouples: false,
     photo: 'assets/images/gmaps/foot-reflexology-lounge.jpg',
@@ -641,6 +734,8 @@ const OFFICIAL_SERVICES = [
     name: '60 Mins Foot Massage',
     category: 'Foot Massage',
     duration: '1 hour',
+    timeBucket: 'medium',
+    focusBucket: 'body',
     price: '$60',
     isCouples: false,
     photo: 'assets/images/gmaps/foot-reflexology-lounge.jpg',
@@ -732,13 +827,17 @@ const ATELIER_PLATES = [
 ];
 
 /* State */
-let currentStageIndex = 0;
 let activeCategory = 'all';
 let activeGuestScope = 'all';
 let searchQuery = '';
 let activePhotoFilter = 'all';
 let visiblePlates = [...ATELIER_PLATES];
 let currentLightboxIndex = 0;
+
+/* Matcher State */
+let matchGuests = 'all';
+let matchFocus = 'all';
+let matchTime = 'all';
 
 /* 1. Live Kissimmee Eastern Time Hours */
 function updateKissimmeeHours() {
@@ -758,93 +857,206 @@ function updateKissimmeeHours() {
 
     if (statusEl) {
       statusEl.textContent = isOpen
-        ? 'Open Now in Kissimmee · 10 AM – 10 PM'
-        : 'Sanctuary Hours · Daily 10 AM – 10 PM ET';
+        ? 'Kissimmee Sanctuary · 3273 Oxford Dr #2 · Open now until 10:00 pm'
+        : 'Kissimmee Sanctuary · 3273 Oxford Dr #2 · Open daily 10:00 am – 10:00 pm';
     }
     if (visitEl) {
       visitEl.textContent = isOpen
-        ? 'Open Now · Monday – Sunday: 10:00 AM – 10:00 PM ET'
-        : 'Monday – Sunday: 10:00 AM – 10:00 PM Eastern Time';
+        ? 'Open now · Monday through Sunday, 10:00 am – 10:00 pm ET'
+        : 'Open Monday through Sunday, 10:00 am – 10:00 pm Eastern Time';
     }
   } catch (_) {
-    /* Keep static fallback */
+    /* Fallback to static copy */
   }
 }
 
-/* 2. First Viewport Six-Ritual Stage Switcher */
+/* 2. Hero Arch Vessel Scene Switcher */
 function initHeroStage() {
-  const rowsContainer = document.getElementById('heroStageRows');
-  const platePhoto = document.getElementById('stagePlatePhoto');
-  const activeTitle = document.getElementById('stageActiveTitle');
-  const activeSub = document.getElementById('stageActiveSub');
-  const activePrice = document.getElementById('stageActivePrice');
-  const cutoutImg = document.getElementById('stageCutoutImg');
-  const cutoutLabel = document.getElementById('stageCutoutLabel');
-  const cutoutTrigger = document.getElementById('stageCutoutTrigger');
-  const inspectBtn = document.getElementById('heroInspectActiveBtn');
+  const mainPhoto = document.getElementById('heroMainPhoto');
+  const captionTitle = document.getElementById('heroCaptionTitle');
+  const captionSub = document.getElementById('heroCaptionSub');
+  const captionPrice = document.getElementById('heroCaptionPrice');
+  const inspectBtn = document.getElementById('heroInspectBtn');
+  const cutoutImg = document.getElementById('heroCutoutImg');
+  const cutoutTitle = document.getElementById('heroCutoutTitle');
+  const cutoutNote = document.getElementById('heroCutoutNote');
+  const sceneButtons = document.querySelectorAll('[data-hero-scene]');
 
-  if (!rowsContainer) return;
+  if (!sceneButtons.length) return;
 
-  function setStage(index) {
-    const item = STAGE_SIGNATURES[index];
-    if (!item) return;
-    currentStageIndex = index;
+  sceneButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const idx = parseInt(btn.getAttribute('data-hero-scene'), 10);
+      const scene = HERO_SCENES[idx];
+      if (!scene) return;
 
-    const buttons = rowsContainer.querySelectorAll('.index-row');
-    buttons.forEach((btn, idx) => {
-      const isSelected = idx === index;
-      btn.classList.toggle('active', isSelected);
-      btn.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+      sceneButtons.forEach((b) => {
+        const isCurrent = b === btn;
+        b.classList.toggle('active', isCurrent);
+        b.setAttribute('aria-selected', isCurrent ? 'true' : 'false');
+      });
+
+      const vessel = mainPhoto ? mainPhoto.closest('.hero-arch-vessel') : null;
+      if (vessel) vessel.classList.add('is-switching');
+
+      setTimeout(() => {
+        if (mainPhoto) {
+          mainPhoto.src = scene.photo;
+          mainPhoto.alt = scene.photoAlt;
+        }
+        if (captionTitle) captionTitle.textContent = scene.title;
+        if (captionSub) captionSub.textContent = scene.sub;
+        if (captionPrice) captionPrice.textContent = scene.price;
+        if (inspectBtn) inspectBtn.setAttribute('data-open-service', scene.serviceId);
+        if (cutoutImg) {
+          cutoutImg.src = scene.cutout;
+          cutoutImg.alt = scene.cutoutTitle;
+        }
+        if (cutoutTitle) cutoutTitle.textContent = scene.cutoutTitle;
+        if (cutoutNote) cutoutNote.textContent = scene.cutoutNote;
+
+        if (vessel) vessel.classList.remove('is-switching');
+      }, 140);
+    });
+  });
+}
+
+/* 3. Interactive 3-Tap Ritual Matcher */
+function initRitualMatcher() {
+  const grid = document.getElementById('matcherResultsGrid');
+  const countText = document.getElementById('matcherCountText');
+  const resetBtn = document.getElementById('matcherResetBtn');
+  const jumpLink = document.getElementById('matcherJumpToMenu');
+
+  if (!grid) return;
+
+  function renderMatches() {
+    const matches = OFFICIAL_SERVICES.filter((srv) => {
+      const okGuests =
+        matchGuests === 'all' ||
+        (matchGuests === 'couples' && srv.isCouples) ||
+        (matchGuests === 'solo' && !srv.isCouples);
+      const okFocus = matchFocus === 'all' || srv.focusBucket === matchFocus;
+      const okTime = matchTime === 'all' || srv.timeBucket === matchTime;
+      return okGuests && okFocus && okTime;
     });
 
-    const plateFrame = platePhoto ? platePhoto.closest('.hero-plate-frame') : null;
-    if (plateFrame) plateFrame.classList.add('is-switching');
-    if (cutoutTrigger) cutoutTrigger.classList.add('is-switching');
+    const isDefault = matchGuests === 'all' && matchFocus === 'all' && matchTime === 'all';
+    const displayList = isDefault
+      ? [
+          OFFICIAL_SERVICES.find((s) => s.id === 'srv-128489'),
+          OFFICIAL_SERVICES.find((s) => s.id === 'srv-138178'),
+          OFFICIAL_SERVICES.find((s) => s.id === 'srv-128491'),
+          OFFICIAL_SERVICES.find((s) => s.id === 'pkg-2222')
+        ].filter(Boolean)
+      : matches.slice(0, 4);
 
-    setTimeout(() => {
-      if (platePhoto) {
-        platePhoto.src = item.photo;
-        platePhoto.alt = item.photoAlt;
+    if (countText) {
+      if (isDefault) {
+        countText.textContent = 'Showing 4 popular starting points from our 30 official treatments';
+      } else if (matches.length === 0) {
+        countText.textContent = 'No exact match for that combination — try broadening time or modality';
+      } else {
+        countText.textContent = `Found ${matches.length} matching ${matches.length === 1 ? 'treatment' : 'treatments'} (showing top ${displayList.length})`;
       }
-      if (activeTitle) activeTitle.textContent = item.title;
-      if (activeSub) activeSub.textContent = item.sub;
-      if (activePrice) activePrice.textContent = item.price;
-      if (cutoutImg) {
-        cutoutImg.src = item.cutout;
-        cutoutImg.alt = `${item.title} studio cutout`;
-      }
-      if (cutoutLabel) cutoutLabel.textContent = item.cutoutLabel;
+    }
 
-      if (plateFrame) plateFrame.classList.remove('is-switching');
-      if (cutoutTrigger) cutoutTrigger.classList.remove('is-switching');
-    }, 140);
+    if (displayList.length === 0) {
+      grid.innerHTML = `
+        <div class="match-card" style="grid-column: 1 / -1;">
+          <p>No treatment matched all three filters simultaneously. Tap "Reset filters" to explore all 30 treatments.</p>
+        </div>
+      `;
+      return;
+    }
+
+    grid.innerHTML = displayList
+      .map(
+        (srv) => `
+        <article class="match-card">
+          <div class="match-card-top">
+            <img src="${srv.photo}" alt="${srv.name}" class="match-card-thumb" />
+            <div class="match-card-meta">
+              <span>${srv.category} · ${srv.duration}</span>
+              <h3>${srv.name}</h3>
+            </div>
+          </div>
+          <div class="match-card-bottom">
+            <span class="match-card-price">${srv.price}</span>
+            <div class="match-card-actions">
+              <button type="button" class="match-btn-info" data-open-service="${srv.id}">Details</button>
+              <a href="${BYCHRONOS_BOOKING_URL}" target="_blank" rel="noopener noreferrer" class="match-btn-book">Book</a>
+            </div>
+          </div>
+        </article>
+      `
+      )
+      .join('');
   }
 
-  rowsContainer.addEventListener('click', (e) => {
-    const btn = e.target.closest('.index-row');
-    if (!btn) return;
-    const idx = parseInt(btn.getAttribute('data-stage-index'), 10);
-    if (!Number.isNaN(idx)) {
-      setStage(idx);
-    }
+  document.querySelectorAll('[data-match-guests]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('[data-match-guests]').forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      matchGuests = btn.getAttribute('data-match-guests') || 'all';
+      renderMatches();
+    });
   });
 
-  if (cutoutTrigger) {
-    cutoutTrigger.addEventListener('click', () => {
-      const item = STAGE_SIGNATURES[currentStageIndex];
-      if (item) openServiceDrawer(item.serviceId);
+  document.querySelectorAll('[data-match-focus]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('[data-match-focus]').forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      matchFocus = btn.getAttribute('data-match-focus') || 'all';
+      renderMatches();
+    });
+  });
+
+  document.querySelectorAll('[data-match-time]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('[data-match-time]').forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      matchTime = btn.getAttribute('data-match-time') || 'all';
+      renderMatches();
+    });
+  });
+
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      matchGuests = 'all';
+      matchFocus = 'all';
+      matchTime = 'all';
+      document.querySelectorAll('[data-match-guests], [data-match-focus], [data-match-time]').forEach((b) => {
+        const isAll =
+          b.getAttribute('data-match-guests') === 'all' ||
+          b.getAttribute('data-match-focus') === 'all' ||
+          b.getAttribute('data-match-time') === 'all';
+        b.classList.toggle('active', isAll);
+      });
+      renderMatches();
     });
   }
 
-  if (inspectBtn) {
-    inspectBtn.addEventListener('click', () => {
-      const item = STAGE_SIGNATURES[currentStageIndex];
-      if (item) openServiceDrawer(item.serviceId);
+  if (jumpLink) {
+    jumpLink.addEventListener('click', () => {
+      if (matchGuests !== 'all') {
+        activeGuestScope = matchGuests;
+        document.querySelectorAll('.scope-btn').forEach((b) => {
+          b.classList.toggle('active', b.getAttribute('data-guest-scope') === activeGuestScope);
+        });
+      }
+      if (matchFocus === 'shiseido') activeCategory = 'Special Menu';
+      else if (matchFocus === 'facial') activeCategory = 'Facial';
+      else activeCategory = 'all';
+      renderTariffRail();
+      renderTariffLedger();
     });
   }
+
+  renderMatches();
 }
 
-/* 3. Render Six Signature Studio Cutout Plates */
+/* 4. Render Six Apothecary Ritual Vignettes */
 function renderSignaturesPatchwork() {
   const container = document.getElementById('signaturesPatchwork');
   if (!container) return;
@@ -853,43 +1065,40 @@ function renderSignaturesPatchwork() {
     const fullService = OFFICIAL_SERVICES.find((s) => s.id === sig.serviceId);
     const desc = fullService ? fullService.description : sig.sub;
     return `
-      <article class="sig-patch ${sig.patchTone}">
-        <div class="sig-patch-stage">
-          <div class="sig-cutout-well">
-            <span class="sig-plate-code">${sig.plateCode}</span>
-            <img src="${sig.cutout}" alt="${sig.title} studio illustration" loading="lazy" />
+      <article class="apothecary-item">
+        <div>
+          <div class="apothecary-stage">
+            <img src="${sig.cutout}" alt="${sig.title} apothecary still life" class="apothecary-cutout" />
+            <div class="apothecary-room-cameo" title="Real room view at 3273 Oxford Dr">
+              <img src="${sig.photo}" alt="${sig.photoAlt}" />
+            </div>
           </div>
-          <div class="sig-photo-well">
-            <img src="${sig.photo}" alt="${sig.photoAlt}" loading="lazy" />
-            <span class="sig-duration-tag">${sig.duration}</span>
+          <div class="apothecary-body">
+            <div class="apothecary-meta-line">
+              <span>${sig.cutoutLabel}</span>
+              <span>${sig.duration}</span>
+            </div>
+            <div class="apothecary-title-row">
+              <h3 class="apothecary-title">${sig.title}</h3>
+              <span class="apothecary-price">${sig.price}</span>
+            </div>
+            <p class="apothecary-desc">${desc}</p>
           </div>
         </div>
-        <div class="sig-patch-body">
-          <div>
-            <div class="sig-title-row">
-              <h3 class="sig-title">${sig.title}</h3>
-              <span class="sig-price">${sig.price}</span>
-            </div>
-            <p class="sig-desc">${desc}</p>
-          </div>
-          <div class="sig-patch-actions">
-            <button type="button" class="sig-btn-inspect" data-open-service="${sig.serviceId}">
-              Service Sheet
-            </button>
-            <a href="${BYCHRONOS_BOOKING_URL}" target="_blank" rel="noopener noreferrer" class="sig-btn-book">
-              <span>Book (${sig.price})</span>
-              <svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true">
-                <path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" />
-              </svg>
-            </a>
-          </div>
+        <div class="apothecary-actions">
+          <button type="button" class="btn-secondary btn-sm" data-open-service="${sig.serviceId}">
+            Read ritual details
+          </button>
+          <a href="${BYCHRONOS_BOOKING_URL}" target="_blank" rel="noopener noreferrer" class="btn-primary btn-sm">
+            Book (${sig.price})
+          </a>
         </div>
       </article>
     `;
   }).join('');
 }
 
-/* 4. Render 30-Treatment Official Tariff Ledger */
+/* 5. Render Open Ryokan Menu Book (All 30 Official Services) */
 function getFilteredServices() {
   return OFFICIAL_SERVICES.filter((srv) => {
     const matchesCat = activeCategory === 'all' || srv.category === activeCategory;
@@ -922,13 +1131,13 @@ function renderTariffRail() {
     return `
       <button
         type="button"
-        class="rail-cat-btn ${isActive ? 'active' : ''}"
+        class="bookmark-tab ${isActive ? 'active' : ''}"
         role="tab"
         aria-selected="${isActive ? 'true' : 'false'}"
         data-cat-id="${cat.id}"
       >
         <span>${cat.label}</span>
-        <span class="rail-count">${count}</span>
+        <span class="bookmark-count">(${count})</span>
       </button>
     `;
   }).join('');
@@ -941,8 +1150,8 @@ function renderTariffLedger() {
   const filtered = getFilteredServices();
   if (filtered.length === 0) {
     ledgerBody.innerHTML = `
-      <div class="tariff-empty">
-        <p>No treatments matched your filter. Reset the search or category to view all 30 official services.</p>
+      <div class="menu-chapter" style="grid-column: 1 / -1;">
+        <p>No treatments matched your search. Clear the search box or switch back to "All 30 Treatments" to browse the full menu.</p>
       </div>
     `;
     return;
@@ -961,28 +1170,30 @@ function renderTariffLedger() {
       const rowsHtml = items
         .map((srv) => {
           const thumbSrc = srv.useCutoutThumb ? srv.cutout : srv.photo;
-          const thumbClass = srv.useCutoutThumb ? 'ledger-thumb is-cutout' : 'ledger-thumb';
+          const thumbClass = srv.useCutoutThumb ? 'menu-entry-thumb is-cutout' : 'menu-entry-thumb';
           return `
-            <article class="ledger-service-row">
+            <article class="menu-entry">
               <div class="${thumbClass}">
-                <img src="${thumbSrc}" alt="${srv.name}" loading="lazy" width="60" height="60" />
+                <img src="${thumbSrc}" alt="${srv.name}" loading="lazy" width="52" height="52" />
               </div>
-              <div class="ledger-main-info">
-                <h4 class="ledger-service-name">${srv.name}</h4>
-                <p class="ledger-service-desc">${srv.description}</p>
-              </div>
-              <div class="ledger-duration">${srv.duration}</div>
-              <div class="ledger-price">${srv.price}</div>
-              <div class="ledger-actions">
-                <button type="button" class="ledger-btn-sheet" data-open-service="${srv.id}">
-                  Details
-                </button>
-                <a href="${BYCHRONOS_BOOKING_URL}" target="_blank" rel="noopener noreferrer" class="ledger-btn-book">
-                  <span>Book</span>
-                  <svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true">
-                    <path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" />
-                  </svg>
-                </a>
+              <div class="menu-entry-content">
+                <div class="menu-entry-topline">
+                  <h4 class="menu-entry-name">${srv.name}</h4>
+                  <span class="menu-entry-dots" aria-hidden="true"></span>
+                  <span class="menu-entry-price">${srv.price}</span>
+                </div>
+                <p class="menu-entry-desc">${srv.description}</p>
+                <div class="menu-entry-foot">
+                  <span class="menu-entry-duration">${srv.duration}</span>
+                  <div class="menu-entry-actions">
+                    <button type="button" class="menu-link-details" data-open-service="${srv.id}">
+                      Room protocol &amp; photo
+                    </button>
+                    <a href="${BYCHRONOS_BOOKING_URL}" target="_blank" rel="noopener noreferrer" class="menu-link-book">
+                      Book
+                    </a>
+                  </div>
+                </div>
               </div>
             </article>
           `;
@@ -990,12 +1201,12 @@ function renderTariffLedger() {
         .join('');
 
       return `
-        <section class="ledger-category-block" aria-label="${catId}">
-          <header class="ledger-category-header">
+        <section class="menu-chapter" aria-label="${catId}">
+          <header class="menu-chapter-header">
             <h3>${catId}</h3>
-            <span>${items.length} ${items.length === 1 ? 'Treatment' : 'Treatments'}</span>
+            <span>${items.length} ${items.length === 1 ? 'treatment' : 'treatments'}</span>
           </header>
-          <div class="ledger-rows-wrap">
+          <div class="menu-chapter-list">
             ${rowsHtml}
           </div>
         </section>
@@ -1009,14 +1220,14 @@ function renderTariffLedger() {
 function initTariffControls() {
   const rail = document.getElementById('tariffCategoryRail');
   const searchInput = document.getElementById('tariffSearchInput');
-  const guestBtns = document.querySelectorAll('.guest-filter-btn');
+  const guestBtns = document.querySelectorAll('.scope-btn');
 
   renderTariffRail();
   renderTariffLedger();
 
   if (rail) {
     rail.addEventListener('click', (e) => {
-      const btn = e.target.closest('.rail-cat-btn');
+      const btn = e.target.closest('.bookmark-tab');
       if (!btn) return;
       activeCategory = btn.getAttribute('data-cat-id') || 'all';
       renderTariffRail();
@@ -1054,7 +1265,7 @@ function initTariffControls() {
   });
 }
 
-/* 5. Atelier Photographic Plates & Lightbox */
+/* 6. Lookbook Gallery & Native <dialog> Lightbox */
 function renderAtelierPlates() {
   const grid = document.getElementById('atelierPlatesGrid');
   if (!grid) return;
@@ -1067,9 +1278,9 @@ function renderAtelierPlates() {
   grid.innerHTML = visiblePlates
     .map(
       (plate, idx) => `
-      <figure class="atelier-plate-item" data-plate-index="${idx}" tabindex="0" role="button" aria-label="Enlarge ${plate.caption}">
+      <figure class="lookbook-item" data-plate-index="${idx}" tabindex="0" role="button" aria-label="View larger: ${plate.caption}">
         <img src="${plate.src}" alt="${plate.caption}" loading="lazy" />
-        <figcaption class="plate-edge-note">
+        <figcaption class="lookbook-caption">
           <span>${plate.caption}</span>
           <strong>${plate.meta}</strong>
         </figcaption>
@@ -1079,8 +1290,25 @@ function renderAtelierPlates() {
     .join('');
 }
 
+function attachDialogLightDismissFallback(dialog) {
+  if (!dialog) return;
+  if (!('closedBy' in HTMLDialogElement.prototype)) {
+    dialog.addEventListener('click', (event) => {
+      if (event.target !== dialog) return;
+      const rect = dialog.getBoundingClientRect();
+      const isDialogContent =
+        rect.top <= event.clientY &&
+        event.clientY <= rect.top + rect.height &&
+        rect.left <= event.clientX &&
+        event.clientX <= rect.left + rect.width;
+      if (isDialogContent) return;
+      dialog.close();
+    });
+  }
+}
+
 function initAtelierGallery() {
-  const tabs = document.querySelectorAll('.atelier-tab');
+  const tabs = document.querySelectorAll('.lookbook-tab');
   const grid = document.getElementById('atelierPlatesGrid');
   const lightbox = document.getElementById('plateLightbox');
   const lightboxImg = document.getElementById('lightboxImg');
@@ -1090,6 +1318,7 @@ function initAtelierGallery() {
   const nextBtn = document.getElementById('lightboxNextBtn');
 
   renderAtelierPlates();
+  attachDialogLightDismissFallback(lightbox);
 
   tabs.forEach((tab) => {
     tab.addEventListener('click', () => {
@@ -1111,19 +1340,14 @@ function initAtelierGallery() {
     lightboxImg.src = item.src;
     lightboxImg.alt = item.caption;
     lightboxCaption.textContent = `${item.caption} — ${item.meta}`;
-    lightbox.classList.add('open');
-    lightbox.setAttribute('aria-hidden', 'false');
-  }
-
-  function closeLightbox() {
-    if (!lightbox) return;
-    lightbox.classList.remove('open');
-    lightbox.setAttribute('aria-hidden', 'true');
+    if (!lightbox.open) {
+      lightbox.showModal();
+    }
   }
 
   if (grid) {
     grid.addEventListener('click', (e) => {
-      const fig = e.target.closest('.atelier-plate-item');
+      const fig = e.target.closest('.lookbook-item');
       if (!fig) return;
       const idx = parseInt(fig.getAttribute('data-plate-index'), 10);
       if (!Number.isNaN(idx)) showLightboxPlate(idx);
@@ -1131,7 +1355,7 @@ function initAtelierGallery() {
 
     grid.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
-        const fig = e.target.closest('.atelier-plate-item');
+        const fig = e.target.closest('.lookbook-item');
         if (!fig) return;
         e.preventDefault();
         const idx = parseInt(fig.getAttribute('data-plate-index'), 10);
@@ -1140,30 +1364,23 @@ function initAtelierGallery() {
     });
   }
 
-  if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+  if (closeBtn) closeBtn.addEventListener('click', () => lightbox && lightbox.close());
   if (prevBtn) prevBtn.addEventListener('click', () => showLightboxPlate(currentLightboxIndex - 1));
   if (nextBtn) nextBtn.addEventListener('click', () => showLightboxPlate(currentLightboxIndex + 1));
 
-  if (lightbox) {
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) closeLightbox();
-    });
-  }
-
   document.addEventListener('keydown', (e) => {
-    if (lightbox && lightbox.classList.contains('open')) {
-      if (e.key === 'Escape') closeLightbox();
+    if (lightbox && lightbox.open) {
       if (e.key === 'ArrowLeft') showLightboxPlate(currentLightboxIndex - 1);
       if (e.key === 'ArrowRight') showLightboxPlate(currentLightboxIndex + 1);
     }
   });
 }
 
-/* 6. Service Detail Sheet Drawer */
+/* 7. Native <dialog> Treatment Detail Modal */
 function openServiceDrawer(serviceId) {
   const srv = OFFICIAL_SERVICES.find((s) => s.id === serviceId);
-  const drawer = document.getElementById('serviceDetailDrawer');
-  if (!srv || !drawer) return;
+  const dialog = document.getElementById('serviceDetailDialog');
+  if (!srv || !dialog) return;
 
   const catEl = document.getElementById('drawerServiceCategory');
   const photoEl = document.getElementById('drawerServicePhoto');
@@ -1181,7 +1398,7 @@ function openServiceDrawer(serviceId) {
   }
   if (cutoutEl) {
     cutoutEl.src = srv.cutout;
-    cutoutEl.alt = `${srv.name} illustration`;
+    cutoutEl.alt = `${srv.name} apothecary object`;
   }
   if (titleEl) titleEl.textContent = srv.name;
   if (priceEl) priceEl.textContent = srv.price;
@@ -1191,23 +1408,20 @@ function openServiceDrawer(serviceId) {
     listEl.innerHTML = (srv.highlights || []).map((h) => `<li>${h}</li>`).join('');
   }
 
-  drawer.classList.add('open');
-  drawer.setAttribute('aria-hidden', 'false');
-}
-
-function closeServiceDrawer() {
-  const drawer = document.getElementById('serviceDetailDrawer');
-  if (!drawer) return;
-  drawer.classList.remove('open');
-  drawer.setAttribute('aria-hidden', 'true');
+  if (!dialog.open) {
+    dialog.showModal();
+  }
 }
 
 function initServiceDrawerEvents() {
+  const dialog = document.getElementById('serviceDetailDialog');
   const closeBtn = document.getElementById('drawerCloseBtn');
-  const backdrop = document.getElementById('drawerBackdropClose');
 
-  if (closeBtn) closeBtn.addEventListener('click', closeServiceDrawer);
-  if (backdrop) backdrop.addEventListener('click', closeServiceDrawer);
+  attachDialogLightDismissFallback(dialog);
+
+  if (closeBtn && dialog) {
+    closeBtn.addEventListener('click', () => dialog.close());
+  }
 
   document.addEventListener('click', (e) => {
     const trigger = e.target.closest('[data-open-service]');
@@ -1218,61 +1432,40 @@ function initServiceDrawerEvents() {
       openServiceDrawer(id);
     }
   });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeServiceDrawer();
-  });
 }
 
-/* 7. Etiquette FAQ Accordion & Mobile Menu Sheet */
-function initAccordionAndMobileNav() {
-  const faqAccordion = document.getElementById('faqAccordion');
-  if (faqAccordion) {
-    faqAccordion.addEventListener('click', (e) => {
-      const btn = e.target.closest('.faq-trigger');
-      if (!btn) return;
-      const row = btn.closest('.faq-row');
-      if (!row) return;
-      const isOpen = row.classList.contains('open');
-
-      faqAccordion.querySelectorAll('.faq-row').forEach((r) => {
-        r.classList.remove('open');
-        const t = r.querySelector('.faq-trigger');
-        if (t) t.setAttribute('aria-expanded', 'false');
-      });
-
-      if (!isOpen) {
-        row.classList.add('open');
-        btn.setAttribute('aria-expanded', 'true');
-      }
-    });
-  }
-
+/* 8. Mobile Navigation Drawer */
+function initMobileNav() {
   const navToggle = document.getElementById('mobileNavToggle');
   const navDrawer = document.getElementById('mobileNavDrawer');
-  if (navToggle && navDrawer) {
-    navToggle.addEventListener('click', () => {
-      const isOpen = navDrawer.classList.toggle('open');
-      navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      navDrawer.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
-    });
+  if (!navToggle || !navDrawer) return;
 
-    navDrawer.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', () => {
-        navDrawer.classList.remove('open');
-        navToggle.setAttribute('aria-expanded', 'false');
-        navDrawer.setAttribute('aria-hidden', 'true');
-      });
+  navToggle.addEventListener('click', () => {
+    const isHidden = navDrawer.hasAttribute('hidden');
+    if (isHidden) {
+      navDrawer.removeAttribute('hidden');
+      navToggle.setAttribute('aria-expanded', 'true');
+    } else {
+      navDrawer.setAttribute('hidden', '');
+      navToggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  navDrawer.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      navDrawer.setAttribute('hidden', '');
+      navToggle.setAttribute('aria-expanded', 'false');
     });
-  }
+  });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   updateKissimmeeHours();
   initHeroStage();
+  initRitualMatcher();
   renderSignaturesPatchwork();
   initTariffControls();
   initAtelierGallery();
   initServiceDrawerEvents();
-  initAccordionAndMobileNav();
+  initMobileNav();
 });
