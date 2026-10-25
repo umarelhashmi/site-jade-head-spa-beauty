@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jade Head Spa &amp; Beauty | Japanese Head Spa, Shiseido Rituals, Facials &amp; Massage in Kissimmee, FL</title>
+  <meta
+    name="description"
+    content="Relax, Refresh &amp; Recharge at Jade Head Spa &amp; Beauty in Kissimmee, FL (3273 Oxford Dr). Experience Japanese Head Spa with Golden Ring Waterfall Therapy, Shiseido Scalp Packages, Korean &amp; Gentleman’s Facials, Couples Suites, and Foot Massage. Open daily 10 AM – 10 PM."
+  />
+  <meta name="theme-color" content="#07130F" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Jade Head Spa &amp; Beauty | Japanese Head Spa &amp; Facial Sanctuary in Kissimmee, FL" />
+  <meta
+    property="og:description"
+    content="Japanese-inspired Head Spa with Golden Ring Waterfall Therapy, Shiseido Packages, Korean Facials, Couples Massage &amp; Foot Reflexology at 3273 Oxford Dr, Kissimmee, FL."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://jadespa.aviaorlando.com" />
+  <meta property="og:image" content="https://jadespa.aviaorlando.com/assets/images/gmaps/waterfall-halo-hero.jpg" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/ai/logo-emblem.png" />
+
+  <!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="assets/css/styles.css?v=20261025-1" />
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "DaySpa",
+    "name": "Jade Head Spa & Beauty",
+    "image": "https://jadespa.aviaorlando.com/assets/images/gmaps/waterfall-halo-hero.jpg",
+    "url": "https://jadespa.aviaorlando.com",
+    "telephone": "+1-407-989-3326",
+    "email": "jadespa3273@gmail.com",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "3273 Oxford Dr #2",
+      "addressLocality": "Kissimmee",
+      "addressRegion": "FL",
+      "postalCode": "34746",
+      "addressCountry": "US"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 28.3447221,
+      "longitude": -81.4877442
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+        ],
+        "opens": "10:00",
+        "closes": "22:00"
+      }
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "reviewCount": "3"
+    }
+  }
+  </script>
+</head>
+<body>
+  <!-- ========================================================================
+       1. TOP UTILITY HUD BAR (LIVE KISSIMMEE HOURS & QUICK CONTACTS)
+       ======================================================================== -->
+  <div class="utility-topbar">
+    <div class="container utility-inner">
+      <div class="utility-left">
+        <button
+          type="button"
+          class="hours-hud-trigger"
+          id="hoursHudTrigger"
+          aria-expanded="false"
+          aria-controls="hoursHudPopover"
+        >
+          <span class="status-dot" id="hoursStatusDot"></span>
+          <span id="hoursStatusText">Open Daily · 10:00 AM – 10:00 PM</span>
+          <span>▾</span>
+        </button>
+
+        <a
+          href="https://www.google.com/maps/place/Jade+Head+Spa+%26+Beauty/@28.3448768,-81.4878266,20.44z/data=!4m8!3m7!1s0x88dd81873e9981bf:0x3bee3f4c5a75191f!8m2!3d28.3447221!4d-81.4877442!9m1!1b1!16s%2Fg%2F11zd8lt1h7"
+          target="_blank"
+          rel="noopener"
+          class="utility-link"
+        >
+          <span>📍 3273 Oxford Dr, Kissimmee, FL 34746</span>
+        </a>
+      </div>
+
+      <div class="utility-right">
+        <span class="utility-rating-pill hide-mobile">★★★★★ 5.0 Rated on Google</span>
+        <a href="tel:+14079893326" class="utility-link">
+          <strong>📞 (407) 989-3326</strong>
+        </a>
+      </div>
+    </div>
+
+    <!-- Interactive Weekly Hours HUD Popover -->
+    <div class="hours-hud-popover" id="hoursHudPopover" role="dialog" aria-label="Spa Business Hours" aria-hidden="true">
+      <div class="container">
+        <div class="hours-hud-card">
+          <div class="hours-hud-header">
+            <div>
+              <div class="hours-hud-title">Jade Head Spa &amp; Beauty Hours</div>
+              <div class="hours-hud-sub">3273 Oxford Dr #2, Kissimmee, FL 34746 · Eastern Time (ET)</div>
+            </div>
+            <button type="button" class="hours-hud-close" id="hoursHudClose" aria-label="Close hours">✕</button>
+          </div>
+          <ul class="hours-hud-list" id="hoursHudList"></ul>
+          <div style="display:flex; gap:0.6rem; flex-wrap:wrap;">
+            <a
+              href="https://go.bychronos.com/l/kissimmee-34746-jade-head-spa-beauty-806983/a/services"
+              target="_blank"
+              rel="noopener"
+              class="btn btn-gold"
+              style="padding:0.48rem 0.95rem; font-size:0.78rem;"
+            >
+              Book Appointment Online
+            </a>
+            <a href="tel:+14079893326" class="btn btn-outline-light" style="padding:0.48rem 0.95rem; font-size:0.78rem;">
+              Call (407) 989-3326
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       2. STICKY GLASSMORPHIC NAVIGATION HEADER + MOBILE SUBNAV
+       ======================================================================== -->
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-inner">
+      <a href="#top" class="brand-lockup" aria-label="Jade Head Spa & Beauty Home">
+        <img
+          src="assets/images/ai/logo-emblem.png"
+          alt="Jade Head Spa & Beauty Logo"
+          class="brand-logo-img"
+          width="88"
+          height="58"
+        />
+        <div class="brand-text-meta">
+          <span class="brand-title">JADE HEAD SPA</span>
+          <span class="brand-subtitle">Japanese Head Spa &amp; Beauty · Kissimmee</span>
+        </div>
+      </a>
+
+      <nav aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li><a href="#rituals">The Experience</a></li>
+          <li><a href="#signatures">Featured Rituals</a></li>
+          <li><a href="#menu">Full Service Menu</a></li>
+          <li><a href="#gallery">Spa Gallery</a></li>
+          <li><a href="#reviews">Guest Reviews</a></li>
+          <li><a href="#visit">Hours &amp; Location</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="tel:+14079893326" class="btn btn-outline-jade nav-phone-btn" style="padding:0.58rem 1rem;">
+          (407) 989-3326
+        </a>
+        <a
+          href="https://go.bychronos.com/l/kissimmee-34746-jade-head-spa-beauty-806983/a/services"
+          target="_blank"
+          rel="noopener"
+          class="btn btn-gold nav-book-btn"
+        >
+          Book Online
+        </a>
+      </div>
+    </div>
+
+    <!-- Native Mobile Horizontal Quick-Jump Bar -->
+    <div class="mobile-subnav" aria-label="Mobile Quick Navigation">
+      <div class="mobile-subnav-track">
+        <a href="#rituals" class="mobile-subnav-pill">Head Spa Experience</a>
+        <a href="#signatures" class="mobile-subnav-pill">Featured Packages</a>
+        <a href="#menu" class="mobile-subnav-pill" data-jump-category="all">All 30 Services</a>
+        <a href="#menu" class="mobile-subnav-pill" data-jump-category="Special Menu">Shiseido Menu</a>
+        <a href="#menu" class="mobile-subnav-pill" data-jump-category="Couple Head Spa">Couples Suites</a>
+        <a href="#menu" class="mobile-subnav-pill" data-jump-category="Facial">Korean Facials</a>
+        <a href="#gallery" class="mobile-subnav-pill">Photos</a>
+        <a href="#reviews" class="mobile-subnav-pill">5.0★ Reviews</a>
+        <a href="#visit" class="mobile-subnav-pill">Map &amp; Hours</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ======================================================================
+         3. HERO — IMPERIAL JADE SANCTUARY & GOLDEN HALO ARCH STAGE
+         ====================================================================== -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <!-- Left Editorial Column -->
+        <div class="hero-copy">
+          <div class="hero-kicker">
+            <span>❖</span> KISSIMMEE’S JAPANESE HEAD SPA &amp; BEAUTY SANCTUARY · 3273 OXFORD DR
+          </div>
+
+          <h1 class="hero-title">
+            Japanese <span class="gold-italic">Golden Ring</span> Waterfall Head Spa &amp; Radiant Skincare.
+          </h1>
+
+          <p class="hero-lead">
+            Experience soothing scalp massage, deep follicle cleansing, botanical conditioning, and warm Golden Ring Waterfall therapy—paired with Shiseido scalp care, Korean &amp; Gentleman’s facials, full-body massage, and private couples suites.
+          </p>
+
+          <div class="hero-cta-group">
+            <a
+              href="https://go.bychronos.com/l/kissimmee-34746-jade-head-spa-beauty-806983/a/services"
+              target="_blank"
+              rel="noopener"
+              class="btn btn-gold"
+            >
+              Book Appointment Online →
+            </a>
+            <a href="#menu" class="btn btn-outline-light">
+              View All 30 Services &amp; Prices
+            </a>
+            <a href="tel:+14079893326" class="btn btn-outline-light">
+              Call (407) 989-3326
+            </a>
+          </div>
+
+          <div class="hero-trust-row">
+            <div class="trust-stat">
+              <div class="trust-stat-val">Golden Halo</div>
+              <div class="trust-stat-label">360° Warm Waterfall Head Spa Beds &amp; Shiseido Scalp Care</div>
+            </div>
+            <div class="trust-stat">
+              <div class="trust-stat-val">Couples &amp; Solo</div>
+              <div class="trust-stat-label">Private Suites for Head Spa, Massage, Korean Facials &amp; Foot Spa</div>
+            </div>
+            <div class="trust-stat">
+              <div class="trust-stat-val">5.0 ★ Rated</div>
+              <div class="trust-stat-label">Open Daily 10:00 AM – 10:00 PM · Free Parking at 3273 Oxford Dr</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Interactive Ritual Stage Pedestal -->
+        <div class="hero-stage">
+          <div class="hero-arch-pedestal">
+            <div class="hero-arch-ring" aria-hidden="true"></div>
+
+            <span class="hero-badge-pill" id="heroRitualBadge">
+              SIGNATURE · GOLDEN RING WATERFALL THERAPY
+            </span>
+
+            <div class="hero-cutout-stage">
+              <img
+                src="assets/images/ai/cutout-golden-halo-arch.png"
+                alt="60 Mins Head Spa Golden Ring Waterfall Arch"
+                class="hero-cutout-img"
+                id="heroCutoutImg"
+                width="300"
+                height="240"
+              />
+            </div>
+
+            <div class="hero-caption-bar" id="heroCaptionBar" title="Click to inspect service details">
+              <div class="hero-caption-meta">
+                <h3 id="heroRitualTitle">60 Mins Head Spa</h3>
+                <p id="heroRitualSub">1 hour · Japanese Scalp Detox, Warm Golden Halo Waterfall &amp; Neck Relief</p>
+              </div>
+              <span class="hero-price-tag" id="heroRitualPrice">$120</span>
+            </div>
+          </div>
+
+          <!-- 6-Ritual Interactive Switcher -->
+          <div class="hero-switcher" id="heroQuickSwitcher" aria-label="Preview featured spa treatments"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         4. MARQUEE RIBBON
+         ====================================================================== -->
+    <div class="ribbon-marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <div class="marquee-item"><span class="sep">❖</span> <span>JADE HEAD SPA &amp; BEAUTY · 3273 OXFORD DR, KISSIMMEE</span></div>
+        <div class="marquee-item"><span class="sep">❖</span> <span>GOLDEN RING WATERFALL HEAD SPA ($80 – $160)</span></div>
+        <div class="marquee-item"><span class="sep">❖</span> <span>JAPANESE HEAD SPA WITH SHISEIDO PACKAGE ($159 – $199)</span></div>
+        <div class="marquee-item"><span class="sep">❖</span> <span>KOREAN FACIAL &amp; GENTLEMAN’S FACIAL ($80 – $120)</span></div>
+        <div class="marquee-item"><span class="sep">❖</span> <span>COUPLE HEAD SPA &amp; COUPLE MASSAGE SUITES ($160 – $360)</span></div>
+        <div class="marquee-item"><span class="sep">❖</span> <span>FOOT MASSAGE RECLINER LOUNGE ($40 – $60)</span></div>
+        <!-- Duplicate for seamless loop -->
+        <div class="marquee-item"><span class="sep">❖</span> <span>JADE HEAD SPA &amp; BEAUTY · 3273 OXFORD DR, KISSIMMEE</span></div>
+        <div class="marquee-item"><span class="sep">❖</span> <span>GOLDEN RING WATERFALL HEAD SPA ($80 – $160)</span></div>
+        <div class="marquee-item"><span class="sep">❖</span> <span>JAPANESE HEAD SPA WITH SHISEIDO PACKAGE ($159 – $199)</span></div>
+        <div class="marquee-item"><span class="sep">❖</span> <span>KOREAN FACIAL &amp; GENTLEMAN’S FACIAL ($80 – $120)</span></div>
+        <div class="marquee-item"><span class="sep">❖</span> <span>COUPLE HEAD SPA &amp; COUPLE MASSAGE SUITES ($160 – $360)</span></div>
+        <div class="marquee-item"><span class="sep">❖</span> <span>FOOT MASSAGE RECLINER LOUNGE ($40 – $60)</span></div>
+      </div>
+    </div>
+
+    <!-- ======================================================================
+         5. INSIDE JADE HEAD SPA & BEAUTY (OFFICIAL PHOTOS + 4 PILLARS)
+         ====================================================================== -->
+    <section class="section" id="rituals">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Inside Our Kissimmee Sanctuary · Official Photography</span>
+          <h2 class="section-title">Relax Your Mind, Refresh Your Scalp &amp; Renew Your Beauty</h2>
+          <p class="section-desc">
+            Step into our candlelit suites at 3273 Oxford Dr. Every treatment combines traditional Japanese scalp hydrotherapy, aromatic botanical oils, and attentive hands-on care.
+          </p>
+        </div>
+
+        <!-- 4 Official Photo Cards from Google Maps & jadespafl.com -->
+        <div class="sanctuary-bento">
+          <article class="bento-card">
+            <img
+              src="assets/images/gmaps/waterfall-halo-hero.jpg"
+              alt="Golden Ring Waterfall Head Spa at Jade Head Spa & Beauty"
+              width="400"
+              height="250"
+              loading="lazy"
+            />
+            <div class="bento-overlay">
+              <span class="bento-badge">Golden Ring Therapy</span>
+              <h3 class="bento-title">Waterfall Head Spa</h3>
+              <p class="bento-sub">Warm 360° water halo arches soothe the scalp and nervous system.</p>
+            </div>
+          </article>
+
+          <article class="bento-card">
+            <img
+              src="assets/images/gmaps/scalp-foam-massage.jpg"
+              alt="Foaming Japanese Scalp Detox Massage at Jade Head Spa & Beauty"
+              width="400"
+              height="250"
+              loading="lazy"
+            />
+            <div class="bento-overlay">
+              <span class="bento-badge">Scalp Detox &amp; Care</span>
+              <h3 class="bento-title">Foaming Meridian Massage</h3>
+              <p class="bento-sub">Deep cleansing lather and cranial acupressure release neck tension.</p>
+            </div>
+          </article>
+
+          <article class="bento-card">
+            <img
+              src="assets/images/gmaps/korean-facial-treatment.jpg"
+              alt="Korean Facial Treatment at Jade Head Spa & Beauty"
+              width="400"
+              height="250"
+              loading="lazy"
+            />
+            <div class="bento-overlay">
+              <span class="bento-badge">Skincare Studio</span>
+              <h3 class="bento-title">Korean &amp; Gentleman’s Facials</h3>
+              <p class="bento-sub">Warm botanical steam, twin fan-brush masks, and deep hydration.</p>
+            </div>
+          </article>
+
+          <article class="bento-card">
+            <img
+              src="assets/images/gmaps/foot-reflexology-lounge.jpg"
+              alt="Foot Massage Recliner Lounge at Jade Head Spa & Beauty"
+              width="400"
+              height="250"
+              loading="lazy"
+            />
+            <div class="bento-overlay">
+              <span class="bento-badge">Reflexology Lounge</span>
+              <h3 class="bento-title">Body &amp; Foot Massage</h3>
+              <p class="bento-sub">Private body massage rooms and plush leather foot spa recliners.</p>
+            </div>
+          </article>
+        </div>
+
+        <!-- 4 Concise Ritual Pillars -->
+        <div class="ritual-pillars">
+          <div class="pillar-card">
+            <span class="pillar-num">01 · SCALP DETOX</span>
+            <h3>Golden Ring Waterfall</h3>
+            <p>Warm cascading water streams across the crown while cleansing and conditioning formulas purify hair follicles.</p>
+          </div>
+          <div class="pillar-card">
+            <span class="pillar-num">02 · SPECIAL MENU</span>
+            <h3>Shiseido Scalp Rituals</h3>
+            <p>Upgrade to our Japanese Head Spa with Shiseido packages ($159–$199) for solo guests or couples.</p>
+          </div>
+          <div class="pillar-card">
+            <span class="pillar-num">03 · RADIANT SKIN</span>
+            <h3>Korean &amp; Men’s Facials</h3>
+            <p>30-minute ($80) and 60-minute ($120) Korean Facials and Gentleman’s Facials for luminous, hydrated skin.</p>
+          </div>
+          <div class="pillar-card">
+            <span class="pillar-num">04 · COUPLES &amp; COMBOS</span>
+            <h3>Side-by-Side Suites</h3>
+            <p>Pair your Head Spa with a 30- or 60-minute body massage or facial, or book a private Couples Package.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         6. FEATURED RITUALS SHOWCASE (AI REDRAWN STUDIO CUTOUTS)
+         ====================================================================== -->
+    <section class="section section-jade" id="signatures">
+      <div class="container">
+        <div class="section-header center">
+          <span class="eyebrow">Signature Treatments · Select Any Card to Inspect or Book</span>
+          <h2 class="section-title">Most Requested Spa Packages &amp; Rituals</h2>
+          <p class="section-desc">
+            Featuring our exact service names and prices—from the 60 Mins Head Spa to the Japanese Head Spa with Shiseido Package.
+          </p>
+        </div>
+
+        <div class="signature-grid" id="signatureGrid"></div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         7. COMPLETE 30-ITEM OFFICIAL SERVICE MENU LEDGER
+         ====================================================================== -->
+    <section class="section section-warm" id="menu">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Official Service Menu &amp; Exact Pricing · All 8 Categories</span>
+          <h2 class="section-title">Explore All 30 Treatments &amp; Packages</h2>
+          <p class="section-desc">
+            Browse every official service offered at Jade Head Spa &amp; Beauty with exact names, durations, and prices. Click any treatment to view details or book online.
+          </p>
+        </div>
+
+        <div class="menu-controls">
+          <div class="menu-search-row">
+            <div class="menu-search-box">
+              <span class="menu-search-icon">⌕</span>
+              <input
+                type="search"
+                id="menuSearchInput"
+                placeholder="Search all 30 services (e.g., Shiseido, 60 Mins Head Spa, Korean Facial, Couple, Foot Massage)..."
+                aria-label="Search spa services"
+              />
+            </div>
+            <a
+              href="https://go.bychronos.com/l/kissimmee-34746-jade-head-spa-beauty-806983/a/services"
+              target="_blank"
+              rel="noopener"
+              class="btn btn-gold"
+            >
+              Book Online on ByChronos →
+            </a>
+          </div>
+
+          <div class="category-tabs" id="menuCategoryTabs" role="tablist" aria-label="Service Categories"></div>
+        </div>
+
+        <!-- Populated by renderMenuGrid() -->
+        <div class="full-menu-grid" id="fullMenuGrid"></div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         8. OFFICIAL SANCTUARY PHOTO GALLERY
+         ====================================================================== -->
+    <section class="section" id="gallery">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Inside 3273 Oxford Dr · Real Spa Photography</span>
+          <h2 class="section-title">Tour Our Suites, Equipment &amp; Details</h2>
+          <p class="section-desc">
+            Authentic photos from inside Jade Head Spa &amp; Beauty—showcasing our Golden Ring Waterfall basins, embroidered Jade linens, facial steamers, and foot reflexology recliners.
+          </p>
+        </div>
+
+        <div class="gallery-filter-row" role="tablist" aria-label="Gallery Filters">
+          <button type="button" class="cat-tab active" data-gallery-filter="all">All Photos (12)</button>
+          <button type="button" class="cat-tab" data-gallery-filter="head-spa">Golden Ring Head Spa</button>
+          <button type="button" class="cat-tab" data-gallery-filter="facial">Facials &amp; Linens</button>
+          <button type="button" class="cat-tab" data-gallery-filter="lounge">Foot Lounge &amp; Aromatherapy</button>
+          <button type="button" class="cat-tab" data-gallery-filter="reception">Reception &amp; Jade Crest</button>
+        </div>
+
+        <div class="gallery-grid" id="galleryGrid"></div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         9. VERIFIED 5.0★ GOOGLE MAPS GUEST REVIEWS
+         ====================================================================== -->
+    <section class="section section-jade" id="reviews">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Verified Google Maps Reviews · 5.0 ★ Rating</span>
+          <h2 class="section-title">What Our Guests Say</h2>
+          <p class="section-desc">
+            Read real reviews from guests who visited Jade Head Spa &amp; Beauty in Kissimmee for head spa, couples packages, facials, and body massage.
+          </p>
+        </div>
+
+        <div class="reviews-summary-banner">
+          <div class="rating-big-box">
+            <div class="rating-number">5.0★</div>
+            <div>
+              <div class="rating-stars">★★★★★</div>
+              <div style="font-size:0.78rem; color:var(--text-champagne); font-weight:700;">
+                100% Five-Star Rating on Google Maps
+              </div>
+            </div>
+          </div>
+
+          <div style="max-width:520px;">
+            <div style="font-size:0.74rem; font-weight:800; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold-light); margin-bottom:0.2rem;">
+              Message From The Owner
+            </div>
+            <p style="font-size:0.84rem; color:var(--text-cream);">
+              “Experience our Japanese-inspired Head Spa with soothing scalp massage, cleansing, conditioning, and relaxing Golden Ring Waterfall Therapy. Complete your spa day with a professional Massage or refreshing Facial.”
+            </p>
+          </div>
+
+          <a
+            href="https://www.google.com/maps/place/Jade+Head+Spa+%26+Beauty/@28.3448768,-81.4878266,20.44z/data=!4m8!3m7!1s0x88dd81873e9981bf:0x3bee3f4c5a75191f!8m2!3d28.3447221!4d-81.4877442!9m1!1b1!16s%2Fg%2F11zd8lt1h7"
+            target="_blank"
+            rel="noopener"
+            class="btn btn-gold"
+          >
+            View on Google Maps →
+          </a>
+        </div>
+
+        <div class="reviews-grid">
+          <!-- Review 1: Greg Balitz -->
+          <article class="review-card">
+            <div class="review-header">
+              <div class="reviewer-info">
+                <div class="reviewer-avatar">GB</div>
+                <div>
+                  <div class="reviewer-name">Greg Balitz</div>
+                  <div class="reviewer-meta">Local Guide · 34 reviews · 2 months ago</div>
+                </div>
+              </div>
+              <div class="rating-stars" aria-label="5 out of 5 stars">★★★★★</div>
+            </div>
+            <p class="review-text">
+              “This was the best service and relaxing experience for head and body..This spa has very nice waiting area and nice aroma.The head spa was best and they also do facials and you will love it..”
+            </p>
+            <div class="review-tags">
+              <span class="review-tag">Head Spa &amp; Body</span>
+              <span class="review-tag">Price assessment: Reasonable price</span>
+            </div>
+            <div class="owner-reply">
+              <strong>Response from the owner:</strong> Thank you so much
+            </div>
+          </article>
+
+          <!-- Review 2: Charles Machulàs -->
+          <article class="review-card">
+            <div class="review-header">
+              <div class="reviewer-info">
+                <div class="reviewer-avatar">CM</div>
+                <div>
+                  <div class="reviewer-name">Charles Machulàs</div>
+                  <div class="reviewer-meta">4 reviews · a month ago</div>
+                </div>
+              </div>
+              <div class="rating-stars" aria-label="5 out of 5 stars">★★★★★</div>
+            </div>
+            <p class="review-text">
+              “My girlfriend and I went for a couple massage and head massage and facial package had a wonderful experience , this place is top notch and I would highly recommend it to everyone very clean and friendly people working there . Thumbs up”
+            </p>
+            <div class="review-tags">
+              <span class="review-tag">Couples Package</span>
+              <span class="review-tag">Facial massage</span>
+              <span class="review-tag">Deep cleansing facial</span>
+            </div>
+            <div class="owner-reply">
+              <strong>Response from the owner:</strong> Thank you so much
+            </div>
+          </article>
+
+          <!-- Review 3: Mary L -->
+          <article class="review-card">
+            <div class="review-header">
+              <div class="reviewer-info">
+                <div class="reviewer-avatar">ML</div>
+                <div>
+                  <div class="reviewer-name">Mary L</div>
+                  <div class="reviewer-meta">9 reviews · a month ago</div>
+                </div>
+              </div>
+              <div class="rating-stars" aria-label="5 out of 5 stars">★★★★★</div>
+            </div>
+            <p class="review-text">
+              “Tina was very good, it was wonderful experience for head massage and body massage! Call to schedule”
+            </p>
+            <div class="review-tags">
+              <span class="review-tag">Specialist: Tina</span>
+              <span class="review-tag">Head Massage &amp; Body Massage</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         10. VISIT US, HOURS & LOCATION COMMAND CENTER
+         ====================================================================== -->
+    <section class="section" id="visit">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Visit Our Sanctuary · Kissimmee, Florida</span>
+          <h2 class="section-title">Location, Hours &amp; Online Booking</h2>
+          <p class="section-desc">
+            Conveniently located at 3273 Oxford Dr in Kissimmee (near Vineland Rd &amp; US-192) with free parking and wheelchair accessibility. Book online 24/7 or call us directly.
+          </p>
+        </div>
+
+        <div class="location-grid">
+          <div class="location-info-card">
+            <div>
+              <h3 style="font-family:var(--font-display); font-size:1.45rem; color:var(--jade-deep); margin-bottom:0.35rem;">
+                Jade Head Spa &amp; Beauty
+              </h3>
+              <p style="font-size:0.9rem; color:var(--text-body);">
+                <strong>Address:</strong> 3273 Oxford Dr, Suite #2, Kissimmee, FL 34746
+              </p>
+              <p style="font-size:0.9rem; color:var(--text-body); margin-top:0.25rem;">
+                <strong>Phone:</strong>
+                <a href="tel:+14079893326" style="color:var(--jade-deep); font-weight:800;"> (407) 989-3326</a>
+              </p>
+              <p style="font-size:0.9rem; color:var(--text-body); margin-top:0.25rem;">
+                <strong>Email:</strong>
+                <a href="mailto:jadespa3273@gmail.com" style="color:var(--gold-deep); font-weight:600;"> jadespa3273@gmail.com</a>
+              </p>
+            </div>
+
+            <div>
+              <h4 style="font-size:0.76rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--gold-deep); margin-bottom:0.45rem;">
+                Business Hours (Monday – Sunday)
+              </h4>
+              <ul class="hours-list" id="locationHoursList"></ul>
+            </div>
+
+            <div>
+              <h4 style="font-size:0.76rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--gold-deep); margin-bottom:0.45rem;">
+                Accessibility &amp; Amenities
+              </h4>
+              <div class="amenities-grid">
+                <span class="amenity-chip">♿ Wheelchair Accessible Entrance</span>
+                <span class="amenity-chip">♿ Wheelchair Accessible Parking Lot</span>
+                <span class="amenity-chip">✨ Golden Ring Waterfall Beds</span>
+                <span class="amenity-chip">🌿 Shiseido Scalp Care</span>
+                <span class="amenity-chip">💑 Private Couples Suites</span>
+                <span class="amenity-chip">🅿️ Free On-Site Parking</span>
+              </div>
+            </div>
+
+            <div style="display:flex; flex-wrap:wrap; gap:0.65rem; margin-top:auto;">
+              <a
+                href="https://go.bychronos.com/l/kissimmee-34746-jade-head-spa-beauty-806983/a/services"
+                target="_blank"
+                rel="noopener"
+                class="btn btn-gold"
+                style="flex:1.2;"
+              >
+                Book Online Now →
+              </a>
+              <a
+                href="https://www.google.com/maps/place/Jade+Head+Spa+%26+Beauty/@28.3448768,-81.4878266,20.44z/data=!4m8!3m7!1s0x88dd81873e9981bf:0x3bee3f4c5a75191f!8m2!3d28.3447221!4d-81.4877442!9m1!1b1!16s%2Fg%2F11zd8lt1h7"
+                target="_blank"
+                rel="noopener"
+                class="btn btn-jade"
+                style="flex:1;"
+              >
+                Get Directions
+              </a>
+            </div>
+          </div>
+
+          <div class="map-frame-card">
+            <iframe
+              title="Jade Head Spa & Beauty Map — 3273 Oxford Dr, Kissimmee, FL 34746"
+              src="https://www.google.com/maps?q=Jade+Head+Spa+%26+Beauty,+3273+Oxford+Dr,+Kissimmee,+FL+34746&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+            <div class="map-footer-bar">
+              <span>3273 Oxford Dr, Kissimmee, FL 34746 · Plus Code: 8GV6+VW Kissimmee</span>
+              <a
+                href="https://www.google.com/maps/place/Jade+Head+Spa+%26+Beauty/@28.3448768,-81.4878266,20.44z/data=!4m8!3m7!1s0x88dd81873e9981bf:0x3bee3f4c5a75191f!8m2!3d28.3447221!4d-81.4877442!9m1!1b1!16s%2Fg%2F11zd8lt1h7"
+                target="_blank"
+                rel="noopener"
+                style="color:var(--gold-light); font-weight:700; text-decoration:underline;"
+              >
+                Open in Google Maps →
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       11. SERVICE DETAIL MODAL
+       ======================================================================== -->
+  <div class="modal-backdrop" id="serviceModalBackdrop" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-dialog">
+      <button type="button" class="modal-close-btn" id="serviceModalClose" aria-label="Close service details">✕</button>
+      <div id="serviceModalContent"></div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       12. FOOTER
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="brand-lockup" style="margin-bottom:0.85rem;">
+            <img
+              src="assets/images/ai/logo-emblem.png"
+              alt="Jade Head Spa & Beauty Emblem"
+              class="brand-logo-img"
+              style="background:#faf7f2; padding:4px; border-radius:10px;"
+              width="48"
+              height="48"
+            />
+            <div class="brand-text-meta">
+              <span class="brand-title" style="color:#ffffff;">JADE</span>
+              <span class="brand-subtitle" style="color:var(--gold-light);">HEAD SPA &amp; BEAUTY</span>
+            </div>
+          </div>
+          <p style="font-size:0.84rem; line-height:1.6;">
+            Japanese-inspired Head Spa with Golden Ring Waterfall Therapy, Shiseido Scalp Packages, Korean &amp; Gentleman’s Facials, Full-Body Massage, and Foot Reflexology in Kissimmee, FL.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Service Categories</h4>
+          <ul class="footer-links">
+            <li><a href="#menu" data-jump-category="Head Spa">Head Spa ($80 – $160)</a></li>
+            <li><a href="#menu" data-jump-category="Head Spa Package">Head Spa Packages ($120 – $200)</a></li>
+            <li><a href="#menu" data-jump-category="Special Menu">Special Menu · Shiseido ($159 – $398)</a></li>
+            <li><a href="#menu" data-jump-category="Couple Head Spa">Couple Head Spa ($240 – $360)</a></li>
+            <li><a href="#menu" data-jump-category="Facial">Korean &amp; Gentleman’s Facial ($80 – $120)</a></li>
+            <li><a href="#menu" data-jump-category="Massage">Massage &amp; Foot Massage ($40 – $130)</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Popular Treatments</h4>
+          <ul class="footer-links">
+            <li><a href="#signatures">60 Mins Head Spa ($120)</a></li>
+            <li><a href="#signatures">JAPANESE HEAD SPA WITH SHISEIDO PACKAGE ($199)</a></li>
+            <li><a href="#signatures">60 Mins Head plus 30 Mins Massage ($160)</a></li>
+            <li><a href="#signatures">60 Mins Korean Facial ($120)</a></li>
+            <li><a href="#signatures">Couple 60 minutes head spa ($240)</a></li>
+            <li><a href="#signatures">60 Mins Foot Massage ($60)</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact &amp; Booking</h4>
+          <ul class="footer-links">
+            <li>3273 Oxford Dr #2, Kissimmee, FL 34746</li>
+            <li><a href="tel:+14079893326">Phone: (407) 989-3326</a></li>
+            <li><a href="mailto:jadespa3273@gmail.com">Email: jadespa3273@gmail.com</a></li>
+            <li>Open Daily: 10:00 AM – 10:00 PM</li>
+            <li style="margin-top:0.5rem;">
+              <a
+                href="https://go.bychronos.com/l/kissimmee-34746-jade-head-spa-beauty-806983/a/services"
+                target="_blank"
+                rel="noopener"
+                class="btn btn-gold"
+                style="padding:0.5rem 1rem; font-size:0.8rem;"
+              >
+                Book Appointment Online
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 Jade Head Spa &amp; Beauty · 3273 Oxford Dr, Kissimmee, FL 34746. All rights reserved.</span>
+        <span>Japanese Head Spa · Facial · Massage · Foot Spa</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       13. STICKY NATIVE MOBILE BOTTOM ACTION BAR
+       ======================================================================== -->
+  <div class="mobile-action-bar" aria-label="Mobile Quick Actions">
+    <a href="tel:+14079893326" class="btn btn-jade" style="flex:1; padding:0.68rem 0.5rem; font-size:0.82rem;">
+      📞 Call (407) 989-3326
+    </a>
+    <a
+      href="https://go.bychronos.com/l/kissimmee-34746-jade-head-spa-beauty-806983/a/services"
+      target="_blank"
+      rel="noopener"
+      class="btn btn-gold"
+      style="flex:1.25; padding:0.68rem 0.5rem; font-size:0.82rem;"
+    >
+      ✨ Book Online
+    </a>
+  </div>
+
+  <!-- Main Application Script -->
+  <script src="assets/js/app.js?v=20261025-1"></script>
+</body>
+</html>
