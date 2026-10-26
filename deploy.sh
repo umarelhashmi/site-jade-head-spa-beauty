@@ -13,6 +13,7 @@ DEPLOY_PATH="/home/${HESTIA_USER}/web/${DOMAIN}/public_html/"
 echo "Deploying Jade Head Spa & Beauty static site to ${DEPLOY_HOST}:${DEPLOY_PATH}..."
 rsync -avz --delete \
   --exclude '.git' \
+  --exclude '.impeccable/review' \
   --exclude '.DS_Store' \
   --exclude '._*' \
   --exclude 'deploy.sh' \
